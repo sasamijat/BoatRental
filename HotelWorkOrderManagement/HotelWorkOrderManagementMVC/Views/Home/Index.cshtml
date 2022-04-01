@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-6">
+        <h2 class="text-info">Task List</h2>
+    </div>
+    <div class="col-3 offset-3">
+        <a asp-action="Upsert" asp-controller="Tasks" class="btn btn-info form-control text-white">
+            Add New Task
+        </a>
+    </div>
+    <div class="col-12 border p-3" >
+        <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>CreatedById</th>
+                    <th>CreatedOn</th>
+                    <th>FinishedOn</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Position</th>
+                    <th>Domain</th>
+                    <th>AsigneeIndividualId</th>
+                    <th>AsigneeGroupId</th>
+                    <th>EquipmentId</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div> 
+ 
+@section Scripts{ 
+<script src="~/js/taskList.js"></script>
+}

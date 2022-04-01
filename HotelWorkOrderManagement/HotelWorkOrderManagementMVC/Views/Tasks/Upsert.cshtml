@@ -1,0 +1,152 @@
+﻿@model HotelWorkOrderManagement.DTO.Task.DataIn.TaskDataIn;
+
+<br />
+<h2 class="text-info">@(Model.Id!=0 ? "Edit" : "Create") Task</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.Id != 0)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Description"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="CreatedById"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="CreatedById" class="form-control" />
+                <span asp-validation-for="CreatedById" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="CreatedOn"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="CreatedOn" class="form-control" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="FinishedOn"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="FinishedOn" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Priority"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Status"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Position"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Domain"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Domain" class="form-control" />
+                <span asp-validation-for="Domain" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="AsigneeIndividualId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="AsigneeIndividualId" class="form-control" />
+                <span asp-validation-for="AsigneeIndividualId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="AsigneeGroupId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="AsigneeGroupId" class="form-control" />
+               
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="EquipmentToRepairId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="EquipmentToRepairId" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="RepetitiveStart"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="RepetitiveStart" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="RepetitiveSetting"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="EquipmentToRepairId" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">
+                    @(Model.Id != 0 ? "Update" : "Create")
+                </button>
+            </div>
+            <div class="col-3">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{ 
+<partial name="_ValidationScriptsPartial" />
+}

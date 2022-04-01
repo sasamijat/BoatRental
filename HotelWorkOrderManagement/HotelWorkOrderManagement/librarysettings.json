@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=DESKTOP-HNBBK4J;Database=hwomDB;Trusted_Connection=True"
+  }
+}
