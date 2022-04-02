@@ -26,6 +26,7 @@ namespace HotelWorkOrderManagement.Models
         {
             connectionString = _configuration.GetConnectionString("DefaultConnection");
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);
@@ -42,7 +43,7 @@ namespace HotelWorkOrderManagement.Models
                 LastName = "Krsmanovic",
                 Password = "55555",
                 Username = "milomir",
-                Role = User.Function.Recepcionist
+                Role = User.Function.Admin
             }, new User
             {
                 Id = 2,
@@ -85,7 +86,7 @@ namespace HotelWorkOrderManagement.Models
                 Id = 1,
                 IsDeleted = false,
                 Name = "Klima",
-                InstalationDate = DateTime.Parse("01/15/2022"),
+                InstalationDate = DateTime.ParseExact("15/01/2022","dd/MM/yyyy", null),
                 LastIntervention = null,
                 InstalatedById = 3
             });
@@ -98,7 +99,7 @@ namespace HotelWorkOrderManagement.Models
                 Name = "Popravka Klime",
                 Description = "Zamjena crijeva na klima uredjaju",
                 CreatedById = 1,
-                CreatedOn = DateTime.Parse("02/20/2022"),
+                CreatedOn = DateTime.ParseExact("20/02/2022", "dd/MM/yyyy", null),
                 FinishedOn = null,
                 Priority = "High",
                 Status = "Active",
@@ -117,8 +118,8 @@ namespace HotelWorkOrderManagement.Models
                 Name = "Pranje posteljine",
                 Description = "Oprati koristenu posteljinu i postaviti novu",
                 CreatedById = 1,
-                CreatedOn = DateTime.Parse("02/15/2022"),
-                FinishedOn = DateTime.Parse("02/18/2022"),
+                CreatedOn = DateTime.Parse("15/02/2022"),
+                FinishedOn = DateTime.Parse("18/02/2022"),
                 Priority = "Normal",
                 Status = "Finished",
                 Position = "210",
@@ -136,7 +137,7 @@ namespace HotelWorkOrderManagement.Models
                 Id = 1,
                 IsDeleted = false,
                 Text = "Zadatak izvrsiti sto prije",
-                Created = DateTime.Parse("02/20/2022"),
+                Created = DateTime.Parse("20/02/2022"),
                 TaskID = 1,
                 CreatedById = 1,
                 ReplyId = 2
@@ -145,7 +146,7 @@ namespace HotelWorkOrderManagement.Models
                 Id = 2,
                 IsDeleted = false,
                 Text = "Uredu",
-                Created = DateTime.Parse("02/25/2022"),
+                Created = DateTime.Parse("25/02/2022"),
                 TaskID = 1,
                 CreatedById = 2,
                 // ReplyId = 2

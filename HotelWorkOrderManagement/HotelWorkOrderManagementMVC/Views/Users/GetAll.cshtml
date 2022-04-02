@@ -1,0 +1,27 @@
+﻿@using HotelWorkOrderManagement.DTO.User.DataIn
+@model HotelWorkOrderManagement.DTO.User.DataIn.UserDataIn;
+
+<table class="table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+    @{
+        foreach(UserDataIn User in ViewBag.Users)
+        {
+            <tr>
+            <td>@User.Name</td>
+            <td>@User.LastName</td>
+            <td>@User.UserName</td>
+            <td>@User.Password</td>
+            <td>@User.Role</td>
+            <td><div class="col-3">
+                <a href="Remove?id=9" data-method="delete" class="btn btn-danger btn">Remove</a>
+            </div></td>
+            </tr>   
+        }
+}
+</table>

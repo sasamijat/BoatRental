@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HotelWorkOrderManagement.DTO.User.DataIn;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace HotelWorkOrderManagement.Models
 {
@@ -28,9 +30,21 @@ namespace HotelWorkOrderManagement.Models
         {
             Maintainer,
             Housekeeper,
-            Recepcionist
+            Admin
         }
 
+        public User() { }
+
+        public User(UserDataIn user)
+        {
+            if (user.Id != null)
+                Id = user.Id.Value;
+            Name = user.Name;
+            LastName = user.LastName;
+            Username = user.UserName;
+            Password = user.Password;
+            Role = (Function)Enum.Parse(typeof(Function),user.Role);
+        }
 
     }
 }
