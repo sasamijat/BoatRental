@@ -45,7 +45,20 @@
                 <label asp-for="Role"></label>
             </div>
             <div class="col-6">
-                <input asp-for="Role" class="form-control"/>
+                <select asp-for="Role" class="form-select" >
+                    @{
+                        if (Model.Id == null)
+                        {
+                            <option selected="selected" disabled="disabled">Choose the role:</option>
+                        }
+                        string[] Roles = new string[]{"Maintainer","Housekeeper","Admin" };
+                        foreach(string role in Roles)
+                        {
+                            bool s = Model.Role == role;
+                            <option selected="@s" value="@role">@role</option>
+                        }
+                    }
+                </select>
                 <span asp-validation-for="Role" class="text-danger"/>
             </div>
         </div>

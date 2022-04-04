@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelWorkOrderManagement.Service
 {
-    public interface ICRUD
+    public interface IUserService
     {
         public  void insertUser(UserDataIn user) { }
         public void updateUser(UserDataIn user) { }

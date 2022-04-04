@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace HotelWorkOrderManagement.Service
 {
-    public class CRUD : ICRUD
+    public class UserService : IUserService
     {
         private readonly ApplicationDbContext context;
-        public CRUD(ApplicationDbContext _db)
+        public UserService(ApplicationDbContext _db)
         {
             context = _db;
         }
@@ -76,7 +76,7 @@ namespace HotelWorkOrderManagement.Service
                 else
                 {
                     context.Users.Remove(user);
-                    context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                     return user;
                 }
             }

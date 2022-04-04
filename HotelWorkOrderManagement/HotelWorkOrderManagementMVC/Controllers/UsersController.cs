@@ -8,9 +8,9 @@ namespace HotelWorkOrderManagementMVC.Controllers
 {
     public class UsersController : Controller
     {
-        private ICRUD _service;
+        private IUserService _service;
 
-        public UsersController(ICRUD service)
+        public UsersController(IUserService service)
         {
             _service = service;
         }
@@ -72,7 +72,7 @@ namespace HotelWorkOrderManagementMVC.Controllers
         public async Task<IActionResult> Remove(int id)
         {
 
-            var user = _service.removeUserAsync(id);
+            var user =await _service.removeUserAsync(id);
             if (user == null)
             {
                 return Json(new { success = false, message = "Error while Deleting" });
