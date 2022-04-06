@@ -1,0 +1,30 @@
+﻿@using HotelWorkOrderManagement.DTO.Task.DataIn
+@using System.Globalization
+<div class="container">
+    <h1 class="row justify-content-center">My tasks</h1>
+    <hr />
+    <div class="container">
+        
+            @foreach(TaskDataIn Task in ViewBag.Tasks)
+            {
+                <div class="container border-primary rounded" onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id">
+                    <div calss="col-4 row">
+                        <h2 >@Task.Name</h2>
+                        <p>@Task.Description</p>
+                        <div class="row">
+                            <h3 class="col-md-9">@Task.Position</h3>
+                            <p class="col-md-3">Status:@Task.Status</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        @if (Task.DueDate.HasValue) { <h3 class="col-md-9">DueTime: @Task.DueDate.Value </h3>}
+                        <h4 class="col-md-3">Priority:@Task.Priority</h4>
+                    </div>
+                </div>
+                <hr/>
+            }
+        
+    </div>
+</div>
+

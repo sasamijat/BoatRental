@@ -1,28 +1,24 @@
-﻿using HotelWorkOrderManagement.DTO.Equipment.DataIn;
+﻿using HotelWorkOrderManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelWorkOrderManagement.Models
+namespace HotelWorkOrderManagement.DTO.Equipment.DataIn
 {
-    public class EquipmentPiece : BaseEntity
+    public class EquipmentPieceDataIn
     {
-       
-        public string Name { get; set; }    
+        public int Id { get; set; }
+        public string Name { get; set; }
         public int NumOfInterventions { get; set; }
         public DateTime? InstalationDate { get; set; }
         public DateTime? LastIntervention { get; set; }
         public int? InstalatedById { get; set; }
-        public User InstalatedBy { get; set; }
 
+        public EquipmentPieceDataIn() { }
 
-        public ICollection<Task> Tasks { get; set; }
-
-        public EquipmentPiece() { }
-
-        public EquipmentPiece(EquipmentPieceDataIn equipmentPiece)
+        public EquipmentPieceDataIn(EquipmentPiece equipmentPiece)
         {
             Id = equipmentPiece.Id;
             Name = equipmentPiece.Name;

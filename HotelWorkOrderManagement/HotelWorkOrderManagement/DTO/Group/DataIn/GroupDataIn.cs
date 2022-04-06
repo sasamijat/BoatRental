@@ -1,31 +1,26 @@
-﻿using HotelWorkOrderManagement.DTO.Group.DataIn;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelWorkOrderManagement.Models
+namespace HotelWorkOrderManagement.DTO.Group.DataIn
 {
-    public class Group : BaseEntity
+    public class GroupDataIn
     {
-        
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Domain { get; set; }
         public int MembersCount { get; set; }
-        
-        public IList<Member> Members { get; set; }
-        public ICollection<Task> Tasks { get; set; }
 
-        public Group() { }
+        public GroupDataIn() { }
 
-        public Group(GroupDataIn group)
+        public GroupDataIn(Models.Group group)
         {
-            Id= group.Id;
+            Id = group.Id;
             Name = group.Name;
             Domain = group.Domain;
             MembersCount = group.MembersCount;
         }
-
     }
 }

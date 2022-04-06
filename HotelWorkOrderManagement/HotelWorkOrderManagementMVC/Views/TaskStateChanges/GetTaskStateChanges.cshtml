@@ -1,0 +1,33 @@
+﻿@using System.Globalization
+@using HotelWorkOrderManagement.DTO.TaskStateChange.DataIn
+<div class="container">
+    <h1 class="row justify-content-center">My tasks</h1>
+    <hr />
+    <div class="container">
+        
+            @foreach(TaskStateChangeDataIn tsc in ViewBag.TaskStateChanges)
+            {
+                <div class="container border-primary rounded">
+                    <div calss="row">
+                        <h2 title="@tsc.ExecutorId" id="Executor"></h2>
+                        <br/>
+                    </div>                                           
+                    <div class="row">
+                        <p class="col-md-9">Date of change: @tsc.DateOfChange </p>
+                        <h2 class="col-md-3">Status:@tsc.Status</h2>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <h4 >@tsc.Description</h4>
+                    </div>
+                </div>
+                <hr/>
+            }
+        
+    </div>
+</div>
+
+@section Scripts{ 
+<script src="~/js/TaskStateChange/TaskStateChangeScript.js"></script>
+}

@@ -1,26 +1,23 @@
-﻿using HotelWorkOrderManagement.DTO.TaskStateChange.DataIn;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelWorkOrderManagement.Models
+namespace HotelWorkOrderManagement.DTO.TaskStateChange.DataIn
 {
-    public class TaskStateChange : BaseEntity
+    public class TaskStateChangeDataIn
     {
+        public int Id { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }
-        public Task Task { get; set; }
         public int TaskId { get; set; }
-        public User Executor { get; set; }
         public int ExecutorId { get; set; }
         public DateTime DateOfChange { get; set; }
 
-        public TaskStateChange() { }
+        public TaskStateChangeDataIn() { }
 
-        public TaskStateChange(TaskStateChangeDataIn tsc)
-        {
+        public TaskStateChangeDataIn(Models.TaskStateChange tsc) { 
             Id = tsc.Id;
             DateOfChange = tsc.DateOfChange;
             Status = tsc.Status;
@@ -28,6 +25,7 @@ namespace HotelWorkOrderManagement.Models
             ExecutorId = tsc.ExecutorId;
             TaskId = tsc.TaskId;
         }
-
     }
+
+
 }

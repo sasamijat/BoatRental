@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HotelWorkOrderManagement.Migrations
 {
-    public partial class init : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -103,6 +103,7 @@ namespace HotelWorkOrderManagement.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     FinishedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Priority = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -182,8 +183,10 @@ namespace HotelWorkOrderManagement.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TaskId = table.Column<int>(type: "int", nullable: false),
                     ExecutorId = table.Column<int>(type: "int", nullable: false),
+                    DateOfChange = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -202,6 +205,56 @@ namespace HotelWorkOrderManagement.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Groups",
+                columns: new[] { "Id", "Domain", "IsDeleted", "MembersCount", "Name" },
+                values: new object[] { 1, "Maintaining", false, 2, "Majstori" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "IsDeleted", "LastName", "Name", "Password", "Role", "Username" },
+                values: new object[,]
+                {
+                    { 1, false, "Krsmanovic", "Milomir", "55555", 2, "milomir" },
+                    { 2, false, "Milanovic", "Milica", "123456", 1, "milic@" },
+                    { 3, false, "Smiljanic", "Nikola", "4444", 0, "nikola" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EquipmentPieces",
+                columns: new[] { "Id", "InstalatedById", "InstalationDate", "IsDeleted", "LastIntervention", "Name", "NumOfInterventions" },
+                values: new object[] { 1, 3, new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Klima", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Member",
+                columns: new[] { "GroupId", "TechnicianId", "Id", "IsDeleted", "Leader" },
+                values: new object[] { 1, 3, 1, false, true });
+
+            migrationBuilder.InsertData(
+                table: "Tasks",
+                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "FinishedOn", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
+                values: new object[] { 2, null, 2, 1, new DateTime(2022, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Oprati koristenu posteljinu i postaviti novu", "HouseKeeping", new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Pranje posteljine", "210", "Normal", null, null, "Finished" });
+
+            migrationBuilder.InsertData(
+                table: "TaskStateChanges",
+                columns: new[] { "Id", "DateOfChange", "Description", "ExecutorId", "IsDeleted", "Status", "TaskId" },
+                values: new object[] { 1, new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Promjenu izvrsio po zavrsetku zadatka", 3, false, "Finished", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Tasks",
+                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "FinishedOn", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
+                values: new object[] { 1, 1, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena crijeva na klima uredjaju", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, false, "Popravka Klime", "304", "High", null, null, "Active" });
+
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "ReplyId", "TaskID", "Text" },
+                values: new object[] { 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, false, null, 1, "Uredu" });
+
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "ReplyId", "TaskID", "Text" },
+                values: new object[] { 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, 2, 1, "Zadatak izvrsiti sto prije" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_CreatedById",

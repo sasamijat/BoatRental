@@ -17,6 +17,7 @@ namespace HotelWorkOrderManagement.Models
         public int? CreatedById { get; set; }
         public User CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
+        public DateTime? DueDate { get; set; }
         public DateTime? FinishedOn { get; set; }
         public string Priority { get; set; }
         public string Status { get; set; }
@@ -56,6 +57,7 @@ namespace HotelWorkOrderManagement.Models
             EquipmentToRepairId = task.EquipmentToRepairId;
             RepetitiveStart = task.RepetitiveStart;
             RepetitiveSetting = task.RepetitiveSetting;
+            DueDate = task.DueDate;
         }
 
 

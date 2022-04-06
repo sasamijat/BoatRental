@@ -80,5 +80,12 @@ namespace HotelWorkOrderManagementMVC.Controllers
             return Json(new { success = true, message = "Delete successful" });
             
         }
+
+        [HttpGet]
+        public string GetUserName(int id)
+        {
+            UserDataIn user = _service.getUser(id);
+            return user.UserName;
+        }
     }
 }

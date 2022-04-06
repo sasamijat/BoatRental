@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelWorkOrderManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220401133619_init2")]
-    partial class init2
+    [Migration("20220406132221_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,6 +227,9 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("EquipmentToRepairId")
                         .HasColumnType("int");
 
@@ -279,6 +282,7 @@ namespace HotelWorkOrderManagement.Migrations
                             CreatedOn = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Zamjena crijeva na klima uredjaju",
                             Domain = "Maintaining",
+                            DueDate = new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EquipmentToRepairId = 1,
                             IsDeleted = false,
                             Name = "Popravka Klime",
@@ -289,10 +293,12 @@ namespace HotelWorkOrderManagement.Migrations
                         new
                         {
                             Id = 2,
+                            AsigneeIndividualId = 2,
                             CreatedById = 1,
                             CreatedOn = new DateTime(2022, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oprati koristenu posteljinu i postaviti novu",
                             Domain = "HouseKeeping",
+                            DueDate = new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FinishedOn = new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Pranje posteljine",
@@ -309,6 +315,13 @@ namespace HotelWorkOrderManagement.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateOfChange")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ExecutorId")
                         .HasColumnType("int");
@@ -335,6 +348,8 @@ namespace HotelWorkOrderManagement.Migrations
                         new
                         {
                             Id = 1,
+                            DateOfChange = new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Promjenu izvrsio po zavrsetku zadatka",
                             ExecutorId = 3,
                             IsDeleted = false,
                             Status = "Finished",
