@@ -31,7 +31,6 @@ namespace HotelWorkOrderManagement.DTO.Task.DataOut
             Description = task.Description;
             CreatedById = task.CreatedById;
             CreatedOn = task.CreatedOn;
-            FinishedOn = task.FinishedOn;
             Priority = task.Priority;
             Status = task.Status;
             Position = task.Position;

@@ -14,7 +14,6 @@ namespace HotelWorkOrderManagement.DTO.Task.DataIn
         public string Description { get; set; }
         public int? CreatedById { get; set; }
         public DateTime CreatedOn { get; set; }
-        public DateTime? FinishedOn { get; set; }
         public DateTime? DueDate { get; set; }
         public string Priority { get; set; }
         public string Status { get; set; }
@@ -36,7 +35,6 @@ namespace HotelWorkOrderManagement.DTO.Task.DataIn
             Description = task.Description;
             CreatedById = task.CreatedById;
             CreatedOn = task.CreatedOn;
-            FinishedOn = task.FinishedOn;
             Priority = task.Priority;
             Status = task.Status;
             Position = task.Position;

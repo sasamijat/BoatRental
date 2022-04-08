@@ -31,5 +31,15 @@ namespace HotelWorkOrderManagement.Service.TaskStateChange
             }
             return tasks;
         }
+
+        public void updateTaskStatus(TaskStateChangeDataIn taskStateChange,int id,string status) {
+            using(context)
+            {
+                Models.Task task = context.Tasks.FirstOrDefault(t => t.Id == id);
+                task.Status = status;
+                context.TaskStateChanges.Add(new Models.TaskStateChange(taskStateChange));
+                context.SaveChanges();
+            }
+        }
     }
 }

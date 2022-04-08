@@ -10,5 +10,6 @@ namespace HotelWorkOrderManagement.Service.TaskStateChange
     public interface ITaskStateChangeService
     {
         public List<TaskStateChangeDataIn> getTaskStateChange(int taskId) { return null; }
+        public void updateTaskStatus(TaskStateChangeDataIn taskStateChange,int id,string status) { }
     }
 }

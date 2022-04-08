@@ -52,14 +52,6 @@
         </div>
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="FinishedOn"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="FinishedOn" class="form-control" disabled="disabled"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
                 <label asp-for="Priority" disabled="disabled"></label>
             </div>
             <div class="col-6">
@@ -172,11 +164,85 @@
                 <a href="https://localhost:7221/TaskStateChanges/GetTaskStateChanges?id=@Model.Id" class="btn btn-primary form-control">History of Changes</a>
             </div>
             <div class="col-3">
-                <a class="btn btn-success form-control">SET NEW STATUS</a>
+                <a class="btn btn-success popup form-control" data-toggle="modal" id="NewStatusModal">SET NEW STATUS <i class="fa fa-plus"></i></a> 
             </div>
         </div>
-        </div>
 </div>
+
+<!--Modal-->  
+<div aria-hidden="true" aria-labelledby="modal-setting-new-status" role="dialog" tabindex="-1" id="modal-setting-new-status" class="modal fade">  
+    <div class="modal-dialog">  
+        <!--Modal Body Start-->  
+  
+    <div class="modal-content">  
+  
+        <!--Modal Header Start-->  
+        <div class="modal-header">  
+            <h4 class="modal-title">Set New Status</h4>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+        </div>  
+        <!--Modal Header End-->  
+  
+                <div class="modal-body form-horizontal">  
+                    <div class="form-group row">
+                        <div class="col-6">  
+                                <label >Task:</label>
+                            </div>  
+                            <div class=" col-6">
+                        <label>@Model.Name</label>
+                            </div>  
+ 
+                    </div> 
+                    <br/>
+                    <div class="form-group row"> 
+                        <div class="col-6"> 
+                         <label>Item for Repair</label>
+                         </div>
+                        <div class="col-6">  
+                            <input type="text" id="ItemToRepair" disabled="disabled"/>  
+                        </div>  
+                    </div>
+                    <br/>
+                    <div class="form-group row">  
+                        <div class="col-6">
+                             <label >Status:</label>
+                        </div>
+
+                        <div class="col-6">  
+                   <select class="form-select" id="Status">
+                        <option selected="selected" disabled="disabled"style="color:green" >Active</option>
+                        <option value="Finished" style="color:red">Finished</option>
+                        <option value="Dropped" style="color:orange">Dropped</option>
+                   </select> 
+                        </div>  
+                    </div>  
+                    <br/>
+  
+                    <div class="form-group row">  
+                            <div class="col-6">  
+                                <label >Description:</label>
+                            </div>  
+                            <div class=" col-6">
+                        <textarea class="border" id="Description" required="required"></textarea>
+                            </div>  
+                        </div>  
+                    </div>  
+               
+                <!--Modal Footer Start-->  
+                <div class="modal-footer">  
+                    <button data-dismiss="modal" id="cancel" class="btn btn-default" type="button">Cancel</button>  
+                    <button onclick="SubmitChange(@Model.Id)" class="btn btn-success relative" id="btnSubmit">   
+                        Submit  
+                    </button>  
+                </div>  
+                <!--Modal Footer End-->   
+  
+                </div>  
+  
+  
+<!--Modal Body End-->  
+    </div>  
+</div> 
 
 @section Scripts{ 
 <script src="~/js/Task/TaskScript.js"></script>

@@ -1,4 +1,6 @@
-﻿using HotelWorkOrderManagement.Service.TaskStateChange;
+﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
+using HotelWorkOrderManagement.DTO.TaskStateChange.DataIn;
+using HotelWorkOrderManagement.Service.TaskStateChange;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelWorkOrderManagementMVC.Controllers
@@ -21,6 +23,22 @@ namespace HotelWorkOrderManagementMVC.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public void SetNewStatus(int taskId,int executorId,string status,string description)
+        {
+            TaskStateChangeDataIn taskStateChange = new TaskStateChangeDataIn()
+            {
+                TaskId = taskId,
+                ExecutorId = executorId,
+                Status = status,
+                Description = description,
+                DateOfChange = DateTime.Now,
+            };
+            _service.updateTaskStatus(taskStateChange, taskId, status);
+            
+            
         }
     }
 }

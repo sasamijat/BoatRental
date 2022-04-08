@@ -18,7 +18,6 @@ namespace HotelWorkOrderManagement.Models
         public User CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? DueDate { get; set; }
-        public DateTime? FinishedOn { get; set; }
         public string Priority { get; set; }
         public string Status { get; set; }
         public string Position { get; set; }
@@ -47,7 +46,6 @@ namespace HotelWorkOrderManagement.Models
             Description = task.Description;
             CreatedById = task.CreatedById;
             CreatedOn = task.CreatedOn;
-            FinishedOn = task.FinishedOn;
             Priority = task.Priority;
             Status = task.Status;
             Position = task.Position;
