@@ -87,5 +87,14 @@ namespace HotelWorkOrderManagementMVC.Controllers
             UserDataIn user = _service.getUser(id);
             return user.UserName;
         }
+
+        [HttpGet]
+        public IActionResult MyProfile(int id)
+        {
+            UserDataIn user= _service.getUser(id);
+            return View(user);
+        }
+
+ 
     }
 }

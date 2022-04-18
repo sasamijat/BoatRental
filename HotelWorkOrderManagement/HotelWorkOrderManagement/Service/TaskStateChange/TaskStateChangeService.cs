@@ -41,5 +41,21 @@ namespace HotelWorkOrderManagement.Service.TaskStateChange
                 context.SaveChanges();
             }
         }
+        public void dropTask(TaskStateChangeDataIn taskStateChange,int id) {
+
+            using (context) {
+
+                Models.Task task = context.Tasks.FirstOrDefault(t => t.Id == id);
+                task.Status = "Dropped";
+                task.AsigneeGroupId = null;
+                task.AsigneeIndividualId = null;
+                context.TaskStateChanges.Add(new Models.TaskStateChange(taskStateChange));
+                context.SaveChanges();
+
+
+            }
+
+        }
+
     }
 }

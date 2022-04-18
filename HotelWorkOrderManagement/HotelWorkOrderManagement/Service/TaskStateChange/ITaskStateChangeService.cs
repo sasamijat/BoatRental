@@ -11,5 +11,7 @@ namespace HotelWorkOrderManagement.Service.TaskStateChange
     {
         public List<TaskStateChangeDataIn> getTaskStateChange(int taskId) { return null; }
         public void updateTaskStatus(TaskStateChangeDataIn taskStateChange,int id,string status) { }
+        public void dropTask(TaskStateChangeDataIn taskStateChange,int id) { }
+
     }
 }

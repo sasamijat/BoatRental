@@ -1,4 +1,5 @@
 ﻿using HotelWorkOrderManagement.DTO.User.DataIn;
+using HotelWorkOrderManagement.DTO.User.DataOut;
 using HotelWorkOrderManagement.Models;
 using HotelWorkOrderManagement.Service;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace HotelWorkOrderManagement.Service
         {
             using(context)
             {
-                context.Users.Add(new HotelWorkOrderManagement.Models.User(user));
+                context.Users.Add(new User(user));
                 context.SaveChanges();
 
             }
@@ -31,7 +32,7 @@ namespace HotelWorkOrderManagement.Service
         public void updateUser(UserDataIn user) {
             using (context)
             {
-                context.Users.Update(new HotelWorkOrderManagement.Models.User(user));
+                context.Users.Update(new User(user));
                 context.SaveChanges();
 
             }
@@ -81,6 +82,10 @@ namespace HotelWorkOrderManagement.Service
                 }
             }
         }
+
+        
+
+
 
     }
 }

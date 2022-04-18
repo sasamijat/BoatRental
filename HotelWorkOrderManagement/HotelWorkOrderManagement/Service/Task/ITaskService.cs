@@ -1,4 +1,5 @@
 ﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
+using HotelWorkOrderManagement.DTO.Task.DataOut;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,13 @@ namespace HotelWorkOrderManagement.Service.Task
 {
     public interface ITaskService
     {
-        public List<TaskDataIn> myTasks(int id) { return null; }
-        public TaskDataIn getTask(int id) { return null; }
+        public List<TaskDataOut> myTasks(int id,bool team) { return null; }
+        public TaskDataOut getTask(int id) { return null; }
         public List<TaskDataIn> teamTasks(int id){ return null; }
+        public void repetitiveSetting(int id, string repSetting, DateTime repStart) { }
+        public void repetitiveRemove(int id) { }
+        public void addNewTask(Models.Task task) { }
+        public TaskDataOut getNewTask() { return null; }
+
     }
 }

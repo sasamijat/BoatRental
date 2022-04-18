@@ -15,9 +15,11 @@ namespace HotelWorkOrderManagement.Models
     {
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Member> Members { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<EquipmentPiece> EquipmentPieces { get; set; }
         public DbSet<User> Users { get; set; }
+        
         public DbSet<TaskStateChange> TaskStateChanges { get; set; }
         private string connectionString;
 
@@ -77,7 +79,7 @@ namespace HotelWorkOrderManagement.Models
             {
                 Id = 1,
                 IsDeleted = false,
-                TechnicianId = 3,
+                UserId = 3,
                 GroupId = 1,
                 Leader = true
             });
@@ -127,6 +129,45 @@ namespace HotelWorkOrderManagement.Models
                 AsigneeIndividualId = 2,
                 AsigneeGroupId = null,
                 EquipmentToRepairId = null,
+                RepetitiveStart = null,
+                RepetitiveSetting = null
+            }, 
+            //
+            new Task
+            {
+                Id = 3,
+                IsDeleted = false,
+                Name = "Popravka Vodokotlica",
+                Description = "Popraviti ili zamijeniti vodokotlic",
+                CreatedById = 1,
+                CreatedOn = DateTime.ParseExact("20/02/2022", "dd/MM/yyyy", null),
+                DueDate = DateTime.Parse("23/02/2022"),
+                Priority = "High",
+                Status = "Active",
+                Position = "304",
+                Domain = "Maintaining",
+                AsigneeIndividualId = 3,
+                AsigneeGroupId = null,
+                EquipmentToRepairId = 1,
+                RepetitiveStart = null,
+                RepetitiveSetting = null
+            }, 
+            new Task
+            {
+                Id = 4,
+                IsDeleted = false,
+                Name = "Zamjena sijalice",
+                Description = "Zamjena pokvarene sijalice",
+                CreatedById = 1,
+                CreatedOn = DateTime.ParseExact("20/02/2022", "dd/MM/yyyy", null),
+                DueDate = DateTime.Parse("23/02/2022"),
+                Priority = "High",
+                Status = "Active",
+                Position = "304",
+                Domain = "Maintaining",
+                AsigneeIndividualId = null,
+                AsigneeGroupId = 1,
+                EquipmentToRepairId = 1,
                 RepetitiveStart = null,
                 RepetitiveSetting = null
             }
@@ -219,7 +260,7 @@ namespace HotelWorkOrderManagement.Models
                 .WithMany(t => t.TaskStateChanges)
                 .HasForeignKey(tsc => tsc.ExecutorId);
 
-            modelBuilder.Entity<Member>().HasKey(m => new { m.GroupId, m.TechnicianId });
+            modelBuilder.Entity<Member>().HasKey(m => new { m.GroupId, m.UserId });
 
 
 

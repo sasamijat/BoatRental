@@ -1,45 +1,19 @@
 ﻿
 
 $(document).ready(function () {
-    var id = document.getElementById("CreatedBy").name;
-    var individualId = document.getElementById("AsigneeIndividual").name
-    var groupId = document.getElementById("AsigneeGroup").name
-    var url1 = 'https://localhost:7221/Users/GetUserName?id=' + individualId
-    var url2 = 'https://localhost:7221/Groups/GetGroupName?id=' + groupId
-    var equipment = document.getElementById("EquipmentToRepair").name
-
-
-    $.ajax('https://localhost:7221/Users/GetUserName?id=' + id, {
-        type: 'GET',
-        success: function (response) {
-            document.getElementById("CreatedBy").value = response;
-        }
-    }),
-        $.ajax({
-            url: (individualId !== "") ? url1 : url2,
-            type: 'GET',
-            success: function (response) {
-                document.getElementById("AsigneeIndividual").value = response;
-            }
-        });
-    if (equipment!=="") {
-        id = document.getElementById("EquipmentToRepair").name
-        $.ajax('https://localhost:7221/Equipment/GetEquipmentName?id=' + id, {
-            type: 'GET',
-            success: function (response) {
-                document.getElementById("EquipmentToRepair").value = response;
-            }
-        })
-    }
 
     $('#NewStatusModal').click(function () {
         $("#modal-setting-new-status").modal('show');
-    });  
+    });
+
+    $('#DropTaskModal').click(function () {
+        $("#modal-drop-task").modal('show');
+    });
 })
 
 function SubmitChange(id) {
-    var status = document.getElementById('Status').value;
-    var description = document.getElementById('Description').value;
+    var status = document.getElementById('ModalStatus').value;
+    var description = document.getElementById('ModalDescription').value;
 
     $.ajax({
         type: "POST",
@@ -51,11 +25,78 @@ function SubmitChange(id) {
             description: description,
         },
         success: function () {
-            alert("Great")
+            $("#modal-setting-new-status").modal('hide');
+            window.location.reload();
         }
     });
 
 }
+function DropTask(id) {
+    var description = document.getElementById('ModalDescriptionTaskDrop').value;
+
+    $.ajax({
+        type: "POST",
+        url: 'https://localhost:7221/TaskStateChanges/DropTask',
+        data: {
+            taskId: id,
+            executorId: 1,
+            description: description,
+        },
+        success: function () {
+            $("#modal-drop-task").modal('hide');
+            window.location='https://localhost:7221/Tasks/Tasks?id=3&team=false';
+        }
+    });
+
+}
+
+function DismissModal(id) {
+    $(id).modal('hide');
+}
+
+function ModalRepetitiveTask(signal,id) {       
+    if (signal=="True") {
+        $.ajax({
+            type: "POST",
+            url: 'https://localhost:7221/Tasks/repetitiveRemove',
+            data: {
+                id: id,
+            },
+            success: function () {
+                location.reload()
+                alert("Task repetition successfully removed ")
+                
+            }
+        });
+    } else {
+        $('#modal-repetitive-task').modal('show');
+    }
+}
+
+function SubmitChangeRepetitive(id) {
+
+        var setting = document.querySelector('input[name="rep_setting"]:checked').value;
+        var rep_start = document.getElementById("rep_start").value;
+
+        $.ajax({
+            type: "POST",
+            url: 'https://localhost:7221/Tasks/repetitiveSetting',
+            data: {
+                id: id,
+                repSetting: setting,
+                repStart: rep_start,
+            },
+            success: function () {
+                $("#modal-repetitive-task").modal('hide');
+                location.reload()
+                alert("Task repetition successfully added")
+            }
+        });  
+
+
+}
+
+
 
 
      

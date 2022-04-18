@@ -1,4 +1,5 @@
 ﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
+using HotelWorkOrderManagement.DTO.Task.DataOut;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -41,6 +42,24 @@ namespace HotelWorkOrderManagement.Models
         public Task() { }
 
         public Task(TaskDataIn task)
+        {
+            Name = task.Name;
+            Description = task.Description;
+            CreatedById = task.CreatedById;
+            CreatedOn = task.CreatedOn;
+            Priority = task.Priority;
+            Status = task.Status;
+            Position = task.Position;
+            Domain = task.Domain;
+            AsigneeIndividualId = task.AsigneeIndividualId;
+            AsigneeGroupId = task.AsigneeGroupId;
+            EquipmentToRepairId = task.EquipmentToRepairId;
+            RepetitiveStart = task.RepetitiveStart;
+            RepetitiveSetting = task.RepetitiveSetting;
+            DueDate = task.DueDate;
+        }
+
+        public Task(TaskDataOut task)
         {
             Name = task.Name;
             Description = task.Description;

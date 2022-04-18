@@ -40,5 +40,19 @@ namespace HotelWorkOrderManagementMVC.Controllers
             
             
         }
+
+        [HttpPost]
+        public void DropTask(int taskId, int executorId,string description)
+        {
+            TaskStateChangeDataIn taskStateChange = new TaskStateChangeDataIn()
+            {
+                TaskId = taskId,
+                ExecutorId = executorId,
+                Status="Dropped",
+                Description = description,
+                DateOfChange = DateTime.Now,
+            };
+            _service.dropTask(taskStateChange, taskId);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HotelWorkOrderManagement.DTO.User.DataIn;
+using HotelWorkOrderManagement.DTO.User.DataOut;
 using HotelWorkOrderManagement.Models;
 using System;
 using System.Collections.Generic;
