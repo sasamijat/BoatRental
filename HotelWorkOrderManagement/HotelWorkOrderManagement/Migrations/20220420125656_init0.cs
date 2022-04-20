@@ -18,6 +18,7 @@ namespace HotelWorkOrderManagement.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Domain = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MembersCount = table.Column<int>(type: "int", nullable: false),
+                    SelfTaskAssign = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -35,6 +36,7 @@ namespace HotelWorkOrderManagement.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -150,17 +152,11 @@ namespace HotelWorkOrderManagement.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TaskID = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false),
-                    ReplyId = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comments_Comments_ReplyId",
-                        column: x => x.ReplyId,
-                        principalTable: "Comments",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_Tasks_TaskID",
                         column: x => x.TaskID,
@@ -207,17 +203,17 @@ namespace HotelWorkOrderManagement.Migrations
 
             migrationBuilder.InsertData(
                 table: "Groups",
-                columns: new[] { "Id", "Domain", "IsDeleted", "MembersCount", "Name" },
-                values: new object[] { 1, "Maintaining", false, 2, "Majstori" });
+                columns: new[] { "Id", "Domain", "IsDeleted", "MembersCount", "Name", "SelfTaskAssign" },
+                values: new object[] { 1, "Maintaining", false, 2, "Majstori", true });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "IsDeleted", "LastName", "Name", "Password", "Role", "Username" },
+                columns: new[] { "Id", "IsDeleted", "LastName", "Name", "Password", "ProfileImage", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 1, false, "Krsmanovic", "Milomir", "55555", 2, "milomir" },
-                    { 2, false, "Milanovic", "Milica", "123456", 1, "milic@" },
-                    { 3, false, "Smiljanic", "Nikola", "4444", 0, "nikola" }
+                    { 1, false, "Krsmanovic", "Milomir", "55555", null, 2, "milomir" },
+                    { 2, false, "Milanovic", "Milica", "123456", null, 1, "milic@" },
+                    { 3, false, "Smiljanic", "Nikola", "4444", null, 0, "nikola" }
                 });
 
             migrationBuilder.InsertData(
@@ -252,23 +248,18 @@ namespace HotelWorkOrderManagement.Migrations
 
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "ReplyId", "TaskID", "Text" },
-                values: new object[] { 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, false, null, 1, "Uredu" });
+                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
+                values: new object[] { 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, 1, "Zadatak izvrsiti sto prije" });
 
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "ReplyId", "TaskID", "Text" },
-                values: new object[] { 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, 2, 1, "Zadatak izvrsiti sto prije" });
+                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
+                values: new object[] { 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, false, 1, "Uredu" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_CreatedById",
                 table: "Comments",
                 column: "CreatedById");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_ReplyId",
-                table: "Comments",
-                column: "ReplyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_TaskID",

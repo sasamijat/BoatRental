@@ -18,6 +18,26 @@ namespace HotelWorkOrderManagement.Service.Task
         {
             context = _db;
         }
+
+        public List<TaskDataOut> GetAllTasks(bool team)
+        {
+            List<TaskDataOut> tasksDO = new List<TaskDataOut>();
+            List<Models.Task> tasks = new List<Models.Task>();
+            using (context)
+            {
+                if(team==null || team==false)
+                tasks = context.Tasks.Where(t => t.AsigneeIndividualId != null).Include(x => x.AsigneeGroup).Include(x => x.AsigneeIndividual).Include(x => x.EquipmentToRepair).ToList();
+                else
+                tasks = context.Tasks.Where(t => t.AsigneeGroupId != null).Include(x => x.AsigneeGroup).Include(x => x.AsigneeIndividual).Include(x => x.EquipmentToRepair).ToList();
+            }
+
+            foreach (var task in tasks)
+            {
+                tasksDO.Add(new TaskDataOut(task));
+            }
+            return tasksDO;
+
+        }
         public List<TaskDataOut> myTasks(int id,bool team) {
 
             List<Models.Task> list=new List<Models.Task>();
@@ -47,34 +67,9 @@ namespace HotelWorkOrderManagement.Service.Task
                 }
 
 
-                foreach (var task in list)
+            foreach (var task in list)
             {
-                TaskDataOut taskDO=new TaskDataOut()
-                {
-                    CreatedByName = task.CreatedBy?.Name,
-                    CreatedByLastName = task.CreatedBy?.LastName,
-                    AsigneeIndividualName = task.AsigneeIndividual?.Name,
-                    AsigneeIndividualLastName = task.AsigneeIndividual?.LastName,
-                    AsigneeGroup = task.AsigneeGroup?.Name,
-                    EquipmentToRepair = task.EquipmentToRepair?.Name,
-
-                    DueDate = task.DueDate,
-                    Id = task.Id,
-                    Name = task.Name,
-                    Description = task.Description,
-                    CreatedById = task.CreatedById,
-                    CreatedOn = task.CreatedOn,
-                    Priority = task.Priority,
-                    Status = task.Status,
-                    Position = task.Position,
-                    Domain = task.Domain,
-                    AsigneeIndividualId = task.AsigneeIndividualId,
-                    AsigneeGroupId = task.AsigneeGroupId,
-                    EquipmentToRepairId = task.EquipmentToRepairId,
-                    RepetitiveStart = task.RepetitiveStart,
-                    RepetitiveSetting = task.RepetitiveSetting
-                };
-                    tasks.Add(taskDO);
+                    tasks.Add(new TaskDataOut(task));
             }
             }
             return tasks; 
@@ -85,6 +80,7 @@ namespace HotelWorkOrderManagement.Service.Task
             using (context)
             {
                 task = context.Tasks.Where(t=>t.Id==id).Include(t => t.AsigneeGroup).Include(t => t.AsigneeIndividual).Include(t => t.CreatedBy).Include(t => t.EquipmentToRepair).First();
+                List<Comment> comments=context.Comments.Where(c=>c.TaskID==id).Include(x=>x.CreatedBy).ToList();
                 if (task == null)
                     return null;
                 TaskDataOut taskDO=new TaskDataOut()
@@ -95,6 +91,7 @@ namespace HotelWorkOrderManagement.Service.Task
                     AsigneeIndividualLastName = task.AsigneeIndividual?.LastName,
                     AsigneeGroup = task.AsigneeGroup?.Name,
                     EquipmentToRepair = task.EquipmentToRepair?.Name,
+                    Comments = comments,
 
                     DueDate = task.DueDate,
                     Id = task.Id,
@@ -186,6 +183,39 @@ namespace HotelWorkOrderManagement.Service.Task
             }
           
         }
+
+        public void SubmitComment(int id, int userId,string text) {
+
+            using (context) {
+
+                context.Comments.Add(new Comment()
+                {
+                    TaskID=id,
+                    CreatedById=userId,
+                    Text=text
+                });
+
+                context.SaveChanges();
+
+            }
+        
+        }
+
+        public void RemoveComment(int id) {
+
+            using (context) {
+            
+                Comment comment = context.Comments.FirstOrDefault(c => c.Id == id);
+                context.Comments.Remove(comment);
+                context.SaveChanges();
+            
+            }
+
+
+        }
+
+
+
 
 
 

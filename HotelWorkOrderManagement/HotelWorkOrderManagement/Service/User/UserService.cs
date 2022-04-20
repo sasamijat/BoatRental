@@ -19,20 +19,20 @@ namespace HotelWorkOrderManagement.Service
             context = _db;
         }
 
-        public void insertUser(UserDataIn user)
+        public void insertUser(User user)
         {
             using(context)
             {
-                context.Users.Add(new User(user));
+                context.Users.Add(user);
                 context.SaveChanges();
 
             }
         }
 
-        public void updateUser(UserDataIn user) {
+        public void updateUser(User user) {
             using (context)
             {
-                context.Users.Update(new User(user));
+                context.Users.Update(user);
                 context.SaveChanges();
 
             }
@@ -83,7 +83,18 @@ namespace HotelWorkOrderManagement.Service
             }
         }
 
-        
+        public async Task<User> AuthenticateUser(string username, string password) {
+
+            User user;
+            using (context)
+            {
+                user=await context.Users.FirstOrDefaultAsync(u=>u.Username == username & u.Password==password);
+            }
+            return user;
+        }
+
+
+
 
 
 

@@ -17,7 +17,7 @@
             <button type="button" class="btn btn-info ">Search</button>
         </div>
         <div class="col-4">
-            <a class="btn-primary btn" href="https://localhost:7221/Tasks/Tasks?id=@ViewBag.Id&team=@(!ViewBag.Team)">@if(ViewBag.Team){<text>My tasks</text>}else{<text>Team tasks</text>} </a>
+            <a class="btn-primary btn"  href="https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)">@if(ViewBag.Team){<text>My tasks</text>}else{<text>Team tasks</text>} </a>
         </div>
     </div>
     <hr />
@@ -50,7 +50,7 @@
         
     </div>
 </div>
-
+@section Scripts{ 
 <script>
     var sortOrder = "@ViewBag.SortOrder";
     function sort(criterion){
@@ -79,7 +79,8 @@
 
         }
 
-        window.location='https://localhost:7221/Tasks/Tasks?id=@ViewBag.Id&team=@(ViewBag.Team)&sortOrder=' + sortOrder;
+        window.location='https://localhost:7221/Tasks/Tasks?team=@(ViewBag.Team)&sortOrder=' + sortOrder;
     }
     
 </script>
+}

@@ -17,10 +17,7 @@ namespace HotelWorkOrderManagement.Models
         public User CreatedBy { get; set; }
         public int CreatedById { get; set; }
 
-        public int? ReplyId { get; set; }
-        public Comment Reply { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
 
     }
 }

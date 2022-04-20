@@ -2,17 +2,23 @@
 using HotelWorkOrderManagement.DTO.Group.DataOut;
 using HotelWorkOrderManagement.DTO.User.DataOut;
 using HotelWorkOrderManagement.Service.Group;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace HotelWorkOrderManagementMVC.Controllers
 {
+    [Authorize]
     public class GroupsController : Controller
     {
         private IGroupService _service;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public GroupsController(IGroupService service)
+
+        public GroupsController(IGroupService service, IHttpContextAccessor httpContextAccessor)
         {
             _service = service;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [BindProperty]
@@ -28,9 +34,11 @@ namespace HotelWorkOrderManagementMVC.Controllers
             return group.Name;
         }
 
-        public IActionResult MyGroups(int id)
+        public IActionResult MyGroups()
         {
-            List<GroupDataOut> groups = _service.getMyGroups(3);
+            int UserId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            List<GroupDataOut> groups = _service.getMyGroups(UserId);
+            ViewBag.UserId=UserId;
             ViewBag.Groups = groups;
             return View();
         }
@@ -51,6 +59,12 @@ namespace HotelWorkOrderManagementMVC.Controllers
         public void removeMember(int id, int groupId)
         {
             _service.removeMember(id, groupId);
+        }
+        
+        [HttpPost]
+        public void SelfTaskAssign(int id, bool signal)
+        {
+            _service.SelfTaskAssign(id, signal);
         }
 
     }

@@ -20,6 +20,8 @@ namespace HotelWorkOrderManagement.Service.Group
         public void addMember(int id,int groupId) { }
         public void removeMember(int id, int groupId) { }
 
+        public void SelfTaskAssign(int groupId,bool signal) { }
+
 
     }
 }

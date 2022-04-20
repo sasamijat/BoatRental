@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelWorkOrderManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220416113858_init0")]
+    [Migration("20220420125656_init0")]
     partial class init0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,9 +41,6 @@ namespace HotelWorkOrderManagement.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ReplyId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TaskID")
                         .HasColumnType("int");
 
@@ -54,8 +51,6 @@ namespace HotelWorkOrderManagement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedById");
-
-                    b.HasIndex("ReplyId");
 
                     b.HasIndex("TaskID");
 
@@ -68,7 +63,6 @@ namespace HotelWorkOrderManagement.Migrations
                             Created = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedById = 1,
                             IsDeleted = false,
-                            ReplyId = 2,
                             TaskID = 1,
                             Text = "Zadatak izvrsiti sto prije"
                         },
@@ -150,6 +144,9 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("SelfTaskAssign")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
@@ -161,7 +158,8 @@ namespace HotelWorkOrderManagement.Migrations
                             Domain = "Maintaining",
                             IsDeleted = false,
                             MembersCount = 2,
-                            Name = "Majstori"
+                            Name = "Majstori",
+                            SelfTaskAssign = true
                         });
                 });
 
@@ -408,6 +406,9 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
@@ -460,11 +461,6 @@ namespace HotelWorkOrderManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelWorkOrderManagement.Models.Comment", "Reply")
-                        .WithMany("Comments")
-                        .HasForeignKey("ReplyId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("HotelWorkOrderManagement.Models.Task", "Task")
                         .WithMany("Comments")
                         .HasForeignKey("TaskID")
@@ -472,8 +468,6 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired();
 
                     b.Navigation("CreatedBy");
-
-                    b.Navigation("Reply");
 
                     b.Navigation("Task");
                 });
@@ -552,11 +546,6 @@ namespace HotelWorkOrderManagement.Migrations
                     b.Navigation("Executor");
 
                     b.Navigation("Task");
-                });
-
-            modelBuilder.Entity("HotelWorkOrderManagement.Models.Comment", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("HotelWorkOrderManagement.Models.EquipmentPiece", b =>

@@ -1,5 +1,6 @@
 ﻿using HotelWorkOrderManagement.DTO.Equipment.DataIn;
 using HotelWorkOrderManagement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,14 @@ namespace HotelWorkOrderManagement.Service.EquipmentPiece
         public EquipmentPieceService(ApplicationDbContext db)
         {
             context = db;
+        }
+        public List<Models.EquipmentPiece> GetAllEquipmentPieces() {
+
+            using (context)
+            {
+                return context.EquipmentPieces.Include(x=>x.InstalatedBy).ToList();
+            }
+        
         }
 
         public EquipmentPieceDataIn getEquipmentPiece(int id) {

@@ -13,6 +13,7 @@ namespace HotelWorkOrderManagement.Models
         public string Name { get; set; }
         public string Domain { get; set; }
         public int MembersCount { get; set; }
+        public bool SelfTaskAssign { get; set; }
         
         public IList<Member> Members { get; set; }
         public ICollection<Task> Tasks { get; set; }
@@ -25,6 +26,7 @@ namespace HotelWorkOrderManagement.Models
             Name = group.Name;
             Domain = group.Domain;
             MembersCount = group.MembersCount;
+            SelfTaskAssign = group.SelfTaskAssign;
         }
 
     }

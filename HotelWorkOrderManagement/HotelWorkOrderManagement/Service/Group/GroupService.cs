@@ -28,7 +28,7 @@ namespace HotelWorkOrderManagement.Service.Group
             return group;
         }
         public List<GroupDataOut> getMyGroups(int id) {
-            string Leader;
+            User Leader;
             List<GroupDataOut> groups = new List<GroupDataOut>();
             List<Models.Group> list=new List<Models.Group>();
             using (context)
@@ -47,7 +47,7 @@ namespace HotelWorkOrderManagement.Service.Group
                         groupMembers.Add(new EmployeeDataOut(user.Id, user.Name, user.LastName, user.Username)); 
                     }
 
-                Leader = members.Where(m => m.GroupId == group.Id && m.Leader==true).Select(m => m.User.Name).First();
+                Leader = members.Where(m => m.GroupId == group.Id && m.Leader==true).Select(m => m.User).First();
                 groups.Add(new GroupDataOut(group,Leader,groupMembers));
             }
             }
@@ -79,6 +79,8 @@ namespace HotelWorkOrderManagement.Service.Group
             using(context)
             {
                 context.Members.Add(new Models.Member(id,groupId));
+                var group = context.Groups.Where(x => x.Id == groupId).First();
+                group.MembersCount++;
                 context.SaveChanges();
             }
 
@@ -89,9 +91,23 @@ namespace HotelWorkOrderManagement.Service.Group
             using (context)
             {
                 context.Members.Remove(new Models.Member(id,groupId));
+                var group = context.Groups.Where(x => x.Id == groupId).First();
+                group.MembersCount--;
                 context.SaveChanges();
             }
         }
+
+        public void SelfTaskAssign(int groupId, bool signal) {
+
+            using (context) 
+            {
+            var group=context.Groups.Where(x => x.Id == groupId).First();
+                group.SelfTaskAssign=signal;
+                context.SaveChanges();
+            }
+
+        }
+
 
 
 

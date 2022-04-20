@@ -17,6 +17,9 @@ namespace HotelWorkOrderManagement.Service.Task
         public void repetitiveRemove(int id) { }
         public void addNewTask(Models.Task task) { }
         public TaskDataOut getNewTask() { return null; }
+        public void SubmitComment(int id, int userId,string text) { }
+        public void RemoveComment(int id) { }
+        public List<TaskDataOut> GetAllTasks(bool? team) { return null; }
 
     }
 }

@@ -13,18 +13,20 @@ namespace HotelWorkOrderManagement.DTO.Group.DataOut
         public string Name { get; set; }
         public string Domain { get; set; }
         public int MembersCount { get; set; }
-        public string Leader { get; set; }
+        public Models.User Leader { get; set; }
+        public bool SelfTaskAssign { get; set; }
         public List<EmployeeDataOut> Members = new List<EmployeeDataOut>();
 
 
         public GroupDataOut() { }
 
-        public GroupDataOut(Models.Group group,string Leader,List<EmployeeDataOut>? members)
+        public GroupDataOut(Models.Group group,Models.User Leader,List<EmployeeDataOut>? members)
         {
             this.Leader= Leader;
             Id = group.Id;
             Name = group.Name;
             Domain = group.Domain;
+            SelfTaskAssign = group.SelfTaskAssign;
             MembersCount = group.MembersCount;
             Members.AddRange(members);
         }

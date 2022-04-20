@@ -93,3 +93,19 @@ function SubmitRemoveMember(id,groupId,member,group) {
 
 }
 
+function SelfTaskAssign(id,signal) {
+
+    $.ajax({
+        type: "POST",
+        url: 'https://localhost:7221/Groups/SelfTaskAssign',
+        data: {
+            id: id,
+            signal: signal
+        },
+        success: function (response) {
+            alert("Self task assign setted to: "+signal);
+            window.location.reload();
+
+        }
+    });
+}

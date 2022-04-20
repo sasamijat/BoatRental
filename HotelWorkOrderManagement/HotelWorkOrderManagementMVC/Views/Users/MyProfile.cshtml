@@ -1,10 +1,19 @@
 ﻿@model HotelWorkOrderManagement.DTO.User.DataIn.UserDataIn;
+@{
+    bool hasProfileImage = Model.ProfilePicture == null;
+}
 <div class="container">
-    <div class="container p-5">
-        <p class="align-content-center">Slika</p>
+    <div class="container p-5" hidden="@hasProfileImage">
+           <div class="row">
+        <div class='col-md-6'>
+             <img src="~/images/@Model.ProfilePicture"   
+              class="rounded-circle mx-auto d-block"   
+              height="250" width="220"   
+              asp-append-version="true" />        
+        </div>
     </div>
-    </br>
-    </br>
+    <br/>
+    </div>
     </br>
     <div class="row">
         <div class='col-6'>
@@ -40,6 +49,13 @@
         <div class='col-6'>
             <h2>@Model.Password</h2>
         </div>
+    </div>
+    <br/>
+    <hr/>
+    <div class="row">
+        <form asp-controller="Home" asp-action="Logout" method="post">
+            <button class="btn-primary btn-primary btn-lg">Logout</button>
+        </form>
     </div>
     
 </div>

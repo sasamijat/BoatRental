@@ -1,5 +1,8 @@
 ﻿@using System.Globalization
 @using HotelWorkOrderManagement.DTO.Group.DataOut
+@{
+    bool isCurrentUserLeader;
+}
 <div class="container">
     <h1 class="row justify-content-center">My Teams</h1>
     <hr />
@@ -12,19 +15,31 @@
                 <div class="container" onclick="hide(@id)">
                 <p>Group Name: @Group.Name</p>
                 <p>Members count: @Group.MembersCount</p>
-                <p>Team Leader: @Group.Leader</p>
+                <p>Team Leader: @Group.Leader.Name</p>
                 </div>
                 <br />
                 <br />
 
                 <div calss="container" id="@id" hidden>
-                    <div class="form-group row">
+                    @{
+                        isCurrentUserLeader = @ViewBag.UserId!=Group.Leader.Id;
+                     }
+                    <div class="form-group row" hidden="@isCurrentUserLeader">
                         <div class="col-6">
                             <a class="btn btn-primary" onclick="AddMember('@Group.Id','#modal-add-member','@Group.Name')">Add</a>
                         </div>
                         
                         <div class="col-6">
-                            <button class="btn btn-primary">Self task assign Enabled</button>
+                            <button class="btn btn-primary" onclick="SelfTaskAssign('@Group.Id','@(!Group.SelfTaskAssign)')">@{
+                                    if (@Group.SelfTaskAssign)
+                                    {
+                                        <text>Self task assign Unable</text>
+                                    }
+                                    else
+                                    {
+                                        <text>Self task assign Enable</text>
+                                    }
+                                }</button>
                         </div>
                     </div>
                     <br/>
@@ -38,7 +53,7 @@
                                 <label>Firstn Name: @member.Name</label>
                             </div>
                             <div class="col-6">
-                                <a class="btn btn-primary " onclick="SubmitRemoveMember('@member.Id','@Group.Id','@member.Name @member.LastName','@Group.Name')">Remove</a>
+                                <a class="btn btn-primary " hidden="@isCurrentUserLeader" onclick="SubmitRemoveMember('@member.Id','@Group.Id','@member.Name @member.LastName','@Group.Name')">Remove</a>
                             </div>
                         </div>
 

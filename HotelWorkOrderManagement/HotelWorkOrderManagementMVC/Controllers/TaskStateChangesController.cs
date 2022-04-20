@@ -1,10 +1,12 @@
 ﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
 using HotelWorkOrderManagement.DTO.TaskStateChange.DataIn;
 using HotelWorkOrderManagement.Service.TaskStateChange;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelWorkOrderManagementMVC.Controllers
 {
+    [Authorize]
     public class TaskStateChangesController : Controller
     {
         ITaskStateChangeService _service;

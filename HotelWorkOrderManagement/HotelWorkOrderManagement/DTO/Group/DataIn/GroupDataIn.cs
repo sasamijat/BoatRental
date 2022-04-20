@@ -12,6 +12,7 @@ namespace HotelWorkOrderManagement.DTO.Group.DataIn
         public string Name { get; set; }
         public string Domain { get; set; }
         public int MembersCount { get; set; }
+        public bool SelfTaskAssign { get; set; }
 
         public GroupDataIn() { }
 
@@ -21,6 +22,7 @@ namespace HotelWorkOrderManagement.DTO.Group.DataIn
             Name = group.Name;
             Domain = group.Domain;
             MembersCount = group.MembersCount;
+            SelfTaskAssign = group.SelfTaskAssign;
         }
     }
 }

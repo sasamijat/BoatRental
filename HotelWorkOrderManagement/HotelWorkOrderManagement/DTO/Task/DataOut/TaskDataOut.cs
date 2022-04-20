@@ -33,6 +33,38 @@ namespace HotelWorkOrderManagement.DTO.Task.DataOut
         public List<Models.Group>? Groups {get; set;}
         public List<Models.User>? Individuals { get; set;}
         public List<Models.EquipmentPiece>? EquipmentPieces { get; set;}
+        public List<Models.Comment>? Comments { get; set; }
+
+        public TaskDataOut()
+        {
+
+        }
+        public TaskDataOut(Models.Task task)
+        {
+            CreatedByName = task.CreatedBy?.Name;
+                    CreatedByLastName = task.CreatedBy?.LastName;
+                    AsigneeIndividualName = task.AsigneeIndividual?.Name;
+                    AsigneeIndividualLastName = task.AsigneeIndividual?.LastName;
+                    AsigneeGroup = task.AsigneeGroup?.Name;
+                    EquipmentToRepair = task.EquipmentToRepair?.Name;
+
+                    DueDate = task.DueDate;
+                    Id = task.Id;
+                    Name = task.Name;
+                    Description = task.Description;
+                    CreatedById = task.CreatedById;
+                    CreatedOn = task.CreatedOn;
+                    Priority = task.Priority;
+                    Status = task.Status;
+                    Position = task.Position;
+                    Domain = task.Domain;
+                    AsigneeIndividualId = task.AsigneeIndividualId;
+                    AsigneeGroupId = task.AsigneeGroupId;
+                    EquipmentToRepairId = task.EquipmentToRepairId;
+                    RepetitiveStart = task.RepetitiveStart;
+            RepetitiveSetting = task.RepetitiveSetting;
+        }
+
 
        
     }

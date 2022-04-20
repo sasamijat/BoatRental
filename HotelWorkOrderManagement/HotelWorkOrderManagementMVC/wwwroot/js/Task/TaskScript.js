@@ -96,7 +96,37 @@ function SubmitChangeRepetitive(id) {
 
 }
 
+function SubmitComment(id, userId) {
+    var text = $("#Comment").val();
+    if(text !="")
+    $.ajax({
+        type: "POST",
+        url: 'https://localhost:7221/Tasks/SubmitComment',
+        data: {
+            id: id,
+            userId: userId,
+            text:text
+        },
+        success: function () {
+            location.reload()
+            alert("Task comment successfully added")
+        }
+    });
+}
 
+function RemoveComment(id) {
+    $.ajax({
+        type: "POST",
+        url: 'https://localhost:7221/Tasks/RemoveComment',
+        data: {
+            id: id,
+        },
+        success: function () {
+            location.reload()
+            alert("Task comment successfully removed")
+        }
+    });
+}
 
 
      

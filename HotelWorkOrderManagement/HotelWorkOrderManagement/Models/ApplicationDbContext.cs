@@ -73,7 +73,8 @@ namespace HotelWorkOrderManagement.Models
                 IsDeleted = false,
                 Name = "Majstori",
                 Domain = "Maintaining",
-                MembersCount = 2
+                MembersCount = 2,
+                SelfTaskAssign=true
             });
             modelBuilder.Entity<Member>().HasData(new Member
             {
@@ -180,8 +181,7 @@ namespace HotelWorkOrderManagement.Models
                 Text = "Zadatak izvrsiti sto prije",
                 Created = DateTime.Parse("20/02/2022"),
                 TaskID = 1,
-                CreatedById = 1,
-                ReplyId = 2
+                CreatedById = 1
             }, new Comment
             {
                 Id = 2,
@@ -190,7 +190,7 @@ namespace HotelWorkOrderManagement.Models
                 Created = DateTime.Parse("25/02/2022"),
                 TaskID = 1,
                 CreatedById = 2,
-                // ReplyId = 2
+
             });
 
 
@@ -227,11 +227,6 @@ namespace HotelWorkOrderManagement.Models
                HasForeignKey(t => t.AsigneeIndividualId).IsRequired(false)
                .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Comment>()
-                .HasOne<Comment>(c => c.Reply)
-                .WithMany(c => c.Comments)
-                .HasForeignKey(c => c.ReplyId).IsRequired(false)
-                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Comment>()
                  .HasOne<Task>(c => c.Task)

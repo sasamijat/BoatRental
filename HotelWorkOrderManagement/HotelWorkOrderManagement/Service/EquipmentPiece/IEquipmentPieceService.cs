@@ -9,6 +9,7 @@ namespace HotelWorkOrderManagement.Service.EquipmentPiece
 {
     public interface IEquipmentPieceService
     {
+        public List<Models.EquipmentPiece> GetAllEquipmentPieces() { return null; }
         public EquipmentPieceDataIn getEquipmentPiece(int id) { return null; }
     }
 }
