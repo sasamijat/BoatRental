@@ -1,88 +1,168 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using HotelWorkOrderManagement.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using HotelWorkOrderManagement.DTO.Task.DataIn;
+﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
 using HotelWorkOrderManagement.DTO.Task.DataOut;
+using HotelWorkOrderManagement.Models;
+using HotelWorkOrderManagement.Service.Task;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace HotelWorkOrderManagementMVC.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
-            private readonly ApplicationDbContext _db;
-            [BindProperty]
-            public TaskDataIn TaskDataIn { get; set; }
-            public TaskDataOut TaskDataOut { get; set; }
-        public TasksController(ApplicationDbContext db)
-            {
-                _db = db;
-            }
+        private ITaskService _service;
+        private IHttpContextAccessor _httpContextAccessor;
 
-            public IActionResult Index()
-            {
-                return View();
-            }
-
-            [HttpGet]
-            public IActionResult Upsert(int? id)
-            {
-            TaskDataIn = new TaskDataIn();
-                //if (id == null)
-                //{
-                    //create
-                    return View(TaskDataIn);
-                //}
-            ////update
-            // TaskDataOut = new TaskDataOut(_db.Tasks.FirstOrDefault(u => u.Id == id));
-            //TaskDataIn=(TaskDataIn)TaskDataOut;
-            //    if (TaskDataOut == null)
-            //    {
-            //        return NotFound();
-            //    }
-            //    return View(Task);
-            }
-
-            [HttpPost]
-            public IActionResult Upsert()
-            {
-
-            if (ModelState.IsValid)
-                {
-                    if (TaskDataIn.Id == 0)
-                    {
-                        //create
-                        _db.Tasks.Add(new HotelWorkOrderManagement.Models.Task(TaskDataIn));
-                    }
-                    else
-                    {
-                        _db.Tasks.Update(new HotelWorkOrderManagement.Models.Task(TaskDataIn));
-                    }
-                    _db.SaveChanges();
-                    return RedirectToAction("Home/Index");
-                }
-                return View(TaskDataIn);
-            }
-
-            #region API Calls
-            [HttpGet]
-            public async Task<IActionResult> GetAll()
-            {
-                return Json(new { data = await _db.Tasks.ToListAsync() });
-            }
-
-            [HttpDelete]
-            public async Task<IActionResult> Delete(int id)
-            {
-                var taskFromDb = await _db.Tasks.FirstOrDefaultAsync(u => u.Id == id);
-                if (taskFromDb == null)
-                {
-                    return Json(new { success = false, message = "Error while Deleting" });
-                }
-                _db.Tasks.Remove(taskFromDb);
-                await _db.SaveChangesAsync();
-                return Json(new { success = true, message = "Delete successful" });
-            }
-            #endregion
+        public TasksController(ITaskService service, IHttpContextAccessor httpContextAccessor)
+        {
+            _service = service;
+            _httpContextAccessor = httpContextAccessor;
         }
-    
+
+        [BindProperty]
+        public TaskDataOut TaskDataOut { get; set; }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Tasks(bool team,string? sortOrder)
+        {
+            int UserId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            List<TaskDataOut> tasks = _service.myTasks(UserId,team);
+            switch (sortOrder)
+            {
+                case null:
+                    break;
+                case "priority":
+                    tasks=tasks.OrderBy(t => t.Priority).ToList();
+                    break;
+                case "priority_desc":
+                    tasks=tasks.OrderByDescending(t => t.Priority).ToList();
+                    break;
+                case "status":
+                    tasks=tasks.OrderBy(t => t.Status).ToList();
+                    break;
+                case "status_desc":
+                    tasks = tasks.OrderByDescending(t => t.Status).ToList();
+                    break;
+                case "due_date":
+                    tasks = tasks.OrderBy(t => t.DueDate).ToList();
+                    break;
+                case "due_date_desc":
+                    tasks = tasks.OrderByDescending(t => t.DueDate).ToList();
+                    break;
+                    default:
+                    break;
+                
+            }
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.Tasks = tasks;
+            ViewBag.Team=team;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetTask(int id)
+        {
+            int UserId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            ViewBag.UserId = UserId;
+            TaskDataOut TaskDataOut = _service.getTask(id);
+            return View(TaskDataOut);
+        }
+
+        [HttpGet]
+        public string GetTaskName(int id)
+        {
+            TaskDataOut task= _service.getTask(id);
+            return task.Name;
+        }
+
+        [HttpPost]
+        public void repetitiveSetting(int id, string repSetting, DateTime repStart)
+        {
+            _service.repetitiveSetting(id, repSetting, repStart);
+        }
+
+        [HttpPost]
+        public void repetitiveRemove(int id)
+        {
+            _service.repetitiveRemove(id);
+        }
+
+        [HttpGet]
+        public IActionResult addNewTask()
+        {
+            TaskDataOut = _service.getNewTask();
+            return View(TaskDataOut);
+        }
+
+        [HttpPost]
+        public void addNewTask(TaskDataOut taskDO)
+        {
+            HotelWorkOrderManagement.Models.Task task = new HotelWorkOrderManagement.Models.Task(taskDO);
+            if(ModelState.IsValid)
+            {
+                task.CreatedOn = DateTime.Now;
+                _service.addNewTask(task);
+            }
+        }
+
+        [HttpPost]
+        public void SubmitComment(int id,int userId,string text)
+        {
+            _service.SubmitComment(id, userId,text);
+        }
+        
+        [HttpPost]
+        public void RemoveComment(int id)
+        {
+            _service.RemoveComment(id);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public IActionResult GetAllTasks(bool? team,string? sortOrder)
+        {
+            List<TaskDataOut> tasks = _service.GetAllTasks(team);
+            switch (sortOrder)
+            {
+                case null:
+                    break;
+                case "priority":
+                    tasks = tasks.OrderBy(t => t.Priority).ToList();
+                    break;
+                case "priority_desc":
+                    tasks = tasks.OrderByDescending(t => t.Priority).ToList();
+                    break;
+                case "status":
+                    tasks = tasks.OrderBy(t => t.Status).ToList();
+                    break;
+                case "status_desc":
+                    tasks = tasks.OrderByDescending(t => t.Status).ToList();
+                    break;
+                case "due_date":
+                    tasks = tasks.OrderBy(t => t.DueDate).ToList();
+                    break;
+                case "due_date_desc":
+                    tasks = tasks.OrderByDescending(t => t.DueDate).ToList();
+                    break;
+                default:
+                    break;
+
+            }
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.Tasks = tasks;
+            ViewBag.Team = team;
+            return View();
+        }
+
+
+
+
+    }
 }
+

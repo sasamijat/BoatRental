@@ -1,0 +1,135 @@
+﻿@using System.Globalization
+@using HotelWorkOrderManagement.DTO.Group.DataOut
+@{
+    bool isCurrentUserLeader;
+}
+<div class="container">
+    <h1 class="row justify-content-center">My Teams</h1>
+    <hr />
+    <div class="container">
+        
+            @foreach(GroupDataOut Group in ViewBag.Groups)
+            {
+            int id = Group.Id;
+            <div class="container">
+                <div class="container" onclick="hide(@id)">
+                <p>Group Name: @Group.Name</p>
+                <p>Members count: @Group.MembersCount</p>
+                <p>Team Leader: @Group.Leader.Name</p>
+                </div>
+                <br />
+                <br />
+
+                <div calss="container" id="@id" hidden>
+                    @{
+                        isCurrentUserLeader = @ViewBag.UserId!=Group.Leader.Id;
+                     }
+                    <div class="form-group row" hidden="@isCurrentUserLeader">
+                        <div class="col-6">
+                            <a class="btn btn-primary" onclick="AddMember('@Group.Id','#modal-add-member','@Group.Name')">Add</a>
+                        </div>
+                        
+                        <div class="col-6">
+                            <button class="btn btn-primary" onclick="SelfTaskAssign('@Group.Id','@(!Group.SelfTaskAssign)')">@{
+                                    if (@Group.SelfTaskAssign)
+                                    {
+                                        <text>Self task assign Unable</text>
+                                    }
+                                    else
+                                    {
+                                        <text>Self task assign Enable</text>
+                                    }
+                                }</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    @foreach(var member in Group.Members)
+                    {
+                     <div class="container border">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Firstn Name: @member.Name</label>
+                            </div>
+                            <div class="col-6">
+                                <a class="btn btn-primary " hidden="@isCurrentUserLeader" onclick="SubmitRemoveMember('@member.Id','@Group.Id','@member.Name @member.LastName','@Group.Name')">Remove</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Last Name: @member.LastName</label>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    }
+                    
+                </div>
+            </div>
+            }
+        
+    </div>
+</div>
+
+<!--Modal-->  
+<div aria-hidden="true" aria-labelledby="modal-add-member" role="dialog" tabindex="-1" id="modal-add-member" class="modal fade">  
+    <div class="modal-dialog">  
+        <!--Modal Body Start-->  
+  
+    <div class="modal-content">  
+  
+        <!--Modal Header Start-->  
+        <div class="modal-header">  
+            <h4 class="modal-title">Add Member</h4>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="DismissModal('#modal-add-member')"><span aria-hidden="true">×</span></button>  
+        </div>  
+        <!--Modal Header End-->  
+  
+                <div class="modal-body form-horizontal">  
+                    
+                    <div class="form-group row">
+                        <label id="GroupName"></label>
+                    </div>
+                    <br/>
+        
+                    <div class="form-group row">  
+                        <div class="col-6">
+                             <label >Employees:</label>
+                        </div>
+
+                        <div class="col-6">  
+                   <select class="form-select" id="ModalEmployees">
+                       <option selected="selected" disabled>Choose employee:</option>
+                   </select> 
+                        </div>  
+                    </div>  
+                    <br/>
+  
+                    </div>  
+               
+                <!--Modal Footer Start-->  
+                <div class="modal-footer">  
+                    <button data-dismiss="modal" id="cancel" class="btn btn-default" type="button" onclick="DismissModal('#modal-add-member')">Cancel</button>  
+                    <button onclick="SubmitAddMember()" class="btn btn-success relative" id="btnSubmit">   
+                        Submit  
+                    </button>  
+                </div>  
+                <!--Modal Footer End-->   
+  
+                </div>  
+  
+  
+<!--Modal Body End-->  
+    </div>  
+</div> 
+
+@section Scripts{ 
+<script src="~/js/Group/GroupScript.js"></script>
+}
+
+
+

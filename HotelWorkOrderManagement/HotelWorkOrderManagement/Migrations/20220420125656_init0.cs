@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HotelWorkOrderManagement.Migrations
 {
-    public partial class init : Migration
+    public partial class init0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,7 @@ namespace HotelWorkOrderManagement.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Domain = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MembersCount = table.Column<int>(type: "int", nullable: false),
+                    SelfTaskAssign = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -35,6 +36,7 @@ namespace HotelWorkOrderManagement.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -67,10 +69,10 @@ namespace HotelWorkOrderManagement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Member",
+                name: "Members",
                 columns: table => new
                 {
-                    TechnicianId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     GroupId = table.Column<int>(type: "int", nullable: false),
                     Leader = table.Column<bool>(type: "bit", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -78,16 +80,16 @@ namespace HotelWorkOrderManagement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Member", x => new { x.GroupId, x.TechnicianId });
+                    table.PrimaryKey("PK_Members", x => new { x.GroupId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_Member_Groups_GroupId",
+                        name: "FK_Members_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Member_Users_TechnicianId",
-                        column: x => x.TechnicianId,
+                        name: "FK_Members_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -103,7 +105,7 @@ namespace HotelWorkOrderManagement.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FinishedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Priority = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -150,17 +152,11 @@ namespace HotelWorkOrderManagement.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TaskID = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false),
-                    ReplyId = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comments_Comments_ReplyId",
-                        column: x => x.ReplyId,
-                        principalTable: "Comments",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_Tasks_TaskID",
                         column: x => x.TaskID,
@@ -182,8 +178,10 @@ namespace HotelWorkOrderManagement.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TaskId = table.Column<int>(type: "int", nullable: false),
                     ExecutorId = table.Column<int>(type: "int", nullable: false),
+                    DateOfChange = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -203,15 +201,65 @@ namespace HotelWorkOrderManagement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Groups",
+                columns: new[] { "Id", "Domain", "IsDeleted", "MembersCount", "Name", "SelfTaskAssign" },
+                values: new object[] { 1, "Maintaining", false, 2, "Majstori", true });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "IsDeleted", "LastName", "Name", "Password", "ProfileImage", "Role", "Username" },
+                values: new object[,]
+                {
+                    { 1, false, "Krsmanovic", "Milomir", "55555", null, 2, "milomir" },
+                    { 2, false, "Milanovic", "Milica", "123456", null, 1, "milic@" },
+                    { 3, false, "Smiljanic", "Nikola", "4444", null, 0, "nikola" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EquipmentPieces",
+                columns: new[] { "Id", "InstalatedById", "InstalationDate", "IsDeleted", "LastIntervention", "Name", "NumOfInterventions" },
+                values: new object[] { 1, 3, new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Klima", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Members",
+                columns: new[] { "GroupId", "UserId", "Id", "IsDeleted", "Leader" },
+                values: new object[] { 1, 3, 1, false, true });
+
+            migrationBuilder.InsertData(
+                table: "Tasks",
+                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
+                values: new object[] { 2, null, 2, 1, new DateTime(2022, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Oprati koristenu posteljinu i postaviti novu", "HouseKeeping", new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Pranje posteljine", "210", "Normal", null, null, "Finished" });
+
+            migrationBuilder.InsertData(
+                table: "TaskStateChanges",
+                columns: new[] { "Id", "DateOfChange", "Description", "ExecutorId", "IsDeleted", "Status", "TaskId" },
+                values: new object[] { 1, new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Promjenu izvrsio po zavrsetku zadatka", 3, false, "Finished", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Tasks",
+                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
+                values: new object[,]
+                {
+                    { 1, 1, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena crijeva na klima uredjaju", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Popravka Klime", "304", "High", null, null, "Active" },
+                    { 3, null, 3, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Popraviti ili zamijeniti vodokotlic", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Popravka Vodokotlica", "304", "High", null, null, "Active" },
+                    { 4, 1, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena pokvarene sijalice", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Zamjena sijalice", "304", "High", null, null, "Active" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
+                values: new object[] { 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, 1, "Zadatak izvrsiti sto prije" });
+
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
+                values: new object[] { 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, false, 1, "Uredu" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_CreatedById",
                 table: "Comments",
                 column: "CreatedById");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_ReplyId",
-                table: "Comments",
-                column: "ReplyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_TaskID",
@@ -224,9 +272,9 @@ namespace HotelWorkOrderManagement.Migrations
                 column: "InstalatedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_TechnicianId",
-                table: "Member",
-                column: "TechnicianId");
+                name: "IX_Members_UserId",
+                table: "Members",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_AsigneeGroupId",
@@ -265,7 +313,7 @@ namespace HotelWorkOrderManagement.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Member");
+                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "TaskStateChanges");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelWorkOrderManagement.DTO.Equipment.DataIn;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,16 @@ namespace HotelWorkOrderManagement.Models
 
         public ICollection<Task> Tasks { get; set; }
 
+        public EquipmentPiece() { }
 
+        public EquipmentPiece(EquipmentPieceDataIn equipmentPiece)
+        {
+            Id = equipmentPiece.Id;
+            Name = equipmentPiece.Name;
+            NumOfInterventions = equipmentPiece.NumOfInterventions;
+            InstalationDate = equipmentPiece.InstalationDate;
+            LastIntervention = equipmentPiece.LastIntervention;
+            InstalatedById = equipmentPiece.InstalatedById;
+        }
     }
 }

@@ -39,9 +39,6 @@ namespace HotelWorkOrderManagement.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ReplyId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TaskID")
                         .HasColumnType("int");
 
@@ -52,8 +49,6 @@ namespace HotelWorkOrderManagement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedById");
-
-                    b.HasIndex("ReplyId");
 
                     b.HasIndex("TaskID");
 
@@ -66,7 +61,6 @@ namespace HotelWorkOrderManagement.Migrations
                             Created = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedById = 1,
                             IsDeleted = false,
-                            ReplyId = 2,
                             TaskID = 1,
                             Text = "Zadatak izvrsiti sto prije"
                         },
@@ -148,6 +142,9 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("SelfTaskAssign")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
@@ -159,7 +156,8 @@ namespace HotelWorkOrderManagement.Migrations
                             Domain = "Maintaining",
                             IsDeleted = false,
                             MembersCount = 2,
-                            Name = "Majstori"
+                            Name = "Majstori",
+                            SelfTaskAssign = true
                         });
                 });
 
@@ -168,7 +166,7 @@ namespace HotelWorkOrderManagement.Migrations
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TechnicianId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("Id")
@@ -180,17 +178,17 @@ namespace HotelWorkOrderManagement.Migrations
                     b.Property<bool>("Leader")
                         .HasColumnType("bit");
 
-                    b.HasKey("GroupId", "TechnicianId");
+                    b.HasKey("GroupId", "UserId");
 
-                    b.HasIndex("TechnicianId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Member");
+                    b.ToTable("Members");
 
                     b.HasData(
                         new
                         {
                             GroupId = 1,
-                            TechnicianId = 3,
+                            UserId = 3,
                             Id = 1,
                             IsDeleted = false,
                             Leader = true
@@ -225,11 +223,11 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("EquipmentToRepairId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("FinishedOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -277,6 +275,7 @@ namespace HotelWorkOrderManagement.Migrations
                             CreatedOn = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Zamjena crijeva na klima uredjaju",
                             Domain = "Maintaining",
+                            DueDate = new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EquipmentToRepairId = 1,
                             IsDeleted = false,
                             Name = "Popravka Klime",
@@ -287,16 +286,49 @@ namespace HotelWorkOrderManagement.Migrations
                         new
                         {
                             Id = 2,
+                            AsigneeIndividualId = 2,
                             CreatedById = 1,
                             CreatedOn = new DateTime(2022, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oprati koristenu posteljinu i postaviti novu",
                             Domain = "HouseKeeping",
-                            FinishedOn = new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DueDate = new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Pranje posteljine",
                             Position = "210",
                             Priority = "Normal",
                             Status = "Finished"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AsigneeIndividualId = 3,
+                            CreatedById = 1,
+                            CreatedOn = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Popraviti ili zamijeniti vodokotlic",
+                            Domain = "Maintaining",
+                            DueDate = new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EquipmentToRepairId = 1,
+                            IsDeleted = false,
+                            Name = "Popravka Vodokotlica",
+                            Position = "304",
+                            Priority = "High",
+                            Status = "Active"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AsigneeGroupId = 1,
+                            CreatedById = 1,
+                            CreatedOn = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Zamjena pokvarene sijalice",
+                            Domain = "Maintaining",
+                            DueDate = new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EquipmentToRepairId = 1,
+                            IsDeleted = false,
+                            Name = "Zamjena sijalice",
+                            Position = "304",
+                            Priority = "High",
+                            Status = "Active"
                         });
                 });
 
@@ -307,6 +339,13 @@ namespace HotelWorkOrderManagement.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateOfChange")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ExecutorId")
                         .HasColumnType("int");
@@ -333,6 +372,8 @@ namespace HotelWorkOrderManagement.Migrations
                         new
                         {
                             Id = 1,
+                            DateOfChange = new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Promjenu izvrsio po zavrsetku zadatka",
                             ExecutorId = 3,
                             IsDeleted = false,
                             Status = "Finished",
@@ -361,6 +402,9 @@ namespace HotelWorkOrderManagement.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Role")
@@ -415,11 +459,6 @@ namespace HotelWorkOrderManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelWorkOrderManagement.Models.Comment", "Reply")
-                        .WithMany("Comments")
-                        .HasForeignKey("ReplyId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("HotelWorkOrderManagement.Models.Task", "Task")
                         .WithMany("Comments")
                         .HasForeignKey("TaskID")
@@ -427,8 +466,6 @@ namespace HotelWorkOrderManagement.Migrations
                         .IsRequired();
 
                     b.Navigation("CreatedBy");
-
-                    b.Navigation("Reply");
 
                     b.Navigation("Task");
                 });
@@ -450,15 +487,15 @@ namespace HotelWorkOrderManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelWorkOrderManagement.Models.User", "Technician")
+                    b.HasOne("HotelWorkOrderManagement.Models.User", "User")
                         .WithMany("Members")
-                        .HasForeignKey("TechnicianId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
 
-                    b.Navigation("Technician");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("HotelWorkOrderManagement.Models.Task", b =>
@@ -507,11 +544,6 @@ namespace HotelWorkOrderManagement.Migrations
                     b.Navigation("Executor");
 
                     b.Navigation("Task");
-                });
-
-            modelBuilder.Entity("HotelWorkOrderManagement.Models.Comment", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("HotelWorkOrderManagement.Models.EquipmentPiece", b =>

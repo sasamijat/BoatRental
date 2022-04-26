@@ -1,0 +1,12 @@
+﻿
+<div class="navbar-brand bg-primary justify-content-center">
+    <div class="row d-flex justify-content-center">
+        <a href="https://localhost:7221/Users/MyProfile" class="col-sm d-flex justify-content-center text-white btn">Profile</a>
+        <a href="https://localhost:7221/Tasks/Tasks?team=false" class="col-sm d-flex justify-content-center text-white btn">My Tasks</a>
+        <a asp-controller="Tasks" asp-action="addNewTask" class="col-sm d-flex justify-content-center text-white btn">New Task+</a>
+        <a asp-controller="Groups" asp-action="MyGroups" class="col-sm d-flex justify-content-center text-white btn">Teams</a>
+@*        <a asp-controller="Tasks" asp-action="GetAllTasks" class="col-sm d-flex justify-content-center text-white btn">GetAllTasks</a>
+*@        <a class="col-sm d-flex justify-content-center text-white btn">Settings</a>
+    </div>
+</div>
+

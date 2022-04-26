@@ -1,0 +1,86 @@
+﻿@using HotelWorkOrderManagement.DTO.Task.DataOut
+@using System.Globalization
+
+
+<div class="container">
+    <div class="container row">
+        <div class="col-2">
+            <button type="button" class="btn btn-danger " onclick="sort('priority')">Priority</button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-warning " onclick="sort('status')">Status</button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-danger  " onclick="sort('due_date')">DueDate</button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-info ">Search</button>
+        </div>
+        <div class="col-4">
+            <a class="btn-primary btn"  href="https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)">@if(ViewBag.Team){<text>My tasks</text>}else{<text>Team tasks</text>} </a>
+        </div>
+    </div>
+    <hr />
+    <h1 class="row justify-content-center">@if(ViewBag.Team){<text>Team tasks</text>}else{<text>My tasks</text>}  </h1>
+    <hr />
+    <div class="container">
+        
+            @foreach(TaskDataOut Task in ViewBag.Tasks)
+            {
+                <div class="container border-primary rounded" onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id">
+                    <div calss="col-4 row">
+                        <h2 >@Task.Name</h2>
+                        <p>@Task.Description</p>
+                        <div class="row">
+                            <h3 class="col-md-9">@Task.Position</h3>
+                            <p class="col-md-3">Status:@Task.Status</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        @if (@ViewBag.Team) { <h3 class="col-md-9">Team: @Task.AsigneeGroup </h3>}
+                    </div>
+                    <div class="row">
+                        @if (Task.DueDate.HasValue) { <h3 class="col-md-9">DueTime: @Task.DueDate.Value </h3>}
+                        <h4 class="col-md-3">Priority:@Task.Priority</h4>
+                    </div>
+                </div>
+                <hr/>
+            }
+        
+    </div>
+</div>
+@section Scripts{ 
+<script>
+    var sortOrder = "@ViewBag.SortOrder";
+    function sort(criterion){
+        switch(criterion)
+        {
+            case "priority":
+            if(sortOrder=="priority")
+            sortOrder="priority_desc";
+            else 
+            sortOrder="priority";
+            break;
+
+            case "status":
+            if(sortOrder=="status")
+            sortOrder="status_desc";
+            else
+            sortOrder="status";
+            break;
+
+            case "due_date":
+            if(sortOrder=="due_date")
+            sortOrder="due_date_desc";
+            else
+            sortOrder="due_date";
+            break;
+
+        }
+
+        window.location='https://localhost:7221/Tasks/Tasks?team=@(ViewBag.Team)&sortOrder=' + sortOrder;
+    }
+    
+</script>
+}

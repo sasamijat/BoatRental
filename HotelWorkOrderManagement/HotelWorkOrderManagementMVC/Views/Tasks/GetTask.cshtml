@@ -1,0 +1,415 @@
+﻿@model HotelWorkOrderManagement.DTO.Task.DataOut.TaskDataOut;
+@{
+    bool signal = Model.RepetitiveStart.HasValue;
+}
+<div class="container">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Description" ></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Description" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="Description" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row" hidden="hidden">
+            <div class="col-3">
+                <label asp-for="CreatedById" ></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="CreatedById" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="CreatedById" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label >CreatedBy</label>
+            </div>
+            <div class="col-6">
+                <input name="@Model.CreatedById" value="@Model.CreatedByName @Model.CreatedByLastName" id="CreatedBy" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="CreatedOn"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="CreatedOn" class="form-control"disabled="disabled" />
+                <span asp-validation-for="CreatedOn" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Priority" disabled="disabled"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Priority" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="Priority" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Status"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Status" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="Status" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Position"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Position" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="Position" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Domain"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Domain" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="Domain" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row" hidden="hidden">
+            <div class="col-3">
+                <label asp-for="AsigneeIndividualId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="AsigneeIndividualId" class="form-control" disabled="disabled" />
+                <span asp-validation-for="AsigneeIndividualId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label >Asignee Individual</label>
+            </div>
+            <div class="col-6">
+                <input name="@Model.AsigneeIndividualId" value="@Model.AsigneeIndividualName @Model.AsigneeIndividualLastName" id="AsigneeIndividual" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-group row" hidden="hidden">
+            <div class="col-3">
+                <label asp-for="AsigneeGroupId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="AsigneeGroupId" class="form-control"disabled="disabled" />
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label >Asignee Group</label>
+            </div>
+            <div class="col-6">
+                <input name="@Model.AsigneeGroupId" value="@Model.AsigneeGroup" id="AsigneeGroup" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-group row" hidden="hidden">
+            <div class="col-3">
+                <label asp-for="EquipmentToRepairId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="EquipmentToRepairId" class="form-control"disabled="disabled" />
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label >Equipment to Repair</label>
+            </div>
+            <div class="col-6">
+                <input name="@Model.EquipmentToRepairId" value="@Model.EquipmentToRepair" id="EquipmentToRepair" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="RepetitiveStart"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="RepetitiveStart" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label asp-for="RepetitiveSetting"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="RepetitiveSetting" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+       <br />
+    
+        <div class="form-group row">
+            
+            <div class="col-3">
+                <a  class="btn btn-danger form-control" id="DropTaskModal">Drop The Task</a>
+            </div>
+            <div class="col-3">
+            <a  class="btn btn-primary form-control" onclick="ModalRepetitiveTask('@signal','@Model.Id')">@{
+                    if (!Model.RepetitiveStart.HasValue) { <text>Make Task Repetitive</text>} else { <text>Remove repetition</text> }
+                }</a>
+        </div>
+            <div class="col-3">
+                <a href="https://localhost:7221/TaskStateChanges/GetTaskStateChanges?id=@Model.Id" class="btn btn-primary form-control">History of Changes</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-success popup form-control" data-toggle="modal" id="NewStatusModal">SET NEW STATUS <i class="fa fa-plus"></i></a> 
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container">
+        <div class="row">
+        <textarea id="Comment" placeholder="Leave your comment" class="form-control"></textarea>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn-primary btn" onclick="SubmitComment('@Model.Id','@ViewBag.UserId')">Submit your comment</button>
+            </div>
+        </div>
+        </div>
+        <br />
+        <div class="row">
+            <h3>@Model.Comments.Count Comments</h3>
+        </div>
+        @foreach(var Comment in Model.Comments)
+        {   
+            <div class="container border">
+            
+            <div calss="row">
+                <h5>@Comment.CreatedBy.Name @Comment.CreatedBy.LastName</h5>
+            </div>
+            
+            <div calss="row">
+                <p>@Comment.Text</p>
+            </div>
+            </div>
+            <div class="row">
+                <div calss="col-4">
+                <button class="btn-danger btn" onclick="RemoveComment('@Comment.Id')">Remove</button>
+                </div>
+            </div>
+            <br/>
+            
+        }
+    </div>
+
+</div>
+
+<!--Modal-->  
+<div aria-hidden="true" aria-labelledby="modal-setting-new-status" role="dialog" tabindex="-1" id="modal-setting-new-status" class="modal fade">  
+    <div class="modal-dialog">  
+        <!--Modal Body Start-->  
+  
+    <div class="modal-content">  
+  
+        <!--Modal Header Start-->  
+        <div class="modal-header">  
+            <h4 class="modal-title">Set New Status</h4>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="DismissModal('#modal-setting-new-status')"><span aria-hidden="true">×</span></button>  
+        </div>  
+        <!--Modal Header End-->  
+  
+                <div class="modal-body form-horizontal">  
+                    <div class="form-group row">
+                        <div class="col-6">  
+                                <label >Task:</label>
+                            </div>  
+                            <div class=" col-6">
+                        <label>@Model.Name</label>
+                            </div>  
+ 
+                    </div> 
+                    <br/>
+                    <div class="form-group row"> 
+                        <div class="col-6"> 
+                         <label>Item for Repair</label>
+                         </div>
+                        <div class="col-6">  
+                            <input type="text" id="ItemToRepair" disabled="disabled"/>  
+                        </div>  
+                    </div>
+                    <br/>
+                    <div class="form-group row">  
+                        <div class="col-6">
+                             <label >Status:</label>
+                        </div>
+
+                        <div class="col-6">  
+                   <select class="form-select" id="ModalStatus">
+                       @{
+                       string[] Statuses = new string[]{"Active","Finished","Dropped" };
+                        foreach(string status in Statuses)
+                        {
+                            bool s = Model.Status == status;
+                            <option selected="@s" value="@status">@status</option>
+                        }
+                        }
+                   </select> 
+                        </div>  
+                    </div>  
+                    <br/>
+  
+                    <div class="form-group row">  
+                            <div class="col-6">  
+                                <label >Description:</label>
+                            </div>  
+                            <div class=" col-6">
+                        <textarea class="border" id="ModalDescription" required="required"></textarea>
+                            </div>  
+                        </div>  
+                    </div>  
+               
+                <!--Modal Footer Start-->  
+                <div class="modal-footer">  
+                    <button data-dismiss="modal" id="cancel" class="btn btn-default" type="button" onclick="DismissModal('#modal-setting-new-status')">Cancel</button>  
+                    <button onclick="SubmitChange(@Model.Id)" class="btn btn-success relative" id="btnSubmit">   
+                        Submit  
+                    </button>  
+                </div>  
+                <!--Modal Footer End-->   
+  
+                </div>  
+  
+  
+<!--Modal Body End-->  
+    </div>  
+</div> 
+
+<!--ModalDropTask-->  
+<div aria-hidden="true" aria-labelledby="modal-drop-task" role="dialog" tabindex="-1" id="modal-drop-task" class="modal fade">  
+    <div class="modal-dialog">  
+        <!--Modal Body Start-->  
+  
+    <div class="modal-content">  
+  
+        <!--Modal Header Start-->  
+        <div class="modal-header">  
+            <h4 class="modal-title">Task drop</h4>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="DismissModal('#modal-drop-task')"><span aria-hidden="true">×</span></button>  
+        </div>  
+        <!--Modal Header End-->  
+  
+                <div class="modal-body form-horizontal">  
+                    <div class="form-group row">
+                        <div class="col-6">  
+                                <label >Task:</label>
+                            </div>  
+                            <div class=" col-6">
+                        <label>@Model.Name</label>
+                            </div>  
+ 
+                    </div> 
+                    <br/>
+                    <div class="form-group row"> 
+                        <div class="col-6"> 
+                         <label>Item for Repair</label>
+                         </div>
+                        <div class="col-6">  
+                            <input type="text" id="ItemToRepairTaskDrop" disabled="disabled"/>  
+                        </div>  
+                    </div>
+                    <br/>  
+                    <br/>
+  
+                    <div class="form-group row">  
+                            <div class="col-6">  
+                                <label >Description:</label>
+                            </div>  
+                            <div class=" col-6">
+                        <textarea class="border" id="ModalDescriptionTaskDrop" required="required"></textarea>
+                            </div>  
+                        </div>  
+                    </div>  
+               
+                <!--Modal Footer Start-->  
+                <div class="modal-footer">  
+                    <button data-dismiss="modal" id="cancel" class="btn btn-default" type="button" onclick="DismissModal('#modal-drop-task')">Cancel</button>  
+                    <button onclick="DropTask(@Model.Id)" class="btn btn-success relative" id="btnSubmit">   
+                        Submit  
+                    </button>  
+                </div>  
+                <!--Modal Footer End-->   
+  
+                </div>  
+  
+  
+<!--Modal Body End-->  
+    </div>  
+</div> 
+
+<!--Modal 2-->  
+<div aria-hidden="true" aria-labelledby="modal-repetitive-task" role="dialog" tabindex="-1" id="modal-repetitive-task" class="modal fade">  
+    <div class="modal-dialog">  
+        <!--Modal Body Start-->  
+  
+    <div class="modal-content">  
+  
+        <!--Modal Header Start-->  
+        <div class="modal-header">  
+            <h4 class="modal-title">Set New Status</h4>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="DismissModal('#modal-repetitive-task')"><span aria-hidden="true">×</span></button>  
+        </div>  
+        <!--Modal Header End-->  
+  
+                <div class="modal-body form-horizontal">  
+                    <div class="form-group row">
+                        <div class="col-6 border">  
+                              <p>Please select one setting:</p>
+                              <input type="radio" id="Daily" name="rep_setting" value="Daily">
+                              <label for="Daily">Daily</label><br>
+                              <input type="radio" id="Weekly" name="rep_setting" value="Weekly">
+                              <label for="Weekly">Weekly</label><br>
+                              <input type="radio" id="Monthly" name="rep_setting" value="Monthly">
+                              <label for="Monthly">Monthly</label>
+                        </div>  
+                        
+                        <div class=" col-6">
+                                <br/>
+                                <br/>
+                                <div class="form-group row">
+                                   <div class="col-3">
+                                       <label>Start:</label>
+                                   </div>
+                                   <div class="col-9">
+                                       <input  type="datetime-local" id="rep_start" class="form-control"/>
+                                   </div>
+                                </div>
+                        </div>  
+ 
+                    </div> 
+ 
+                    </div>  
+               
+                <!--Modal Footer Start-->  
+                <div class="modal-footer">  
+                    <button data-dismiss="modal" id="cancel" class="btn btn-default" type="button" onclick="DismissModal()">Cancel</button>  
+                    <button onclick="SubmitChangeRepetitive(@Model.Id)" class="btn btn-success relative" id="btnSubmitRepetitive">   
+                        Submit  
+                    </button>  
+                </div>  
+                <!--Modal Footer End-->   
+  
+                </div>  
+  
+  
+<!--Modal Body End-->  
+    </div>  
+</div> 
+
+@section Scripts{ 
+<script src="~/js/Task/TaskScript.js"></script>
+}

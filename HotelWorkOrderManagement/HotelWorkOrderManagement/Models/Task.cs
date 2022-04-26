@@ -1,4 +1,5 @@
 ﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
+using HotelWorkOrderManagement.DTO.Task.DataOut;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,7 +18,7 @@ namespace HotelWorkOrderManagement.Models
         public int? CreatedById { get; set; }
         public User CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
-        public DateTime? FinishedOn { get; set; }
+        public DateTime? DueDate { get; set; }
         public string Priority { get; set; }
         public string Status { get; set; }
         public string Position { get; set; }
@@ -46,7 +47,6 @@ namespace HotelWorkOrderManagement.Models
             Description = task.Description;
             CreatedById = task.CreatedById;
             CreatedOn = task.CreatedOn;
-            FinishedOn = task.FinishedOn;
             Priority = task.Priority;
             Status = task.Status;
             Position = task.Position;
@@ -56,6 +56,25 @@ namespace HotelWorkOrderManagement.Models
             EquipmentToRepairId = task.EquipmentToRepairId;
             RepetitiveStart = task.RepetitiveStart;
             RepetitiveSetting = task.RepetitiveSetting;
+            DueDate = task.DueDate;
+        }
+
+        public Task(TaskDataOut task)
+        {
+            Name = task.Name;
+            Description = task.Description;
+            CreatedById = task.CreatedById;
+            CreatedOn = task.CreatedOn;
+            Priority = task.Priority;
+            Status = task.Status;
+            Position = task.Position;
+            Domain = task.Domain;
+            AsigneeIndividualId = task.AsigneeIndividualId;
+            AsigneeGroupId = task.AsigneeGroupId;
+            EquipmentToRepairId = task.EquipmentToRepairId;
+            RepetitiveStart = task.RepetitiveStart;
+            RepetitiveSetting = task.RepetitiveSetting;
+            DueDate = task.DueDate;
         }
 
 

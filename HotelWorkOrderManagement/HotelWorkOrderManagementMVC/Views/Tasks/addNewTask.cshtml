@@ -1,0 +1,169 @@
+﻿@model HotelWorkOrderManagement.DTO.Task.DataOut.TaskDataOut;
+
+<div class="container">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Description" ></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Description" class="form-control"/>
+                <span asp-validation-for="Description" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label for="CreatedById">CreatedBy: </label>
+            </div>
+            <div class="col-6">
+                <input asp-for="CreatedById" class="form-control" value="3" placeholder="Nikola Smiljanic" disabled/>
+                <span asp-validation-for="CreatedById" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="DueDate"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="DueDate" class="form-control"/>
+                <span asp-validation-for="DueDate" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Priority" ></label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Priority" class="form-control" >
+                    @{
+                        <option selected="selected" disabled="disabled">Choose the Priority:</option>
+                        string[] Priority = new string[]{"High","Normal"};
+                        foreach(string priority in Priority)
+                        {
+                            <option value="@priority">@priority</option>
+                        }
+                    }
+                    </select>
+                <span asp-validation-for="Priority" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Status"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Status" class="form-control" value="Active" placeholder="Suggested" disabled/>
+                <span asp-validation-for="Status" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Position"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger" ></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Domain"></label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Domain" class="form-control" >
+                    @{
+                        <option selected="selected" disabled="disabled">Choose the Domain:</option>
+                        string[] Domains = new string[]{"Maintaining","Housekeeping"};
+                        foreach(string domain in Domains)
+                        {
+                            <option value="@domain">@domain</option>
+                        }
+                    }
+                    </select>
+                <span asp-validation-for="Domain" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label for="AsigneeIndividualId">Asignee Individual: </label>
+            </div>
+            <div class="col-6">
+                <select asp-for="AsigneeIndividualId" class="form-control">
+                <option selected="selected" disabled="disabled">Choose the Individual:</option>
+                    @if(Model.Individuals!=null)
+                    foreach(var individual in Model.Individuals)
+                {
+                    <option value="@individual.Id">@individual.Name @individual.LastName</option>
+                }
+                </select>
+                <span asp-validation-for="AsigneeIndividualId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="AsigneeGroupId">Asignee Group: </label>
+            </div>
+            <div class="col-6">
+                <select asp-for="AsigneeGroupId" class="form-control">
+                    <option selected="selected" disabled="disabled">Choose the Group:</option>
+                    @if(Model.Groups!=null)
+                    foreach(var group in Model.Groups)
+                {
+                    <option value="@group.Id">@group.Name</option>
+                }
+            </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label for="EquipmentToRepairId">Equipment to Repair: </label>
+            </div>
+            <div class="col-6">
+                <select for="EquipmentToRepairId" class="form-control">
+                    <option selected="selected" disabled="disabled">Choose the Equipment for Repair:</option>
+                    @if(Model.EquipmentPieces!=null)
+                    foreach(var equipmentPiece in Model.EquipmentPieces)
+                {
+                    <option value="@equipmentPiece.Id">@equipmentPiece.Name</option>
+                }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="RepetitiveStart"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="RepetitiveStart" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row" >
+            <div class="col-3">
+                <label asp-for="RepetitiveSetting"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="RepetitiveSetting" class="form-control" />
+            </div>
+        </div>
+       <br />
+    
+        <div class="form-group row">
+            <div class="col-3">
+                <button onclick="AddNewTask()" class="btn btn-danger form-control" id="SubmitTask" >Submit the task</button>
+            </div>
+        </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Task/AddNewTaskScript.js"></script>
+}
