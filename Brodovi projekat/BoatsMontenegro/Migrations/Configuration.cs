@@ -20,17 +20,17 @@ namespace BoatsMontenegro.Migrations
             {
                 var users = new List<User>
                 {
-                    new User {UserID=1, Name = "Blagoje", Surname = "Jovovic", Email = "2metkazapavelica@gmail.com", Password = "1953", PersonalIdNumber = "655223984", PhoneNumber = "+38160787686767", Username="blagojej" },
-                    new User {UserID=2,  Name = "Kristina", Surname = "Mirkovic", Email = "kristinakris@yahoo.com", Password = "4745", PersonalIdNumber = "412887564", PhoneNumber = "+3816079879+",Username="kristinam" },
-                    new User {UserID=3,  Name = "Dijana", Surname = "Lazic", Email = "dijanalazicdiks@gmail.com", Password = "8896", PersonalIdNumber = "963365477", PhoneNumber = "+38160645646",Username="dijanal" },
-                    new User {UserID=4,  Name = "Gavrilo", Surname = "Principovic", Email = "mladabosna@outlook.com", Password = "1914", PersonalIdNumber = "852336889", PhoneNumber = "+38160796456",Username="gavrilop" },
-                    new User {UserID=5,  Name = "Ratko", Surname = "Mladicevic", Email = "koridor92@gmail.com", Password = "1992", PersonalIdNumber = "2144533564", PhoneNumber = "+38160789789",Username="ratkom" }
+                    new User {UserID=1, FirstName = "Blagoje", LastName = "Jovovic", Email = "2metkazapavelica@gmail.com", Password = "1953", PersonalIdNumber = "655223984", PhoneNumber = "+38160787686767", Username="blagojej" },
+                    new User {UserID=2,  FirstName = "Kristina", LastName = "Mirkovic", Email = "kristinakris@yahoo.com", Password = "4745", PersonalIdNumber = "412887564", PhoneNumber = "+3816079879+",Username="kristinam" },
+                    new User {UserID=3,  FirstName = "Dijana", LastName = "Lazic", Email = "dijanalazicdiks@gmail.com", Password = "8896", PersonalIdNumber = "963365477", PhoneNumber = "+38160645646",Username="dijanal" },
+                    new User {UserID=4,  FirstName = "Gavrilo", LastName = "Principovic", Email = "mladabosna@outlook.com", Password = "1914", PersonalIdNumber = "852336889", PhoneNumber = "+38160796456",Username="gavrilop" },
+                    new User {UserID=5,  FirstName = "Ratko", LastName = "Mladicevic", Email = "koridor92@gmail.com", Password = "1992", PersonalIdNumber = "2144533564", PhoneNumber = "+38160789789",Username="ratkom" }
                 };
                 users.ForEach(user => context.Users.Add(user));
                 context.SaveChanges();
             }
             #endregion
-
+            
 
             #region -------------------BOAT------------------- 
             if (!context.Boats.Any())
@@ -50,7 +50,7 @@ namespace BoatsMontenegro.Migrations
                 }
                 #endregion
 
-                #region ------------------- RESERVATION------------------- 
+            #region ------------------- RESERVATION------------------- 
                 if (!context.Reservations.Any())
                 {
                     var reservations = new List<Reservation>
@@ -64,10 +64,24 @@ namespace BoatsMontenegro.Migrations
                     reservations.ForEach(reservation => context.Reservations.Add(reservation));
                     context.SaveChanges();
                 }
-                #endregion
-                
-                
-            
+            #endregion
+
+            #region -----------ROLE--------------
+            if (!context.Roles.Any())
+            {
+                var roles = new List<Role>
+                {
+                    new Role{RoleName="Admin"},
+                    new Role{RoleName="Buyer"},
+                    new Role{RoleName="Seller"}
+                };
+                roles.ForEach(role => context.Roles.Add(role));
+                context.SaveChanges();
+            }
+            #endregion 
+
+
+
         }
     }
 }

@@ -3,7 +3,7 @@ namespace BoatsMontenegro.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Migracija5 : DbMigration
+    public partial class Mgr1 : DbMigration
     {
         public override void Up()
         {
@@ -44,28 +44,44 @@ namespace BoatsMontenegro.Migrations
                 c => new
                     {
                         UserID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Surname = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         Email = c.String(),
                         PhoneNumber = c.String(),
                         PersonalIdNumber = c.String(),
                         Username = c.String(),
                         Password = c.String(),
-                        ConfirmPassword = c.String(),
-                        RoleId = c.Int(nullable: false),
+                        RememberMe = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        ActivationCode = c.Guid(nullable: false),
+                        Role_RoleId = c.Int(),
                     })
-                .PrimaryKey(t => t.UserID);
+                .PrimaryKey(t => t.UserID)
+                .ForeignKey("dbo.Roles", t => t.Role_RoleId)
+                .Index(t => t.Role_RoleId);
+            
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        RoleId = c.Int(nullable: false, identity: true),
+                        RoleName = c.String(),
+                    })
+                .PrimaryKey(t => t.RoleId);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Users", "Role_RoleId", "dbo.Roles");
             DropForeignKey("dbo.Reservations", "ReservedBy_UserID", "dbo.Users");
             DropForeignKey("dbo.Boats", "User_UserID", "dbo.Users");
             DropForeignKey("dbo.Reservations", "Boat_BoatID", "dbo.Boats");
+            DropIndex("dbo.Users", new[] { "Role_RoleId" });
             DropIndex("dbo.Reservations", new[] { "ReservedBy_UserID" });
             DropIndex("dbo.Reservations", new[] { "Boat_BoatID" });
             DropIndex("dbo.Boats", new[] { "User_UserID" });
+            DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.Reservations");
             DropTable("dbo.Boats");
