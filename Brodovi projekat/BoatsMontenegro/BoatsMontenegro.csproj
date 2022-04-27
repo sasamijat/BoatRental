@@ -200,19 +200,46 @@
     <Compile Include="BaseBase\BaseContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BoatController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
+    <Compile Include="CustomAuthentication\CustomMembership.cs" />
+    <Compile Include="CustomAuthentication\CustomMembershipUser.cs" />
+    <Compile Include="CustomAuthentication\CustomPrincipal.cs" />
+    <Compile Include="CustomAuthentication\CustomRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202203301432415_Migracija5.cs" />
-    <Compile Include="Migrations\202203301432415_Migracija5.Designer.cs">
-      <DependentUpon>202203301432415_Migracija5.cs</DependentUpon>
+    <Compile Include="Migrations\202204191017416_Mgr1.cs" />
+    <Compile Include="Migrations\202204191017416_Mgr1.Designer.cs">
+      <DependentUpon>202204191017416_Mgr1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204191121041_Mgr2.cs" />
+    <Compile Include="Migrations\202204191121041_Mgr2.Designer.cs">
+      <DependentUpon>202204191121041_Mgr2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204191130340_Mgr3.cs" />
+    <Compile Include="Migrations\202204191130340_Mgr3.Designer.cs">
+      <DependentUpon>202204191130340_Mgr3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204191241172_Mgr4.cs" />
+    <Compile Include="Migrations\202204191241172_Mgr4.Designer.cs">
+      <DependentUpon>202204191241172_Mgr4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204191428569_Mgr5.cs" />
+    <Compile Include="Migrations\202204191428569_Mgr5.Designer.cs">
+      <DependentUpon>202204191428569_Mgr5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204191429353_Mgr6.cs" />
+    <Compile Include="Migrations\202204191429353_Mgr6.Designer.cs">
+      <DependentUpon>202204191429353_Mgr6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Boat.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,6 +299,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\LoggedIn.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,8 +318,23 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202203301432415_Migracija5.resx">
-      <DependentUpon>202203301432415_Migracija5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204191017416_Mgr1.resx">
+      <DependentUpon>202204191017416_Mgr1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204191121041_Mgr2.resx">
+      <DependentUpon>202204191121041_Mgr2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204191130340_Mgr3.resx">
+      <DependentUpon>202204191130340_Mgr3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204191241172_Mgr4.resx">
+      <DependentUpon>202204191241172_Mgr4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204191428569_Mgr5.resx">
+      <DependentUpon>202204191428569_Mgr5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204191429353_Mgr6.resx">
+      <DependentUpon>202204191429353_Mgr6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

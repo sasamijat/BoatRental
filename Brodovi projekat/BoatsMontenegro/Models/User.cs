@@ -12,40 +12,58 @@ namespace BoatsMontenegro.Models
         [Key]       
         public int UserID { get; set; }  //Primary key
 
-       // [Required(ErrorMessage = "Ime je obavezno uneti")]
-        public string Name { get; set; }
 
 
-       // [Required(ErrorMessage = "Prezime je obavezno uneti")]
-        public string Surname { get; set; }
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        public string FirstName { get; set; }
 
 
-       // [Required(ErrorMessage = "Email je obavezno uneti")]
-       // [RegularExpression("^\\S+@\\S+\\.\\S+$")]
+
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        public string LastName { get; set; }
+
+     
+
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        [RegularExpression("^\\S+@\\S+\\.\\S+$")]
         public string Email { get; set; }
 
-        
+
+
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string PhoneNumber { get; set; }
+
+
+
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string PersonalIdNumber { get; set; }
 
 
-       // [Required(ErrorMessage = "Korisnicko ime je obavezno uneti")]
+
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string Username { get; set; }
 
 
-       //[Required(ErrorMessage = "Lozinku je obavezno uneti")]
-       //[DataType(DataType.Password)]
+
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
 
-       // [Compare("Password", ErrorMessage = "Potvrdite vasu lozinku")]
-       // [DataType(DataType.Password)]
+        [DataType(DataType.Password)]
+        [Compare("Password",ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string ConfirmPassword { get; set; }
+    
 
-        public int RoleId { get; set; }
-
+       
+        public Role Role { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
         public virtual ICollection<Boat> Boats { get; set; } //ownership
-        
+
+
+        public bool RememberMe { get; set; }
+        public bool IsActive { get; set; }
+        public Guid ActivationCode { get; set; }
+
     }
 }
