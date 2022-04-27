@@ -18,6 +18,7 @@ namespace HotelWorkOrderManagement.DTO.Task.DataOut
         public string Description { get; set; }
         public string? CreatedByName { get; set; }
         public string? CreatedByLastName { get; set; }
+        public bool? TaskSelfAsign { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? DueDate { get; set; }
         public string Priority { get; set; }
@@ -65,7 +66,12 @@ namespace HotelWorkOrderManagement.DTO.Task.DataOut
             RepetitiveSetting = task.RepetitiveSetting;
         }
 
+        public TaskDataOut(Models.Task task,bool taskSelfAsign): this(task)
+        {
+            TaskSelfAsign = taskSelfAsign;
+        }
 
-       
+
+
     }
 }

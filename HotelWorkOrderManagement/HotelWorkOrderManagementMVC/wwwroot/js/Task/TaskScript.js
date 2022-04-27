@@ -95,23 +95,43 @@ function SubmitChangeRepetitive(id) {
 
 
 }
+var commentImage64;
+var imageName;
 
 function SubmitComment(id, userId) {
     var text = $("#Comment").val();
+
+    let obj = {};
+    obj.Text = text;
+    obj.CreatedById = userId;
+    obj.TaskId = id;
+    obj.CommentImage = commentImage64;
+    obj.ImageName = imageName;
+
+
     if(text !="")
-    $.ajax({
-        type: "POST",
-        url: 'https://localhost:7221/Tasks/SubmitComment',
-        data: {
-            id: id,
-            userId: userId,
-            text:text
-        },
-        success: function () {
+        $.ajax({
+            type: "POST",
+            url: 'https://localhost:7221/Tasks/SubmitComment',
+            data: obj,
+            success: function () {
             location.reload()
             alert("Task comment successfully added")
-        }
+            }
     });
+}
+
+function getBase64() {
+    var file = document.getElementById('CommentFile').files[0]
+    imageName = file.name
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        commentImage64 = reader.result;
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
 }
 
 function RemoveComment(id) {

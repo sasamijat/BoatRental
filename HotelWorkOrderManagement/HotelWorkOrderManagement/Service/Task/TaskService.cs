@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using HotelWorkOrderManagement.Models;
 using HotelWorkOrderManagement.DTO.Task.DataOut;
 using Microsoft.EntityFrameworkCore;
+using HotelWorkOrderManagement.DTO.Comment;
 
 namespace HotelWorkOrderManagement.Service.Task
 {
@@ -48,8 +49,13 @@ namespace HotelWorkOrderManagement.Service.Task
                 if (team == false)
                 {
                     list = context.Tasks.Where(t => t.AsigneeIndividualId == id).Include(x => x.AsigneeGroup).Include(x => x.AsigneeIndividual).Include(x => x.EquipmentToRepair).ToList();
-                
-                }else
+
+                    foreach (var task in list)
+                    {
+                        tasks.Add(new TaskDataOut(task));
+                    }
+                }
+                else
                 {
                     var members = context.Members.Where(m=>m.UserId==id).Include(m => m.Group).ToList();
                     var groups=members.Select(m=>m.Group).ToList();
@@ -58,8 +64,7 @@ namespace HotelWorkOrderManagement.Service.Task
                         var groupTasks = context.Tasks.Where(t => t.AsigneeGroupId == group.Id);
                         foreach (Models.Task task in groupTasks)
                         {
-
-                            list.Add(task);
+                            tasks.Add(new TaskDataOut(task,group.SelfTaskAssign));
                         }
                     }
                     
@@ -67,10 +72,7 @@ namespace HotelWorkOrderManagement.Service.Task
                 }
 
 
-            foreach (var task in list)
-            {
-                    tasks.Add(new TaskDataOut(task));
-            }
+            
             }
             return tasks; 
         }
@@ -184,16 +186,12 @@ namespace HotelWorkOrderManagement.Service.Task
           
         }
 
-        public void SubmitComment(int id, int userId,string text) {
+        public void SubmitComment(CommentDataIn model,string uniqueFileName) {
 
+            Comment comment = new Comment(model);
+            comment.CommentImage = uniqueFileName;
             using (context) {
-
-                context.Comments.Add(new Comment()
-                {
-                    TaskID=id,
-                    CreatedById=userId,
-                    Text=text
-                });
+                context.Comments.Add(comment);
 
                 context.SaveChanges();
 
@@ -214,6 +212,18 @@ namespace HotelWorkOrderManagement.Service.Task
 
         }
 
+        public void TakeSelectedTask(int id,int userId) {
+            Models.Task task;
+            using (context) {
+
+                task = context.Tasks.FirstOrDefault(t => t.Id == id);
+                task.AsigneeGroupId = null;
+                task.AsigneeIndividualId = userId;
+                context.SaveChanges();
+            }
+
+        
+        }
 
 
 

@@ -23,8 +23,17 @@ namespace HotelWorkOrderManagement.Service
         {
             using(context)
             {
-                context.Users.Add(user);
-                context.SaveChanges();
+                try
+                {
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    
+                }
+
+                
 
             }
         }
@@ -93,6 +102,21 @@ namespace HotelWorkOrderManagement.Service
             return user;
         }
 
+        public bool IsUsernameAvailble(string Username)
+        {
+            using (context)
+            {
+                try
+                {
+                    var UserName = context.Users.Single(m => m.Username == Username);
+                    return false;
+                }
+                catch (Exception)
+                {
+                    return true;
+                }
+            }
+        }
 
 
 

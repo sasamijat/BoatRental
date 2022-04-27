@@ -1,7 +1,6 @@
 ﻿@model HotelWorkOrderManagement.DTO.User.DataIn.UserDataIn;
 
 <div class="border-bottom container" style="padding:30px;">
-
     <form enctype="multipart/form-data" method="post">
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <label hidden id="Id">@Model.Id</label>
@@ -66,7 +65,7 @@
         <div class="form-group row">
            <div class="custom-file">  
                <label class="custom-file-label" for="customFile">Choose file</label>  
-              <input asp-for="ProfileImage" id="ProfileImage" class="custom-file-input" />  
+              <input asp-for="ProfileImage" id="ProfileImage" class="custom-file-input" accept="image/png, image/jpeg"/>  
             </div>  
            <span asp-validation-for="ProfileImage" class="text-danger"></span>
         </div>

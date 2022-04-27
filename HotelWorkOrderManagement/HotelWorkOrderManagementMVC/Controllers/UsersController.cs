@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
 
+
 namespace HotelWorkOrderManagementMVC.Controllers
 {
     [Authorize]
@@ -58,7 +59,7 @@ namespace HotelWorkOrderManagementMVC.Controllers
         public IActionResult Upsert()
         {
             if (ModelState.IsValid)
-            {
+            {                
                 string uniqueFileName = UploadedFile(UserDataIn);
                 User user = new User(UserDataIn);
                 user.ProfileImage = uniqueFileName;
@@ -131,6 +132,11 @@ namespace HotelWorkOrderManagementMVC.Controllers
             return uniqueFileName;
         }
 
+        public ActionResult IsUsernameAvailble(string Username)
+        {
+            bool signal=_service.IsUsernameAvailble(Username);
+            return new JsonResult(signal, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

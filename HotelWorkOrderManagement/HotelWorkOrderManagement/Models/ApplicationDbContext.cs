@@ -257,6 +257,10 @@ namespace HotelWorkOrderManagement.Models
 
             modelBuilder.Entity<Member>().HasKey(m => new { m.GroupId, m.UserId });
 
+            modelBuilder.Entity<User>(entity => {
+                entity.HasIndex(e => e.Username).IsUnique();
+            });
+
 
 
         }

@@ -1,4 +1,5 @@
-﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
+﻿using HotelWorkOrderManagement.DTO.Comment;
+using HotelWorkOrderManagement.DTO.Task.DataIn;
 using HotelWorkOrderManagement.DTO.Task.DataOut;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,10 @@ namespace HotelWorkOrderManagement.Service.Task
         public void repetitiveRemove(int id) { }
         public void addNewTask(Models.Task task) { }
         public TaskDataOut getNewTask() { return null; }
-        public void SubmitComment(int id, int userId,string text) { }
+        public void SubmitComment(CommentDataIn model,string uniqueFileName) { }
         public void RemoveComment(int id) { }
-        public List<TaskDataOut> GetAllTasks(bool? team) { return null; }
+        public List<TaskDataOut> GetAllTasks(bool? team) { return null; }         
+        public void TakeSelectedTask(int id, int userId) { }
 
     }
 }
