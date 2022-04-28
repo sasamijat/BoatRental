@@ -1,54 +1,46 @@
-﻿class ClickAndHold {
-    /**
-     * @param {EventTarget} target The HTML element to apply the event to
-     * @param {Function} callback The function to run once the target is clicked and held
-     * */
+﻿var tId = 0;
 
-    constructor(target, callback) {
-        this.target = target;
-        this.callback = callback;
-        this.isHeld = false;
-        this.activeHoldTimeoutId = null;
-
-        ["mousedown", "touchstart"].forEach(type => {
-            this.target.addEventListener(type, this._onHoldStart.bind(this));
-        });
-
-        ["mouseup","mouseleave","mouseout", "touchend","touchcancel"].forEach(type => {
-            this.target.addEventListener(type, this._onHoldEnd.bind(this));
-        });
+var signal = 0;
+function clickHold(id, taskSelfAsign) {
+    if (taskSelfAsign=="True") {
+        tId = setTimeout(GFG_Fun, 1000, id);
     }
-
-    _onHoldStart() {
-        this.isHeld = true;
-
-        this.activeHoldTimeoutId = setTimeout(() => {
-            this.activeHoldTimeoutId = setTimeout(() => {
-                if (this.isHeld) {
-                    this.callback();
-                }
-            })
-        },1000)
-    }
-
-    _onHoldEnd() {
-        this.isHeld = false;
-        clearTimeout(this.activeHoldTimeoutId);
-    }
-
-    /**
-     * @param {EventTarget} target The HTML element to apply the event to
-     * @param {Function} callback The function to run once the target is clicked and held
-     * */
-
-    static apply(target, callback) {
-        new ClickAndHold(target,callback)
-    }
+    $('#'+id).on('mouseup', function () {
+        if (signal == 0) {
+            window.location.href = 'https://localhost:7221/Tasks/GetTask?id=' + id;
+        }
+        clearTimeout(tId);
+        signal = 0;
+    });
 }
 
-const clickableDiv = document.getElementById("clickableDiv");
-ClickAndHold.apply(myButton, () => {
-    alert("Click and hold!")
-})
+function GFG_Fun(id) {
+    ShowModal("#modal-take-team-task", id);
+}
 
+function DismissModal(id) {
+    $(id).modal('hide');
+}
+var idTask;
+function ShowModal(id, taskId) {
+    idTask=taskId
+    $(id).modal('show');
+    signal = 1;
+}
+
+function TakeSelectedTask(userId) {
+    $.ajax({
+        type: "POST",
+        url: 'https://localhost:7221/Tasks/TakeSelectedTask',
+        data: {
+            taskId: idTask,
+            userId: userId
+        },
+        success: function () {
+            idTask = null;
+            DismissModal("#modal-take-team-task");
+            window.location.reload();
+        }
+    });
+}
 

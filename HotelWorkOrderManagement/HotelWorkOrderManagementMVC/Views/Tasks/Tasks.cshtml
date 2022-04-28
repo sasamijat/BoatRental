@@ -27,7 +27,7 @@
         
             @foreach(TaskDataOut Task in ViewBag.Tasks)
             {
-                <div class="container border-primary rounded" onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id">
+                <div class="container border-primary rounded" id="@Task.Id" onmousedown="clickHold('@Task.Id','@Task.TaskSelfAsign')" @*onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id"*@>
                     <div calss="col-4 row">
                         <h2 >@Task.Name</h2>
                         <p>@Task.Description</p>
@@ -50,7 +50,41 @@
         
     </div>
 </div>
+
+<!--Modal-->  
+<div aria-hidden="true" aria-labelledby="modal-take-team-task" role="dialog" tabindex="-1" id="modal-take-team-task" class="modal fade">  
+    <div class="modal-dialog">  
+        <!--Modal Body Start-->  
+  
+    <div class="modal-content">  
+  
+        <!--Modal Header Start-->  
+        <div class="modal-header">  
+            <h4 class="modal-title">Take selected TASK</h4>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="DismissModal('#modal-take-team-task')"><span aria-hidden="true">×</span></button>  
+        </div>  
+        <!--Modal Header End-->  
+  
+                <div class="modal-body form-horizontal">  
+                    <div class="form-group row">
+                         <div class="col-6">
+                             <button class="btn-success btn" onclick="TakeSelectedTask('@ViewBag.UserId')">Takce selected TASK</button>
+                         </div>
+ 
+                    </div> 
+ 
+                </div>  
+                
+  
+                </div>  
+  
+  
+<!--Modal Body End-->  
+    </div>  
+</div> 
+
 @section Scripts{ 
+<script src="~/js/Task/TasksScript.js"></script>
 <script>
     var sortOrder = "@ViewBag.SortOrder";
     function sort(criterion){

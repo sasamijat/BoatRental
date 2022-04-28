@@ -1,9 +1,12 @@
-﻿using HotelWorkOrderManagement.DTO.Task.DataIn;
+﻿using HotelWorkOrderManagement.DTO.Comment;
+using HotelWorkOrderManagement.DTO.Task.DataIn;
 using HotelWorkOrderManagement.DTO.Task.DataOut;
+using HotelWorkOrderManagement.DTO.User.DataIn;
 using HotelWorkOrderManagement.Models;
 using HotelWorkOrderManagement.Service.Task;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 using System.Security.Claims;
 
 namespace HotelWorkOrderManagementMVC.Controllers
@@ -13,11 +16,13 @@ namespace HotelWorkOrderManagementMVC.Controllers
     {
         private ITaskService _service;
         private IHttpContextAccessor _httpContextAccessor;
+        IWebHostEnvironment _webHostEnvironment;
 
-        public TasksController(ITaskService service, IHttpContextAccessor httpContextAccessor)
+        public TasksController(ITaskService service, IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostEnvironment)
         {
             _service = service;
             _httpContextAccessor = httpContextAccessor;
+            _webHostEnvironment = hostEnvironment;
         }
 
         [BindProperty]
@@ -62,6 +67,7 @@ namespace HotelWorkOrderManagementMVC.Controllers
             ViewBag.SortOrder = sortOrder;
             ViewBag.Tasks = tasks;
             ViewBag.Team=team;
+            ViewBag.UserId = UserId;
             return View();
         }
 
@@ -111,16 +117,53 @@ namespace HotelWorkOrderManagementMVC.Controllers
             }
         }
 
-        [HttpPost]
-        public void SubmitComment(int id,int userId,string text)
+        public IFormFile LoadImage(string file,string imageName)
         {
-            _service.SubmitComment(id, userId,text);
+            //data:image/gif;base64,
+            //this image is a single pixel (black)
+            byte[] bytes = Convert.FromBase64String(file);
+
+            IFormFile commentImage;
+            MemoryStream ms = new MemoryStream(bytes);
+            
+                commentImage = new FormFile(ms, 0, bytes.Length, "imageString", imageName);
+            
+
+            return commentImage;
+        }
+
+
+        [HttpPost]
+        public void SubmitComment(CommentDataIn model)
+        {
+            string[] file = model.CommentImage.Split(',');
+            model.CommentFile = LoadImage(file[1],model.ImageName);            
+            string uniqueFileName = UploadedFile(model.CommentFile);
+            _service.SubmitComment(model,uniqueFileName);
         }
         
         [HttpPost]
         public void RemoveComment(int id)
         {
             _service.RemoveComment(id);
+        }
+
+        private string UploadedFile(IFormFile CommentImage)
+        {
+            string uniqueFileName = null;
+
+            if (CommentImage != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "comments");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + CommentImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                var fileStream = new FileStream(filePath, FileMode.Create);
+                
+                CommentImage.CopyTo(fileStream);
+                fileStream.Close();
+                
+            }
+            return uniqueFileName;
         }
 
         [Authorize(Roles = "Admin")]
@@ -158,6 +201,12 @@ namespace HotelWorkOrderManagementMVC.Controllers
             ViewBag.Tasks = tasks;
             ViewBag.Team = team;
             return View();
+        }
+
+        [HttpPost]
+        public void TakeSelectedTask(int taskId,int userId)
+        {
+            _service.TakeSelectedTask(taskId, userId);
         }
 
 

@@ -11,12 +11,14 @@ namespace HotelWorkOrderManagement.Service
 {
     public interface IUserService
     {
-        public  void insertUser(User user) { }
+        public void insertUser(User user) { }
         public void updateUser(User user) { }
         public  UserDataIn getUser(int id) { return null; }
         public List<UserDataIn> getAllUsers(){ return null; }
         public async Task<User> removeUserAsync(int id) { return null; }
         public async Task<User>AuthenticateUser(string username, string password) { return null; }
+
+        public bool IsUsernameAvailble(string Username) { return false; }
 
     }
 }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HotelWorkOrderManagement.DTO.Comment;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace HotelWorkOrderManagement.Models
 {
@@ -12,11 +14,22 @@ namespace HotelWorkOrderManagement.Models
        
         public string Text { get; set; }
         public DateTime Created { get; set; }
-        public Task Task { get; set; }
+        public Models.Task Task { get; set; }
         public int TaskID { get; set; }
         public User CreatedBy { get; set; }
         public int CreatedById { get; set; }
+        public string? CommentImage { get; set; }
 
+        public Comment() { }
+        public Comment(CommentDataIn comment)
+        {
+
+            Text = comment.Text;
+            CreatedById = comment.CreatedById;
+            TaskID = comment.TaskID;
+
+
+        }
 
 
     }

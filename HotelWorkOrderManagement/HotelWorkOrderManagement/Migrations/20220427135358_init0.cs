@@ -35,7 +35,7 @@ namespace HotelWorkOrderManagement.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -152,6 +152,7 @@ namespace HotelWorkOrderManagement.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TaskID = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false),
+                    CommentImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -248,13 +249,13 @@ namespace HotelWorkOrderManagement.Migrations
 
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
-                values: new object[] { 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, 1, "Zadatak izvrsiti sto prije" });
+                columns: new[] { "Id", "CommentImage", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
+                values: new object[] { 1, null, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, 1, "Zadatak izvrsiti sto prije" });
 
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "Id", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
-                values: new object[] { 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, false, 1, "Uredu" });
+                columns: new[] { "Id", "CommentImage", "Created", "CreatedById", "IsDeleted", "TaskID", "Text" },
+                values: new object[] { 2, null, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, false, 1, "Uredu" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_CreatedById",
@@ -305,6 +306,12 @@ namespace HotelWorkOrderManagement.Migrations
                 name: "IX_TaskStateChanges_TaskId",
                 table: "TaskStateChanges",
                 column: "TaskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Username",
+                table: "Users",
+                column: "Username",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
