@@ -28,6 +28,7 @@ namespace BoatsMontenegro.Controllers
         [HttpPost]
         public ActionResult Login(User userLogin)
         {
+
             using(BaseContext dbCon = new BaseContext())
             {
                 var usr = dbCon.Users.Single(u => u.Username == userLogin.Username && u.Password == userLogin.Password);
