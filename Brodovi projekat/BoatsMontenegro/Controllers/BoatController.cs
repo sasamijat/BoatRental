@@ -19,9 +19,6 @@ namespace BoatsMontenegro.Controllers
             objContext = new BaseContext();
         }
 
-
-
-        // DETAILS Boat
         #region LIST and DETAILS - Boat
         public ActionResult Index()
         {
@@ -35,10 +32,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-
-
-        // CREATE Boat
-        #region CREATE Boat
+        #region CREATE CREATE CREATE Boat
         public ActionResult Create()
         {
             return View(new Boat());
@@ -52,10 +46,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-
-
-        // EDIT Boat
-        #region EDIT teacher
+        #region EDIT EDIT EDIT BOAT
         public ActionResult Edit(int id)
         {
             Boat boat = objContext.Boats.Where
@@ -76,14 +67,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-
-
-        //BoatToUpdate.Capacity = 55;
-        //    db.SaveChanges();
-
-
-        // DELETE Boat
-        #region DELETE
+        #region DELETE DELETE DELETE
         public ActionResult Delete(int id)
         {
             Boat boat = objContext.Boats.Find(id);
@@ -110,6 +94,8 @@ namespace BoatsMontenegro.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }
 
@@ -121,3 +107,8 @@ namespace BoatsMontenegro.Controllers
 //      this.db = db;
 //  } 
 // GET: Boat
+
+
+
+//BoatToUpdate.Capacity = 55;
+//    db.SaveChanges();

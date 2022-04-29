@@ -4,7 +4,99 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Login</h2>
+<center><h2>Welcome to login page</h2></center>
+<!--
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <img width="160px" src="~/ImagesFolder/userPicture.jpg" />
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <h3>Here You can login</h3>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <hr>
+                                </center>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <center>
+
+                                    <form action="~/Account/Login" method="post">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email address</label>
+                                            <input name="Username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@yahoo.com">
+                                            <small id="emailHelp" class="form-text text-muted"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            <input name="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+
+                                        <button type="submit" value="Login" class="btn btn-info btn-md ">Submit</button>
+                                        <br />
+                                        <br />
+                                        <a href="~/Account/Register" class="btn btn-info btn-md" role="button">Sign in</a>
+                                    </form>
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+-->
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+
+<!--
+<label>Email address</label>
+<div class="form-group">
+    <asp:TextBox class="form-control" id="TextBox1" runat="server" placeholder="Your email">
+
+    </asp:TextBox>
+</div>
+
+<label>Password</label>
+<div class="form-group">
+    <asp:TextBox class="form-control" id="TextBox1" runat="server" placeholder="Your password">
+
+    </asp:TextBox>
+</div>
+-->
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -34,9 +126,4 @@
         </div>
     </div>
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

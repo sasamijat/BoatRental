@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Size)
+            Size
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Capacity)
@@ -26,26 +26,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Capacity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Engine)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelConsumption)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BoatID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BoatID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BoatID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Size
+            </td>
+            <td>
+                @item.Capacity
+            </td>
+            <td>
+                @item.Engine
+            </td>
+            <td>
+                @item.FuelConsumption
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BoatID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BoatID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BoatID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div style="border:1px solid black; float: left;">
+            
+            @item.Size,
+            @item.Capacity,
+            @item.Engine,
+            <img src="@item.Size" />
+        
+            @item.FuelConsumption
+        <br/>
+        
+            @Html.ActionLink("Edit", "Edit", new { id = item.BoatID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BoatID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BoatID })
+        
+    </div>
+    }
+</div>
