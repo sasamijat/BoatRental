@@ -100,20 +100,31 @@ namespace HotelWorkOrderManagementMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult addNewTask()
+        public IActionResult addNewTask(bool? group)
         {
-            TaskDataOut = _service.getNewTask();
+            int UserId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            ViewBag.Group = group;
+            ViewBag.CurrentUserId=UserId;
+            TaskDataOut = _service.getNewTask(UserId);
             return View(TaskDataOut);
         }
 
         [HttpPost]
         public void addNewTask(TaskDataOut taskDO)
         {
-            HotelWorkOrderManagement.Models.Task task = new HotelWorkOrderManagement.Models.Task(taskDO);
             if(ModelState.IsValid)
             {
-                task.CreatedOn = DateTime.Now;
-                _service.addNewTask(task);
+                string uniqueFileName = null;
+                if(taskDO.Attachment!=null)
+                {
+                    string[] file = taskDO.Attachment.Split(',');
+                    taskDO.Picture = LoadImage(file[1], taskDO.ImageName);
+                    uniqueFileName = UploadedFile(taskDO.Picture, "tasks");
+                }
+                
+
+                taskDO.CreatedOn = DateTime.Now;
+                _service.addNewTask(taskDO,uniqueFileName);
             }
         }
 
@@ -136,9 +147,14 @@ namespace HotelWorkOrderManagementMVC.Controllers
         [HttpPost]
         public void SubmitComment(CommentDataIn model)
         {
-            string[] file = model.CommentImage.Split(',');
-            model.CommentFile = LoadImage(file[1],model.ImageName);            
-            string uniqueFileName = UploadedFile(model.CommentFile);
+            string uniqueFileName=null;
+            if(model.CommentImage != null)
+            {
+                string[] file = model.CommentImage.Split(',');
+                model.CommentFile = LoadImage(file[1], model.ImageName);
+                uniqueFileName = UploadedFile(model.CommentFile, null);
+            }
+            
             _service.SubmitComment(model,uniqueFileName);
         }
         
@@ -148,13 +164,15 @@ namespace HotelWorkOrderManagementMVC.Controllers
             _service.RemoveComment(id);
         }
 
-        private string UploadedFile(IFormFile CommentImage)
+        private string UploadedFile(IFormFile CommentImage,string? folder)
         {
+            if (folder == null)
+                folder = "comments";
             string uniqueFileName = null;
 
             if (CommentImage != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "comments");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + CommentImage.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 var fileStream = new FileStream(filePath, FileMode.Create);
@@ -207,6 +225,12 @@ namespace HotelWorkOrderManagementMVC.Controllers
         public void TakeSelectedTask(int taskId,int userId)
         {
             _service.TakeSelectedTask(taskId, userId);
+        }
+
+        [HttpGet]
+        public IActionResult GroupOrIndividual()
+        {
+            return View();
         }
 
 

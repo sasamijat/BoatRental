@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelWorkOrderManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220427135358_init0")]
+    [Migration("20220504112918_init0")]
     partial class init0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -213,6 +213,9 @@ namespace HotelWorkOrderManagement.Migrations
 
                     b.Property<int?>("AsigneeIndividualId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Attachment")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CreatedById")
                         .HasColumnType("int");

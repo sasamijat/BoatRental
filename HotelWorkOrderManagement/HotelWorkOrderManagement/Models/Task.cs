@@ -29,6 +29,7 @@ namespace HotelWorkOrderManagement.Models
         public Group AsigneeGroup { get; set; }
         public int? EquipmentToRepairId { get; set; }
         public EquipmentPiece EquipmentToRepair { get; set; }
+        public string? Attachment { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<TaskStateChange> TaskStateChanges { get; set; }

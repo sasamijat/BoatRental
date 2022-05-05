@@ -1,8 +1,10 @@
-﻿function AddNewTask(task) {
+﻿var commentImage64;
+var imageName;
+function AddNewTask(task) {
     var task = {}
     task.Name = $("#Name").val();
     task.Description = $("#Description").val();
-    task.CreatedById = $("#CreatedById").val();
+    task.CreatedById = document.getElementById("CreatedById").title;
     task.DueDate = $("#DueDate").val();
     task.Priority = $("#Priority").val();
     task.Status = $("#Status").val();
@@ -13,6 +15,8 @@
     task.EquipmentToRepairId = $("#EquipmentToRepairId").val();
     task.RepetitiveStart = $("#RepetitiveStart").val();
     task.RepetitiveSetting = $("#RepetitiveSetting").val();
+    task.ImageName = imageName;
+    task.Attachment = commentImage64;
 
 
     $.ajax({
@@ -20,10 +24,22 @@
         url: 'https://localhost:7221/Tasks/addNewTask',
         data: task,
         success:function() {
-            window.location.href = 'https://localhost:7221/Tasks/addNewTask';
+            window.location.href = 'https://localhost:7221/Tasks/GroupOrIndividual';
                 alert("Task is successfully added")
             }        
     });
 
 }
 
+function getBase64() {
+    var file = document.getElementById('CommentFile').files[0]
+    imageName = file.name
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        commentImage64 = reader.result;
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+}

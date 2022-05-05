@@ -15,6 +15,7 @@ html {
 
 body {
   margin-top:1rem;
+  padding-bottom:5em;
 }
 
 .rounded {
@@ -106,3 +107,22 @@ body {
 .navbar-icon {
 font-size:2rem;
 }
+
+.blue{
+    color:blue;
+}
+
+.orange{
+    color:darkorange
+}
+
+.remove-member {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.margint-50{
+    margin-top:40%;
+}
+

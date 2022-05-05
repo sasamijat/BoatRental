@@ -1,6 +1,8 @@
 ﻿using HotelWorkOrderManagement.DTO.User.DataOut;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,10 @@ namespace HotelWorkOrderManagement.DTO.Task.DataOut
     public class TaskDataOut
     {
         public int Id { get; set; }
+        public string? CurrentUser { get; set; }
+        public IFormFile? Picture { get; set; }
+        public string? ImageName { get; set; }
+        public string? Attachment { get; set; }
         public int? CreatedById { get; set; }
         public int? AsigneeIndividualId { get; set; }
         public int? AsigneeGroupId { get; set; }
@@ -42,6 +48,7 @@ namespace HotelWorkOrderManagement.DTO.Task.DataOut
         }
         public TaskDataOut(Models.Task task)
         {
+            Attachment = task.Attachment;
             CreatedByName = task.CreatedBy?.Name;
                     CreatedByLastName = task.CreatedBy?.LastName;
                     AsigneeIndividualName = task.AsigneeIndividual?.Name;
