@@ -19,7 +19,10 @@ namespace BoatsMontenegro.Controllers
             return View();
         } 
         
-        
+        public ActionResult ProbniView()
+        {
+            return View();
+        }
 
     }
 }
