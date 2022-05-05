@@ -83,6 +83,7 @@ namespace BoatsMontenegro.Controllers
 
         public ActionResult LogOut()
         {
+            //FormsAuthentication.SignOut();
             int UserID = (int)Session["UserID"];
             Session.Abandon();
             return RedirectToAction("Index", "Home");
