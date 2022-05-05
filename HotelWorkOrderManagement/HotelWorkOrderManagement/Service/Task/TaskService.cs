@@ -85,31 +85,9 @@ namespace HotelWorkOrderManagement.Service.Task
                 List<Comment> comments=context.Comments.Where(c=>c.TaskID==id).Include(x=>x.CreatedBy).ToList();
                 if (task == null)
                     return null;
-                TaskDataOut taskDO=new TaskDataOut()
+                TaskDataOut taskDO=new TaskDataOut(task)
                 {
-                    CreatedByName = task.CreatedBy?.Name,
-                    CreatedByLastName = task.CreatedBy?.LastName,
-                    AsigneeIndividualName = task.AsigneeIndividual?.Name,
-                    AsigneeIndividualLastName = task.AsigneeIndividual?.LastName,
-                    AsigneeGroup = task.AsigneeGroup?.Name,
-                    EquipmentToRepair = task.EquipmentToRepair?.Name,
-                    Comments = comments,
-
-                    DueDate = task.DueDate,
-                    Id = task.Id,
-                    Name = task.Name,
-                    Description = task.Description,
-                    CreatedById = task.CreatedById,
-                    CreatedOn = task.CreatedOn,
-                    Priority = task.Priority,
-                    Status = task.Status,
-                    Position = task.Position,
-                    Domain = task.Domain,
-                    AsigneeIndividualId = task.AsigneeIndividualId,
-                    AsigneeGroupId = task.AsigneeGroupId,
-                    EquipmentToRepairId = task.EquipmentToRepairId,
-                    RepetitiveStart = task.RepetitiveStart,
-                    RepetitiveSetting = task.RepetitiveSetting
+                    Comments = comments
                 };
                 return taskDO;
             }
@@ -157,10 +135,11 @@ namespace HotelWorkOrderManagement.Service.Task
 
         }
 
-        public void addNewTask(Models.Task task) {
-
+        public void addNewTask(TaskDataOut taskDO,string? uniqueFileName) {
+            Models.Task task = new Models.Task(taskDO);
+            task.Attachment = uniqueFileName;
             using (context) {
-
+                
                 context.Tasks.Add(task);
                 context.SaveChanges();
 
@@ -168,16 +147,18 @@ namespace HotelWorkOrderManagement.Service.Task
 
         }
 
-        public TaskDataOut getNewTask()
+        public TaskDataOut getNewTask(int userId)
         {
             using (context)
             {
+                var currentUser = context.Users.Where(u => u.Id == userId).First().Name +" "+ context.Users.Where(u => u.Id == userId).First().LastName;
                 var users = context.Users.ToList();
                 var groups = context.Groups.ToList();
                 var equipmentPieces = context.EquipmentPieces.ToList();
 
                 return new TaskDataOut()
                 {
+                    CurrentUser = currentUser,
                     Individuals = users,
                     Groups = groups,
                     EquipmentPieces = equipmentPieces,
@@ -186,7 +167,7 @@ namespace HotelWorkOrderManagement.Service.Task
           
         }
 
-        public void SubmitComment(CommentDataIn model,string uniqueFileName) {
+        public void SubmitComment(CommentDataIn model,string? uniqueFileName) {
 
             Comment comment = new Comment(model);
             comment.CommentImage = uniqueFileName;

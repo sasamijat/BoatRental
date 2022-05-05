@@ -18,10 +18,8 @@
         </div>
         <div class="col-2 switch">
           <label for="stackedCheck1">Team</label>
-          <input id="TeamTasksSwitch" onchange="SelfTeamTasks('https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)')" class="form-check-input" type="checkbox" data-toggle="toggle" @(ViewBag.Team!=false ? "checked":"")>
+          <input id="TeamTasksSwitch" onchange="SelfTeamTasks('https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)')" class="form-check-input" type="checkbox" data-toggle="toggle" @(ViewBag.Team!=false ? "checked":"")/>
         </div>
-@*            <a class="btn-primary btn"  href="https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)">@if(ViewBag.Team){<text>My tasks</text>}else{<text>Team tasks</text>} </a>
-*@ 
     </div>
     <hr />
     <h1 class="row justify-content-center">@if(ViewBag.Team){<text>Team tasks</text>}else{<text>My tasks</text>}  </h1>
@@ -30,7 +28,7 @@
         
             @foreach(TaskDataOut Task in ViewBag.Tasks)
             {
-            <div class="shadow border border-primary rounded p-3 mb-3 @(Task.Domain=="Maintaining"?"bg-maintaining":"bg-housekeeping")" id="@Task.Id" onmousedown="clickHold('@Task.Id','@Task.TaskSelfAsign')" @*onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id"*@>
+            <div class="shadow border border-primary rounded p-3 mb-3 @(Task.Domain=="Maintaining"?"bg-maintaining":"bg-housekeeping")" id="@Task.Id" ontouchstart="clickHold('@Task.Id','@Task.TaskSelfAsign')" onmousedown="clickHold('@Task.Id','@Task.TaskSelfAsign')" @*onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id"*@>
                 <div calss="col-4 row">
                         <h2 >@Task.Name</h2>
                         <p>@Task.Description</p>
@@ -38,15 +36,15 @@
                         @if (@ViewBag.Team) { <h4 class="col-5"><span class="fa fa-group" style="font-size:18.72px"></span> @Task.AsigneeGroup </h4> <h4 class="col-7">Self Asign: @Task.TaskSelfAsign</h4>}
                         </div>
                         <div class="row">
-                            <h4 class="col-5 bi bi-geo-alt-fill"> @Task.Position</h4>
-                            <h4 class="col-7 ">Priority: @Task.Priority</h4>
+                            <h4 class="col-6 blue bi bi-geo-alt-fill"> @Task.Position</h4>
+                            <h4 class="col-5 ">Status:@Task.Status</h4>
                         </div>
 
                     </div>                    
                     <hr/>
                     <div class="row">
                         @if (Task.DueDate.HasValue) { <h4 class="col-7 bi bi-clock"> @Task.DueDate.Value.ToString("MM/dd/yyyy hh:mm") </h4>}
-                        <h4 class="col-5 ">Status:@Task.Status</h4>
+                        <h4 class="col-5 ">Priority: @Task.Priority</h4>
                     </div>
                 </div>
             }

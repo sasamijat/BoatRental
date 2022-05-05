@@ -103,8 +103,7 @@ function SelfTaskAssign(id,signal) {
             signal: signal
         },
         success: function (response) {
-            alert("Self task assign setted to: "+signal);
-            window.location.reload();
+           alert("Self task assign setted to: "+signal);
 
         }
     });

@@ -5,7 +5,8 @@ function clickHold(id, taskSelfAsign) {
     if (taskSelfAsign=="True") {
         tId = setTimeout(GFG_Fun, 1000, id);
     }
-    $('#'+id).on('mouseup', function () {
+    var divId = "#" + id;
+    $(divId).on("mouseup touchend", function () {
         if (signal == 0) {
             window.location.href = 'https://localhost:7221/Tasks/GetTask?id=' + id;
         }

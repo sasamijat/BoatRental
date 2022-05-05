@@ -11,11 +11,13 @@
             @foreach(GroupDataOut Group in ViewBag.Groups)
             {
             int id = Group.Id;
-            <div class="container">
-                <div class="container" onclick="hide(@id)">
-                <p>Group Name: @Group.Name</p>
-                <p>Members count: @Group.MembersCount</p>
-                <p>Team Leader: @Group.Leader.Name</p>
+            <div class="row shadow border border-primary rounded p-3 mb-3">
+                <div class="row" onclick="hide(@id)">
+                <h2><span class="fa fa-group" style="font-size:1.2em;"></span> @Group.Name</h2>
+                </div>
+                <div class="row">
+                <h3 class="col-6">Members count: @Group.MembersCount</h3>
+                <h3 class="col-6">Leader: @Group.Leader.Name</h3>
                 </div>
                 <br />
                 <br />
@@ -24,46 +26,36 @@
                     @{
                         isCurrentUserLeader = @ViewBag.UserId!=Group.Leader.Id;
                      }
-                    <div class="form-group row" hidden="@isCurrentUserLeader">
-                        <div class="col-6">
-                            <a class="btn btn-primary" onclick="AddMember('@Group.Id','#modal-add-member','@Group.Name')">Add</a>
+                     <hr/>
+                    <div class="row" hidden="@isCurrentUserLeader">
+                        <div class="offset-1 col-5">
+                            <a style="text-decoration:none !important;" class="bi bi-person-plus h2" onclick="AddMember('@Group.Id','#modal-add-member','@Group.Name')"><span style="text-decoration:none !important;"> Add</span></a>
                         </div>
-                        
-                        <div class="col-6">
-                            <button class="btn btn-primary" onclick="SelfTaskAssign('@Group.Id','@(!Group.SelfTaskAssign)')">@{
-                                    if (@Group.SelfTaskAssign)
-                                    {
-                                        <text>Self task assign Unable</text>
-                                    }
-                                    else
-                                    {
-                                        <text>Self task assign Enable</text>
-                                    }
-                                }</button>
+                        <div class="col-6 pb-1">
+                            <div class="switch">
+                              <input onchange="SelfTaskAssign('@Group.Id','@(!Group.SelfTaskAssign)')" class="form-check-input" type="checkbox" data-toggle="toggle" @(Group.SelfTaskAssign ? "checked":"")/>
+                              <label>Self Task Asign</label>
+                            </div>
                         </div>
+                    
                     </div>
-                    <br/>
                     <br/>
                     <br/>
                     @foreach(var member in Group.Members)
                     {
-                     <div class="container border">
-                        <div class="form-group row">
-                            <div class="col-6">
-                                <label>Firstn Name: @member.Name</label>
+                     <div class="container row shadow rounded-2 bg-maintaining">
+                            <div class="col-9 pt-3">
+                                <div class="row">
+                                    <p>First Name: <span class="h5">@member.Name</span></p>
+                                </div>
+                                <div class="row">
+                                    <p>Last Name: <span class="h5">@member.LastName</span></p>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <a class="btn btn-primary " hidden="@isCurrentUserLeader" onclick="SubmitRemoveMember('@member.Id','@Group.Id','@member.Name @member.LastName','@Group.Name')">Remove</a>
+                            <div class="border-start border-white col-3 remove-member">
+                                <a style="text-decoration:none !important; color:red;" class="bi bi-person-dash h1" hidden="@isCurrentUserLeader" onclick="SubmitRemoveMember('@member.Id','@Group.Id','@member.Name @member.LastName','@Group.Name')"></a>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-6">
-                                <label>Last Name: @member.LastName</label>
-                            </div>
-                        
-                        </div>
-                    </div>
+                     </div>
                     <br/>
                     <br/>
                     }

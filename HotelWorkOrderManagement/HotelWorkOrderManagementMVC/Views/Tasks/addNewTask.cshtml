@@ -2,80 +2,7 @@
 
 <div class="container">
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-        
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Name"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Description" ></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Description" class="form-control"/>
-                <span asp-validation-for="Description" class="text-danger" ></span>
-            </div>
-        </div>
-        <div class="form-group row" >
-            <div class="col-3">
-                <label for="CreatedById">CreatedBy: </label>
-            </div>
-            <div class="col-6">
-                <input asp-for="CreatedById" class="form-control" value="3" placeholder="Nikola Smiljanic" disabled/>
-                <span asp-validation-for="CreatedById" class="text-danger" ></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="DueDate"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="DueDate" class="form-control"/>
-                <span asp-validation-for="DueDate" class="text-danger" ></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Priority" ></label>
-            </div>
-            <div class="col-6">
-                <select asp-for="Priority" class="form-control" >
-                    @{
-                        <option selected="selected" disabled="disabled">Choose the Priority:</option>
-                        string[] Priority = new string[]{"High","Normal"};
-                        foreach(string priority in Priority)
-                        {
-                            <option value="@priority">@priority</option>
-                        }
-                    }
-                    </select>
-                <span asp-validation-for="Priority" class="text-danger" ></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Status"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Status" class="form-control" value="Active" placeholder="Suggested" disabled/>
-                <span asp-validation-for="Status" class="text-danger" ></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Position"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Position" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger" ></span>
-            </div>
-        </div>
-        <div class="form-group row">
+         <div class="form-group row d-flex align-items-center">
             <div class="col-3">
                 <label asp-for="Domain"></label>
             </div>
@@ -93,77 +20,192 @@
                 <span asp-validation-for="Domain" class="text-danger"></span>
             </div>
         </div>
+        <br />
+        <div class="row">
+                <div class="col-7">
+                <label asp-for="Name"></label>
+                </div>
+                <div class="offset-1 col-4">
+                <label asp-for="Status"></label>
+                </div>
+        </div>
         <div class="form-group row">
-            <div class="col-3">
-                <label for="AsigneeIndividualId">Asignee Individual: </label>
+            <div class="col-7 rounded-3">
+                <input asp-for="Name" class="form-control shadow"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="col-6">
-                <select asp-for="AsigneeIndividualId" class="form-control">
-                <option selected="selected" disabled="disabled">Choose the Individual:</option>
+            <div class="offset-1 col-4 ">
+                <select asp-for="Status" class="form-control shadow" >
+                    @{
+                        <option selected="selected" disabled="disabled">Status:</option>
+                        string[] Status = new string[]{"Active","Finished","Processing"};
+                        foreach(string status in Status)
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    }
+                    </select>
+                <span asp-validation-for="Status" class="text-danger" ></span>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-12">
+                <label asp-for="Description"></label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+                <textarea asp-for="Description" rows="4" class="form-control shadow"></textarea>
+                <span asp-validation-for="Description" class="text-danger" ></span>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+              <div class="col-8">
+                <label >Position</label>
+                <div class="col-10 rounded-3">
+                <input name="@Model.Position" value="@Model.Position" id="Position" class="form-control shadow"/>
+                <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <label>Priority</label>
+                <div class="col-12">
+                <select asp-for="Priority" class="form-control shadow" >
+                    @{
+                        <option selected="selected" disabled="disabled">Priority:</option>
+                        string[] Priority = new string[]{"High","Normal"};
+                        foreach(string priority in Priority)
+                        {
+                            <option value="@priority">@priority</option>
+                        }
+                    }
+                    </select>
+               <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+              </div>
+        </div>
+        <br/>
+    
+        @{
+        bool eq=ViewBag.Group==false;
+        }
+        <div class="row">
+              <div class="col-6 border-end border-dark">
+                <label >Created By</label>
+                <div class="col-12 rounded-3">
+                <input name="@Model.CreatedById" value="@Model.CurrentUser" title="@ViewBag.CurrentUserId" id="CreatedById" class="form-control shadow" disabled="disabled"/>
+                <span asp-validation-for="CurrentUser" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label>Asignee</label>
+                <div class="col-12">
+                @if(ViewBag.Group==false){               
+                <select asp-for="AsigneeIndividualId" class="form-control shadow">
+                <option selected="selected" disabled="disabled">Individuals:</option>
                     @if(Model.Individuals!=null)
                     foreach(var individual in Model.Individuals)
                 {
                     <option value="@individual.Id">@individual.Name @individual.LastName</option>
                 }
                 </select>
-                <span asp-validation-for="AsigneeIndividualId" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="AsigneeGroupId">Asignee Group: </label>
-            </div>
-            <div class="col-6">
-                <select asp-for="AsigneeGroupId" class="form-control">
-                    <option selected="selected" disabled="disabled">Choose the Group:</option>
+                <span asp-validation-for="AsigneeGroupId" class="text-danger"></span>
+                }else if(ViewBag.Group==true){                
+                    <select asp-for="AsigneeGroupId" class="form-control">
+                    <option selected="selected" disabled="disabled">Groups:</option>
                     @if(Model.Groups!=null)
                     foreach(var group in Model.Groups)
                 {
                     <option value="@group.Id">@group.Name</option>
                 }
-            </select>
+                   </select>
+                   <span asp-validation-for="AsigneeGroupId" class="text-danger"></span>
+                }
+
+
+            </div>
+              </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-7">
+                <label>Due date</label>
+            </div>
+            <div class="col-5">
+                <label hidden="@eq">For repairment</label>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label for="EquipmentToRepairId">Equipment to Repair: </label>
+        <div class="row">
+            <div class="col-7">
+                <input asp-for="DueDate" class="form-control shadow"/>
+                <span asp-validation-for="DueDate" class="text-danger"></span>
             </div>
-            <div class="col-6">
-                <select for="EquipmentToRepairId" class="form-control">
-                    <option selected="selected" disabled="disabled">Choose the Equipment for Repair:</option>
+            <div class="col-5">
+                <select hidden="@eq" for="EquipmentToRepairId" class="form-control shadow">
+                    <option selected="selected" disabled="disabled">Equipment :</option>
                     @if(Model.EquipmentPieces!=null)
                     foreach(var equipmentPiece in Model.EquipmentPieces)
                 {
                     <option value="@equipmentPiece.Id">@equipmentPiece.Name</option>
                 }
                 </select>
+                <span asp-validation-for="EquipmentToRepairId" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="RepetitiveStart"></label>
+        <br/>
+        <div class="row" >
+            <div class="col-6">
+                <label>Repetitive start:</label>
             </div>
             <div class="col-6">
-                <input asp-for="RepetitiveStart" class="form-control" />
+                <label>Repetitive Setting:</label>
             </div>
         </div>
-        <div class="form-group row" >
-            <div class="col-3">
-                <label asp-for="RepetitiveSetting"></label>
+        <div class="row">
+            <div class="col-6">
+                <input asp-for="RepetitiveStart" class="shadow form-control"/>
+                <span asp-validation-for="RepetitiveStart" class="text-danger"></span>
             </div>
             <div class="col-6">
-                <input asp-for="RepetitiveSetting" class="form-control" />
+                <input asp-for="RepetitiveSetting" class="shadow form-control"/>
+                <span asp-validation-for="RepetitiveSetting" class="text-danger"></span>
             </div>
         </div>
-       <br />
-    
+        <br/>
+
+        </div>
+        <div class="container">
         <div class="form-group row">
-            <div class="col-3">
+           <div class="custom-file">  
+               <label class="custom-file-label" for="customFile">Choose file</label>  
+               <div class="row bg-housekeeping ">
+                   <div class="col-1">
+                       <span class="bi bi-images h1"></span>
+                   </div>
+                   <div class="col-5">
+                       <input type="file" id="CommentFile" class="custom-file-input btn shaddow" onchange="getBase64()" accept="image/png, image/jpeg" /> 
+                       <span asp-validation-for="Attachment" class="text-danger"></span>
+                   </div>              
+               </div>
+            </div>  
+        </div>
+        </div>
+        
+        <hr/>
+        <div class="form-group row">
+            <div class="col-5">
                 <button onclick="AddNewTask()" class="btn btn-danger form-control" id="SubmitTask" >Submit the task</button>
             </div>
         </div>
+
+
 </div>
 
 @section Scripts{
     <script src="~/js/Task/AddNewTaskScript.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }

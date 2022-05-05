@@ -113,6 +113,7 @@ namespace HotelWorkOrderManagement.Migrations
                     AsigneeIndividualId = table.Column<int>(type: "int", nullable: true),
                     AsigneeGroupId = table.Column<int>(type: "int", nullable: true),
                     EquipmentToRepairId = table.Column<int>(type: "int", nullable: true),
+                    Attachment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RepetitiveStart = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RepetitiveSetting = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -229,8 +230,8 @@ namespace HotelWorkOrderManagement.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tasks",
-                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
-                values: new object[] { 2, null, 2, 1, new DateTime(2022, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Oprati koristenu posteljinu i postaviti novu", "HouseKeeping", new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Pranje posteljine", "210", "Normal", null, null, "Finished" });
+                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "Attachment", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
+                values: new object[] { 2, null, 2, null, 1, new DateTime(2022, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Oprati koristenu posteljinu i postaviti novu", "HouseKeeping", new DateTime(2022, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Pranje posteljine", "210", "Normal", null, null, "Finished" });
 
             migrationBuilder.InsertData(
                 table: "TaskStateChanges",
@@ -239,12 +240,12 @@ namespace HotelWorkOrderManagement.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tasks",
-                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
+                columns: new[] { "Id", "AsigneeGroupId", "AsigneeIndividualId", "Attachment", "CreatedById", "CreatedOn", "Description", "Domain", "DueDate", "EquipmentToRepairId", "IsDeleted", "Name", "Position", "Priority", "RepetitiveSetting", "RepetitiveStart", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena crijeva na klima uredjaju", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Popravka Klime", "304", "High", null, null, "Active" },
-                    { 3, null, 3, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Popraviti ili zamijeniti vodokotlic", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Popravka Vodokotlica", "304", "High", null, null, "Active" },
-                    { 4, 1, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena pokvarene sijalice", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Zamjena sijalice", "304", "High", null, null, "Active" }
+                    { 1, 1, null, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena crijeva na klima uredjaju", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Popravka Klime", "304", "High", null, null, "Active" },
+                    { 3, null, 3, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Popraviti ili zamijeniti vodokotlic", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Popravka Vodokotlica", "304", "High", null, null, "Active" },
+                    { 4, 1, null, null, 1, new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Zamjena pokvarene sijalice", "Maintaining", new DateTime(2022, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, false, "Zamjena sijalice", "304", "High", null, null, "Active" }
                 });
 
             migrationBuilder.InsertData(
