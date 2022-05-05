@@ -44,3 +44,8 @@ function TakeSelectedTask(userId) {
     });
 }
 
+function SelfTeamTasks(url) {
+    window.location.href = url;
+    var a = 1;
+}
+

@@ -2,50 +2,53 @@
 @using System.Globalization
 
 
-<div class="container">
-    <div class="container row">
-        <div class="col-2">
-            <button type="button" class="btn btn-danger " onclick="sort('priority')">Priority</button>
+<div >
+    <div class="row">
+        <div class="col-2 ml-02">
+            <button type="button" class="circle-button btn btn-danger " onclick="sort('priority')">Priority</button>
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-warning " onclick="sort('status')">Status</button>
+        <div class="col-2 ml-02">
+            <button type="button" class="circle-button btn btn-warning " onclick="sort('status')">Status</button>
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-danger  " onclick="sort('due_date')">DueDate</button>
+        <div class="col-2 ml-02">
+            <button type="button" class="circle-button btn btn-danger  " onclick="sort('due_date')">DueDate</button>
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-info ">Search</button>
+        <div class="col-2 ml-02">
+            <button type="button" class="circle-button btn btn-info ">Search</button>
         </div>
-        <div class="col-4">
-            <a class="btn-primary btn"  href="https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)">@if(ViewBag.Team){<text>My tasks</text>}else{<text>Team tasks</text>} </a>
+        <div class="col-2 switch">
+          <label for="stackedCheck1">Team</label>
+          <input id="TeamTasksSwitch" onchange="SelfTeamTasks('https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)')" class="form-check-input" type="checkbox" data-toggle="toggle" @(ViewBag.Team!=false ? "checked":"")>
         </div>
+@*            <a class="btn-primary btn"  href="https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)">@if(ViewBag.Team){<text>My tasks</text>}else{<text>Team tasks</text>} </a>
+*@ 
     </div>
     <hr />
     <h1 class="row justify-content-center">@if(ViewBag.Team){<text>Team tasks</text>}else{<text>My tasks</text>}  </h1>
     <hr />
-    <div class="container">
+    <div class="container p-0">
         
             @foreach(TaskDataOut Task in ViewBag.Tasks)
             {
-                <div class="container border-primary rounded" id="@Task.Id" onmousedown="clickHold('@Task.Id','@Task.TaskSelfAsign')" @*onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id"*@>
-                    <div calss="col-4 row">
+            <div class="shadow border border-primary rounded p-3 mb-3 @(Task.Domain=="Maintaining"?"bg-maintaining":"bg-housekeeping")" id="@Task.Id" onmousedown="clickHold('@Task.Id','@Task.TaskSelfAsign')" @*onclick="location.href='https://localhost:7221/Tasks/GetTask?id='+@Task.Id"*@>
+                <div calss="col-4 row">
                         <h2 >@Task.Name</h2>
                         <p>@Task.Description</p>
                         <div class="row">
-                            <h3 class="col-md-9">@Task.Position</h3>
-                            <p class="col-md-3">Status:@Task.Status</p>
+                        @if (@ViewBag.Team) { <h4 class="col-5"><span class="fa fa-group" style="font-size:18.72px"></span> @Task.AsigneeGroup </h4> <h4 class="col-7">Self Asign: @Task.TaskSelfAsign</h4>}
+                        </div>
+                        <div class="row">
+                            <h4 class="col-5 bi bi-geo-alt-fill"> @Task.Position</h4>
+                            <h4 class="col-7 ">Priority: @Task.Priority</h4>
                         </div>
 
-                    </div>
+                    </div>                    
+                    <hr/>
                     <div class="row">
-                        @if (@ViewBag.Team) { <h3 class="col-md-9">Team: @Task.AsigneeGroup </h3>}
-                    </div>
-                    <div class="row">
-                        @if (Task.DueDate.HasValue) { <h3 class="col-md-9">DueTime: @Task.DueDate.Value </h3>}
-                        <h4 class="col-md-3">Priority:@Task.Priority</h4>
+                        @if (Task.DueDate.HasValue) { <h4 class="col-7 bi bi-clock"> @Task.DueDate.Value.ToString("MM/dd/yyyy hh:mm") </h4>}
+                        <h4 class="col-5 ">Status:@Task.Status</h4>
                     </div>
                 </div>
-                <hr/>
             }
         
     </div>
