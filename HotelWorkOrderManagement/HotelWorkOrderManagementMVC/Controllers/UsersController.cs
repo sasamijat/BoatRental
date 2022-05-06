@@ -132,10 +132,11 @@ namespace HotelWorkOrderManagementMVC.Controllers
             return uniqueFileName;
         }
 
-        public ActionResult IsUsernameAvailble(string Username)
+        [HttpGet]
+        public bool IsUsernameAvailable(string userName)
         {
-            bool signal=_service.IsUsernameAvailble(Username);
-            return new JsonResult(signal, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+           bool signal=  _service.IsUsernameAvailable(userName);
+            return signal;
         }
 
     }

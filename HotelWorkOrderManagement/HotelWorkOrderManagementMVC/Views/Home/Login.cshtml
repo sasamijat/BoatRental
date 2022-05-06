@@ -1,8 +1,10 @@
 ﻿@model HotelWorkOrderManagement.Models.User
 <h1>This is Home Login.cshtml Page</h1>
 
-<form method="post">
+<form method="post" id="myform">
     <input asp-for="Username" placeholder="Type Username" required/>
+    <span id="UsernameValidation" class="text-danger"></span>
     <input asp-for="Password" type="password" placeholder="Type Password" required/>
+    <span id="PasswordValidation" class="text-danger"></span>
     <button class="btn-primary btn-primary">Login</button>
 </form>

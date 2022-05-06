@@ -1,8 +1,7 @@
 ﻿@model HotelWorkOrderManagement.DTO.User.DataIn.UserDataIn;
 
 <div class="border-bottom container" style="padding:30px;">
-    <form enctype="multipart/form-data" method="post">
-        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <form enctype="multipart/form-data" method="post" id="myform">
         <label hidden id="Id">@Model.Id</label>
         <div class="form-group row">
             <div class="col-3">
@@ -10,7 +9,7 @@
             </div>
             <div class="col-6">
                 <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"/>
+                <span id="NameValidation" class="text-danger"/>
             </div>
         </div>
         <div class="form-group row">
@@ -19,7 +18,7 @@
             </div>
             <div class="col-6">
                 <input asp-for="LastName" class="form-control"/>
-                <span asp-validation-for="LastName" class="text-danger"/>
+                <span id="LastNameValidation" class="text-danger"/>
             </div>
         </div>
         <div class="form-group row">
@@ -27,8 +26,8 @@
                 <label asp-for="Password"></label>
             </div>
             <div class="col-6">
-                <input asp-for="Password" class="form-control"/>
-                <span asp-validation-for="Password" class="text-danger"/>
+                <input name="Password" id="Password" type="password" for="Password" class="form-control"/>
+                <span id="PasswordValidation" class="text-danger"/>
             </div>
         </div>
         <div class="form-group row">
@@ -37,7 +36,7 @@
             </div>
             <div class="col-6">
                 <input asp-for="UserName" class="form-control"/>
-                <span asp-validation-for="UserName" class="text-danger"/>
+                <span id="UserNameValidation" class="text-danger"/>
             </div>
         </div>
         <div class="form-group row">
@@ -59,7 +58,7 @@
                         }
                     }
                 </select>
-                <span asp-validation-for="Role" class="text-danger"/>
+                <span id="RoleValidation" class="text-danger"/>
             </div>
         </div>
         <div class="form-group row">
@@ -67,7 +66,6 @@
                <label class="custom-file-label" for="customFile">Choose file</label>  
               <input asp-for="ProfileImage" id="ProfileImage" class="custom-file-input" accept="image/png, image/jpeg"/>  
             </div>  
-           <span asp-validation-for="ProfileImage" class="text-danger"></span>
         </div>
          <div class="form-group row">
             <div class="col-3 offset-3 pt-1">
@@ -84,6 +82,6 @@
 
 </div>
 
-@*@section Scripts{ 
+@section Scripts{ 
 <script src="~/js/User/Upsert.js"></script>
-}*@
+}

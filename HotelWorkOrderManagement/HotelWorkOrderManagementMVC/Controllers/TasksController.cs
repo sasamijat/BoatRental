@@ -34,14 +34,13 @@ namespace HotelWorkOrderManagementMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Tasks(bool team,string? sortOrder)
+        public IActionResult Tasks(bool team,string? sortOrder,string? keyword)
         {
             int UserId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             List<TaskDataOut> tasks = _service.myTasks(UserId,team);
+            if(sortOrder !=null)
             switch (sortOrder)
             {
-                case null:
-                    break;
                 case "priority":
                     tasks=tasks.OrderBy(t => t.Priority).ToList();
                     break;
@@ -64,6 +63,8 @@ namespace HotelWorkOrderManagementMVC.Controllers
                     break;
                 
             }
+            if(keyword!=null)
+                tasks=tasks.Where(t=>t.Name.ToUpper().Contains(keyword.ToUpper())).ToList();
             ViewBag.SortOrder = sortOrder;
             ViewBag.Tasks = tasks;
             ViewBag.Team=team;
