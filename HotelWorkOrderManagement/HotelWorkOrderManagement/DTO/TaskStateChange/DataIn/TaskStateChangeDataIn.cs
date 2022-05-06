@@ -14,6 +14,7 @@ namespace HotelWorkOrderManagement.DTO.TaskStateChange.DataIn
         public int TaskId { get; set; }
         public int ExecutorId { get; set; }
         public DateTime DateOfChange { get; set; }
+        public string? Executor { get; set; }
 
         public TaskStateChangeDataIn() { }
 

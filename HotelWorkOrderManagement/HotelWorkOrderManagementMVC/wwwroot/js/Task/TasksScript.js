@@ -50,3 +50,7 @@ function SelfTeamTasks(url) {
     var a = 1;
 }
 
+function search() {
+    var keyword = $("#SearchInput").val();
+    window.location.href = 'https://localhost:7221/Tasks/Tasks?team=@(ViewBag.Team)&keyword=' + keyword;
+}

@@ -126,3 +126,9 @@ font-size:2rem;
     margin-top:40%;
 }
 
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

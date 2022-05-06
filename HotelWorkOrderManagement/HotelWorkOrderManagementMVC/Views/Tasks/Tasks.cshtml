@@ -10,12 +10,12 @@
         <div class="col-2 ml-02">
             <button type="button" class="circle-button btn btn-warning " onclick="sort('status')">Status</button>
         </div>
-        <div class="col-2 ml-02">
+        <div class="col-4 ml-02">
             <button type="button" class="circle-button btn btn-danger  " onclick="sort('due_date')">DueDate</button>
         </div>
-        <div class="col-2 ml-02">
+@*        <div class="col-2 ml-02">
             <button type="button" class="circle-button btn btn-info ">Search</button>
-        </div>
+        </div>*@
         <div class="col-2 switch">
           <label for="stackedCheck1">Team</label>
           <input id="TeamTasksSwitch" onchange="SelfTeamTasks('https://localhost:7221/Tasks/Tasks?team=@(!ViewBag.Team)')" class="form-check-input" type="checkbox" data-toggle="toggle" @(ViewBag.Team!=false ? "checked":"")/>
@@ -23,7 +23,17 @@
     </div>
     <hr />
     <h1 class="row justify-content-center">@if(ViewBag.Team){<text>Team tasks</text>}else{<text>My tasks</text>}  </h1>
-    <hr />
+    <div class="row mb-3">
+        <div class="input-group center">
+          <div class="form-outline">
+            <input type="search" id="SearchInput" class="form-control" placeholder="search"/>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="search()">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+    </div>
+
     <div class="container p-0">
         
             @foreach(TaskDataOut Task in ViewBag.Tasks)

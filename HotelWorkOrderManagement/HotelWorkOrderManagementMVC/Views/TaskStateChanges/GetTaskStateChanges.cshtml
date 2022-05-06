@@ -1,25 +1,29 @@
 ﻿@using System.Globalization
 @using HotelWorkOrderManagement.DTO.TaskStateChange.DataIn
 <div class="container">
-    <h1 class="row justify-content-center">My tasks</h1>
+    <h1 class="row justify-content-center">History Of Changes</h1>
     <hr />
     <div class="container">
         
             @foreach(TaskStateChangeDataIn tsc in ViewBag.TaskStateChanges)
             {
-                <div class="container border-primary rounded">
-                    <div calss="row">
-                        <h2 title="@tsc.ExecutorId" id="Executor"></h2>
-                        <br/>
-                    </div>                                           
-                    <div class="row">
-                        <p class="col-md-9">Date of change: @tsc.DateOfChange </p>
-                        <h2 class="col-md-3">Status:@tsc.Status</h2>
+                <div class="shadow border border-primary rounded p-3 mb-3 bg-housekeeping">
+                <div calss="row">
+                    <div class="col-10">
+                        <h2 title="@tsc.ExecutorId" id="Executor">@tsc.Executor</h2>
                     </div>
-                    <br/>
-                    <br/>
+                </div>
                     <div class="row">
-                        <h4 >@tsc.Description</h4>
+                            <h4 > @tsc.Description</h4>
+                    </div>
+                    <div class="row">
+                    <div class="offset-6 col-6">
+                        <h5>Status:@tsc.Status</h5>
+                    </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <h4 class="col-12 bi bi-clock"> @tsc.DateOfChange.ToString("MM/dd/yyyy hh:mm") 
                     </div>
                 </div>
                 <hr/>
@@ -27,7 +31,3 @@
         
     </div>
 </div>
-
-@section Scripts{ 
-<script src="~/js/TaskStateChange/TaskStateChangeScript.js"></script>
-}

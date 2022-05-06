@@ -24,10 +24,12 @@ namespace HotelWorkOrderManagement.Service.TaskStateChange
             {
                 list = context.TaskStateChanges.Where(t=>t.TaskId==taskId).ToList();
 
-            }
+            
             foreach (Models.TaskStateChange task in list)
             {
-                tasks.Add(new TaskStateChangeDataIn(task));
+                string executor = context.Users.Where(u => u.Id == task.ExecutorId).First().Name + " " + context.Users.Where(u => u.Id == task.ExecutorId).First().LastName;
+                tasks.Add(new TaskStateChangeDataIn(task) { Executor = executor });
+            }
             }
             return tasks;
         }

@@ -1,5 +1,7 @@
 ﻿var commentImage64;
 var imageName;
+var i = 0;
+var required="This field is required"
 function AddNewTask(task) {
     var task = {}
     task.Name = $("#Name").val();
@@ -18,7 +20,9 @@ function AddNewTask(task) {
     task.ImageName = imageName;
     task.Attachment = commentImage64;
 
+    var s = validation(task);
 
+    if(s)
     $.ajax({
         type: "POST",
         url: 'https://localhost:7221/Tasks/addNewTask',
@@ -42,4 +46,61 @@ function getBase64() {
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
+}
+
+function validation(task) {
+    i = 0;
+    var domain = $("#DomainValidation");
+    var name = $("#NameValidation");
+    var status = $("#StatusValidation");
+    var description = $("#DescriptionValidation");
+    var position = $("#PositionValidation");
+    var priority = $("#PriorityValidation");
+    var asignee = $("#AsigneeValidation");
+    
+    if (task.Domain == null) {
+        domain.text(required);
+
+    } else {
+        domain.text("");
+        i++;
+    }if (task.Name == "") {
+        name.text(required);
+
+    } else {
+       name.text("");
+        i++;
+    } if (task.Status == null) {
+        status.text(required);
+
+    } else {
+       status.text("");
+        i++;
+    } if (task.Description == "") {
+        description.text(required);
+
+    } else {
+       description.text("");
+        i++;
+    } if (task.Position == "") {
+        position.text(required);
+
+    } else {
+       position.text("");
+        i++;
+    } if (task.Priority == null) {
+        priority.text(required);
+
+    } else {
+        priority.text("");
+        i++;
+    } if (task.AsigneeIndividualId == null && task.AsigneeGroupId==null) {
+        asignee.text(required);
+
+    } else {
+       asignee.text("");
+        i++;
+    }
+
+    return i ==7;
 }

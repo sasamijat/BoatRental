@@ -18,7 +18,7 @@ namespace HotelWorkOrderManagement.Service
         public async Task<User> removeUserAsync(int id) { return null; }
         public async Task<User>AuthenticateUser(string username, string password) { return null; }
 
-        public bool IsUsernameAvailble(string Username) { return false; }
+        public bool IsUsernameAvailable(string Username) { return false; }
 
     }
 }
