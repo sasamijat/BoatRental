@@ -85,16 +85,25 @@ button {
     }
 }
 
-#velikidiv {
-    background-color: #0a9396;
-    height: 500px;
-}
-
 .jumbotron {
-    position: relative;
+    background-color: #0a9396;
+    width: 120%;
+    height: 500px;     
 }
 
-.text-block {
+#naslov {
+    color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-size: 300%;    
+}
+
+#tekst1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 150%;
+    color: whitesmoke;
+}
+/*.text-block {
     position: absolute;
     bottom: 445px;
     right: 550px;
@@ -105,6 +114,4 @@ button {
     
 }
 
-#naslov{
-    font-size: 30px;
-}
+*/

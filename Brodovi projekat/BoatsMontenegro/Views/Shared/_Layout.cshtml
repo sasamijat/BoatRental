@@ -9,10 +9,6 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Style.css" />
-</head>
-
-
-<body class="masterpage">
 
     <header>
         <a href="~/Home/Index"><img id="logo" src="~/ImagesFolder/MonteboatLogo.png" alt="boatLogo" width="100" height="35"></a>
@@ -37,21 +33,21 @@
         </nav>
         <a href="~/Account/Login"><button>Prijava</button></a>
     </header>
-   
-    <div class="jumbotron" id="velikidiv">
-        <img src="~/ImagesFolder/boatPozadina.jpg" height="450" width="1300"/>
+</head>
 
-        <div class="text-block">
-            <h4 id="naslov">MONTEBOATS Crna Gora</h4>
-            
-        </div>
-        
-        
 
+<body class="masterpage">
+    <div class="container">
+        @Html.Partial("~/Views/AboutUs/AboutUsView.cshtml")
     </div>
 
 
-    
+
+
+
+
+
+
     <div class="container">
         @RenderBody()
         <hr />
@@ -65,7 +61,14 @@
 </body>
 </html>
 
+@*<div class="jumbotron" id="velikidiv">
+    <img src="~/ImagesFolder/boatPozadina.jpg" height="450" width="1300" />
+    <div class="text-block">
+        <h4 id="naslov">MONTEBOATS Crna Gora</h4>
+    </div>*@
 
+
+<!--#region NESTO NESTO NESTO-->
 @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -119,3 +122,4 @@
             </ul>
         </div>
     </nav>*@
+<!--#endregion-->
