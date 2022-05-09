@@ -24,7 +24,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Recenzije i iskustva</a> <br />
                             <a class="dropdown-item" href="#">Najcesca pitanja</a> <br />
-                            <a class="dropdown-item" href="#">O nama</a> <br />
+                            <a class="dropdown-item" href="~/AboutUs/AboutUsPage">O nama</a> <br />
                             <a class="dropdown-item" href="#">Kontakt</a>
                         </div>
                     </div>
@@ -39,19 +39,15 @@
 <body class="masterpagebody">
 
 
-
-    <div class="container">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - MONTEBOATS Crna Gora</p>
-        </footer>
-    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)@RenderBody()
+    
 </body>
 
+<footer class="footerCss">
+    <p>&copy; @DateTime.Now.Year - "MONTEBOATS" Crna Gora</p>
+</footer>
 
 </html>
 
@@ -66,6 +62,16 @@
     <div class="text-block">
         <h4 id="naslov">MONTEBOATS Crna Gora</h4>
     </div>*@
+
+
+@*<div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MONTEBOATS Crna Gora</p>
+        </footer>
+    </div>*@
+
 
 
 <!--#region NESTO NESTO NESTO-->
@@ -123,32 +129,3 @@
         </div>
     </nav>*@
 <!--#endregion-->
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Style.css" />
-
-    @{
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-
-</head>
-
-
-<body>
-
-
-
-
-</body>
-
-</html>
