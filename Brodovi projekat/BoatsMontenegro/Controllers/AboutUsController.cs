@@ -9,11 +9,15 @@ namespace BoatsMontenegro.Controllers
     public class AboutUsController : Controller
     {
         // GET: AboutUs
-        public ActionResult Index()
+        public ActionResult AboutUsMasterpage()
         {
             return PartialView();
         }
 
+        public ActionResult AboutUsPage()
+        {
+            return View();
+        }
 
     }
 }

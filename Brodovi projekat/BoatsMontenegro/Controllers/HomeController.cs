@@ -14,15 +14,15 @@ namespace BoatsMontenegro.Controllers
         {
            
         }
-        public ActionResult Index()
+        public ActionResult HomeIndex()
         {
             return View();
         } 
         
-        public ActionResult ProbniView()
-        {
-            return View();
-        }
+        //public ActionResult AboutUsMasterpage()
+        //{
+        //    return PartialView();
+        //}
 
     }
 }
