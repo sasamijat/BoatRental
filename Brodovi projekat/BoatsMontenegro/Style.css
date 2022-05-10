@@ -199,9 +199,9 @@ button {
     height: 70px;
 }
 
-.aboutuspageBody {
+/*.aboutuspageBody {
     background-color: #012A3C;
-}
+}*/
 
 .aboutuspageDivs {
     height: 60%;
@@ -213,4 +213,22 @@ button {
     position: relative;
     left: 104px;
     top: 19px;
+}
+
+#red1 {
+    color: white;
+    font-family: "Brush Script MT", cursive;
+    text-align:center;
+    font-size: 25px;
+}
+
+.tabela{
+    width: 90%;
+}
+
+#topponuda1 {
+    font-family: "Brush Script MT", cursive;
+    text-shadow: 5px 5px 5px black;
+    color: whitesmoke;
+    font-size: 180%;
 }

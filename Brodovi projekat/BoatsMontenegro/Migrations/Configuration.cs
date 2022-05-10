@@ -56,16 +56,16 @@ if (!context.Boats.Any())
             {
                 var boats = new List<Boat>
                     {
-                        new Boat {Capacity = 11, Engine = "5.8 Disel", FuelConsumption = "25l 100km", Size = "21m", Price=87, Category="Yacht"},
-                        new Boat { Capacity = 6, Engine = "4.0 Petrol", FuelConsumption = "15l per 100km", Size = "11m", Price=103, Category="Fishing" },
-                        new Boat { Capacity = 5, Engine = "3.8 Petrol", FuelConsumption = "12l per 100km", Size = "9m", Price=76, Category="Casual"},
-                        new Boat { Capacity = 3, Engine = "5.5 Diesel", FuelConsumption = "9l per 100km", Size = "6m",Price=56, Category="Fishing" },
-                        new Boat { Capacity = 10, Engine = "5.3 Petrol", FuelConsumption = "17l per 100km", Size = "13m", Price=59, Category="Yacht" },
-                        new Boat { Capacity = 15, Engine = "4.3 Petrol", FuelConsumption = "15l per 100km", Size = "14m", Price=107, Category="Casual" },
-                        new Boat { Capacity = 16, Engine = "3.8 Petrol", FuelConsumption = "16l per 100km", Size = "17m", Price=66, Category="Yacht" },
-                        new Boat {Capacity = 18, Engine = "5.8 Disel", FuelConsumption = "14l 100km", Size = "26m", Price=98, Category="Casual"},
-                        new Boat {Capacity = 15, Engine = "5.4 Disel", FuelConsumption = "24l 100km", Size = "25m", Price=47, Category="Yacht"},
-                        new Boat {Capacity = 10, Engine = "5.7 Disel", FuelConsumption = "18l 100km", Size = "21m", Price=86, Category="Casual"}
+                        new Boat {Capacity = 11, Engine = "5.8 Disel", FuelConsumption = "25l 100km", Size = "21m", Price=87, Category="Yacht",Name="Plavi jadran"},
+                        new Boat { Capacity = 6, Engine = "4.0 Petrol", FuelConsumption = "15l per 100km", Size = "11m", Price=103, Category="Fishing",Name="Mediteran" },
+                        new Boat { Capacity = 5, Engine = "3.8 Petrol", FuelConsumption = "12l per 100km", Size = "9m", Price=76, Category="Casual",Name="Atlantik"},
+                        new Boat { Capacity = 3, Engine = "5.5 Diesel", FuelConsumption = "9l per 100km", Size = "6m",Price=56, Category="Fishing" ,Name="Pacifik"},
+                        new Boat { Capacity = 10, Engine = "5.3 Petrol", FuelConsumption = "17l per 100km", Size = "13m", Price=59, Category="Yacht",Name="Baltik" },
+                        new Boat { Capacity = 15, Engine = "4.3 Petrol", FuelConsumption = "15l per 100km", Size = "14m", Price=107, Category="Casual" ,Name="Munja"},
+                        new Boat { Capacity = 16, Engine = "3.8 Petrol", FuelConsumption = "16l per 100km", Size = "17m", Price=66, Category="Yacht",Name="Ladja" },
+                        new Boat {Capacity = 18, Engine = "5.8 Disel", FuelConsumption = "14l 100km", Size = "26m", Price=98, Category="Casual",Name="Grom"},
+                        new Boat {Capacity = 15, Engine = "5.4 Disel", FuelConsumption = "24l 100km", Size = "25m", Price=47, Category="Yacht",Name="Morski div"},
+                        new Boat {Capacity = 10, Engine = "5.7 Disel", FuelConsumption = "18l 100km", Size = "21m", Price=86, Category="Casual",Name="Egej"}
                 };
                 boats.ForEach(boat => context.Boats.Add(boat));
                 context.SaveChanges();

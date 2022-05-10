@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BoatsMontenegro.Models.Boat>
+<link rel="stylesheet" href="~/Style.css" />
+
+@{
+    ViewBag.Title = "ShowOne";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ShowOne</h2>
+
+
+@foreach (var item in Model)
+{
+
+    <div>
+        <div>@Html.DisplayFor(modelItem => item.Name)</div>
+
+        <div>@Html.DisplayFor(modelItem => item.Category)</div>
+
+        <div>@Html.DisplayFor(modelItem => item.Price)</div>
+
+        <div>@Html.DisplayFor(modelItem => item.Capacity)</div>
+
+        <div>@Html.DisplayFor(modelItem => item.Size)</div>
+
+        <div>@Html.DisplayFor(modelItem => item.Engine)</div>
+
+        <div>@Html.DisplayFor(modelItem => item.FuelConsumption)</div>
+
+    </div>
+}

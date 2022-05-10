@@ -1,1 +1,28 @@
-﻿
+﻿@model IEnumerable<BoatsMontenegro.Models.Boat>
+<link rel="stylesheet" href="~/Style.css" />
+@{
+    ViewBag.Title = "TopPonudaView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+    <h2 id="toponuda1">Pogledajte najbolju ponudu!!!</h2>
+</center>
+
+<center>
+    <form>
+        <input type="text" name="search" />
+        <button type="submit" name="type for search">Potrazi</button>
+    </form>
+</center>
+
+@foreach (var item in Model)
+{
+<div style="color: white;">
+    <div style="display: inline; padding:5px;">@Html.DisplayFor(modelItem => item.Price)</div>
+    <div style="display: inline; padding:5px;">@Html.DisplayFor(modelItem => item.Category)</div>
+    <div style="display: inline; padding:5px;">@Html.DisplayFor(modelItem => item.Size)</div>
+    <div style="display: inline; padding:5px;">@Html.DisplayFor(modelItem => item.Capacity)</div>
+    <div style="display: inline; padding:5px;"><a href="/TopPonuda/ShowOne/@item.BoatID">OTVORI JEDAN</a></div>
+</div>
+    }

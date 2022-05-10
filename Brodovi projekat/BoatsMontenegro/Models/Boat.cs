@@ -12,6 +12,7 @@ namespace BoatsMontenegro.Models
     {    
         [Key]
         public int BoatID { get; set; }  //Primary key
+        public string Name { get; set; }
         public string Size { get; set; }
         public int Capacity { get; set; }
         public string Engine { get; set; }
