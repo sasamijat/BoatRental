@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\TopPonudaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="CustomAuthentication\CustomMembership.cs" />
@@ -213,29 +214,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202204191017416_Mgr1.cs" />
-    <Compile Include="Migrations\202204191017416_Mgr1.Designer.cs">
-      <DependentUpon>202204191017416_Mgr1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204191121041_Mgr2.cs" />
-    <Compile Include="Migrations\202204191121041_Mgr2.Designer.cs">
-      <DependentUpon>202204191121041_Mgr2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204191130340_Mgr3.cs" />
-    <Compile Include="Migrations\202204191130340_Mgr3.Designer.cs">
-      <DependentUpon>202204191130340_Mgr3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204191241172_Mgr4.cs" />
-    <Compile Include="Migrations\202204191241172_Mgr4.Designer.cs">
-      <DependentUpon>202204191241172_Mgr4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204191428569_Mgr5.cs" />
-    <Compile Include="Migrations\202204191428569_Mgr5.Designer.cs">
-      <DependentUpon>202204191428569_Mgr5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204191429353_Mgr6.cs" />
-    <Compile Include="Migrations\202204191429353_Mgr6.Designer.cs">
-      <DependentUpon>202204191429353_Mgr6.cs</DependentUpon>
+    <Compile Include="Migrations\202205101302377_Migration1.cs" />
+    <Compile Include="Migrations\202205101302377_Migration1.Designer.cs">
+      <DependentUpon>202205101302377_Migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Boat.cs" />
@@ -306,6 +287,8 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\AboutUs\AboutUsMasterpage.cshtml" />
     <Content Include="Views\AboutUs\AboutUsPage.cshtml" />
+    <Content Include="Views\TopPonuda\Index.cshtml" />
+    <Content Include="Views\TopPonuda\TopPonudaView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -324,23 +307,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204191017416_Mgr1.resx">
-      <DependentUpon>202204191017416_Mgr1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204191121041_Mgr2.resx">
-      <DependentUpon>202204191121041_Mgr2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204191130340_Mgr3.resx">
-      <DependentUpon>202204191130340_Mgr3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204191241172_Mgr4.resx">
-      <DependentUpon>202204191241172_Mgr4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204191428569_Mgr5.resx">
-      <DependentUpon>202204191428569_Mgr5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204191429353_Mgr6.resx">
-      <DependentUpon>202204191429353_Mgr6.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205101302377_Migration1.resx">
+      <DependentUpon>202205101302377_Migration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

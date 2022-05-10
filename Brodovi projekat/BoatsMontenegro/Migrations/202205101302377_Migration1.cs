@@ -3,7 +3,7 @@ namespace BoatsMontenegro.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Mgr1 : DbMigration
+    public partial class Migration1 : DbMigration
     {
         public override void Up()
         {
@@ -16,6 +16,8 @@ namespace BoatsMontenegro.Migrations
                         Capacity = c.Int(nullable: false),
                         Engine = c.String(),
                         FuelConsumption = c.String(),
+                        Price = c.Double(nullable: false),
+                        Category = c.String(),
                         User_UserID = c.Int(),
                     })
                 .PrimaryKey(t => t.BoatID)
@@ -51,9 +53,9 @@ namespace BoatsMontenegro.Migrations
                         PersonalIdNumber = c.String(),
                         Username = c.String(),
                         Password = c.String(),
+                        ConfirmPassword = c.String(),
                         RememberMe = c.Boolean(nullable: false),
                         IsActive = c.Boolean(nullable: false),
-                        ActivationCode = c.Guid(nullable: false),
                         Role_RoleId = c.Int(),
                     })
                 .PrimaryKey(t => t.UserID)

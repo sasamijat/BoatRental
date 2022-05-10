@@ -8,6 +8,7 @@ using BoatsMontenegro.Models;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Validation;
 
 namespace BoatsMontenegro.BaseBase
 {
@@ -22,8 +23,8 @@ namespace BoatsMontenegro.BaseBase
         public DbSet<User> Users {get;set;}
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Role> Roles { get; set; }
-       
-                    
+
+        
     } 
 }
 

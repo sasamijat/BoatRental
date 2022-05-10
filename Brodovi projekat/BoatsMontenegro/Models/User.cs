@@ -14,44 +14,44 @@ namespace BoatsMontenegro.Models
 
 
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string FirstName { get; set; }
 
 
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string LastName { get; set; }
 
      
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
-        [RegularExpression("^\\S+@\\S+\\.\\S+$")]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[RegularExpression("^\\S+@\\S+\\.\\S+$")]
         public string Email { get; set; }
 
 
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string PhoneNumber { get; set; }
 
 
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string PersonalIdNumber { get; set; }
 
 
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string Username { get; set; }
 
 
 
-        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
-        [DataType(DataType.Password)]
+        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[DataType(DataType.Password)]
         public string Password { get; set; }
 
 
-        [DataType(DataType.Password)]
-        [Compare("Password",ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        //[DataType(DataType.Password)]
+        //[Compare("Password",ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string ConfirmPassword { get; set; }
     
 
@@ -63,7 +63,7 @@ namespace BoatsMontenegro.Models
 
         public bool RememberMe { get; set; }
         public bool IsActive { get; set; }
-        public Guid ActivationCode { get; set; }
+        
 
     }
 }

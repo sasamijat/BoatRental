@@ -4,7 +4,9 @@ namespace BoatsMontenegro.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
     using System.Linq;
+    using BoatsMontenegro.BaseBase;
     using BoatsMontenegro.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BoatsMontenegro.BaseBase.BaseContext>
@@ -13,8 +15,25 @@ namespace BoatsMontenegro.Migrations
         {
             AutomaticMigrationsEnabled = false;
         }
+
         protected override void Seed(BoatsMontenegro.BaseBase.BaseContext context)
         {
+            #region -------------------USER-------------------
+            if (!context.Reservations.Any())
+            {
+                var reservations = new List<Reservation>
+                    {
+                        new Reservation { DateFrom = new DateTime(2022, 08, 18), DateTo = new DateTime(2022, 09, 23), NeedCaptain = true },
+                        new Reservation { DateFrom = new DateTime(2022, 04, 28), DateTo = new DateTime(2022, 07, 12), NeedCaptain = true },
+                        new Reservation { DateFrom = new DateTime(2022, 03, 14), DateTo = new DateTime(2022, 08, 08), NeedCaptain = false },
+                        new Reservation { DateFrom = new DateTime(2022, 02, 10), DateTo = new DateTime(2022, 06, 17), NeedCaptain = true },
+                        new Reservation { DateFrom = new DateTime(2022, 05, 21), DateTo = new DateTime(2022, 04, 06), NeedCaptain = false }
+                    };
+                reservations.ForEach(reservation => context.Reservations.Add(reservation));
+                context.SaveChanges();
+            }
+            #endregion
+
             #region -------------------USER------------------- 
             if (!context.Users.Any())
             {
@@ -30,40 +49,27 @@ namespace BoatsMontenegro.Migrations
                 context.SaveChanges();
             }
             #endregion
-            
+                        
 
-            #region -------------------BOAT------------------- 
-            if (!context.Boats.Any())
-                {
-                    var boats = new List<Boat>
+#region -------------------BOAT------------------- 
+if (!context.Boats.Any())
+            {
+                var boats = new List<Boat>
                     {
-                        new Boat { Capacity = 11, Engine = "5.8 Disel", FuelConsumption = "25l 100km", Size = "21m" },
-                        new Boat { Capacity = 6, Engine = "4.0 Petrol", FuelConsumption = "15l per 100km", Size = "11m" },
-                        new Boat { Capacity = 5, Engine = "3.8 Petrol", FuelConsumption = "12l per 100km", Size = "9m" },
-                        new Boat { Capacity = 3, Engine = "5.5 Diesel", FuelConsumption = "9l per 100km", Size = "6m" },
-                        new Boat { Capacity = 10, Engine = "5.3 Petrol", FuelConsumption = "17l per 100km", Size = "13m" },
-                        new Boat { Capacity = 15, Engine = "4.3 Petrol", FuelConsumption = "15l per 100km", Size = "14m" },
-                        new Boat { Capacity = 16, Engine = "3.8 Petrol", FuelConsumption = "16l per 100km", Size = "17m" }
-                    };
-                    boats.ForEach(boat => context.Boats.Add(boat));
-                    context.SaveChanges();
-                }
-                #endregion
-
-            #region ------------------- RESERVATION------------------- 
-                if (!context.Reservations.Any())
-                {
-                    var reservations = new List<Reservation>
-                    {
-                        new Reservation { DateFrom = new DateTime(2022, 08, 18), DateTo = new DateTime(2022, 09, 23), NeedCaptain = true },
-                        new Reservation { DateFrom = new DateTime(2022, 04, 28), DateTo = new DateTime(2022, 07, 12), NeedCaptain = true },
-                        new Reservation { DateFrom = new DateTime(2022, 03, 14), DateTo = new DateTime(2022, 08, 08), NeedCaptain = false },
-                        new Reservation { DateFrom = new DateTime(2022, 02, 10), DateTo = new DateTime(2022, 06, 17), NeedCaptain = true },
-                        new Reservation { DateFrom = new DateTime(2022, 05, 21), DateTo = new DateTime(2022, 04, 06), NeedCaptain = false }
-                    };
-                    reservations.ForEach(reservation => context.Reservations.Add(reservation));
-                    context.SaveChanges();
-                }
+                        new Boat {Capacity = 11, Engine = "5.8 Disel", FuelConsumption = "25l 100km", Size = "21m", Price=87, Category="Yacht"},
+                        new Boat { Capacity = 6, Engine = "4.0 Petrol", FuelConsumption = "15l per 100km", Size = "11m", Price=103, Category="Fishing" },
+                        new Boat { Capacity = 5, Engine = "3.8 Petrol", FuelConsumption = "12l per 100km", Size = "9m", Price=76, Category="Casual"},
+                        new Boat { Capacity = 3, Engine = "5.5 Diesel", FuelConsumption = "9l per 100km", Size = "6m",Price=56, Category="Fishing" },
+                        new Boat { Capacity = 10, Engine = "5.3 Petrol", FuelConsumption = "17l per 100km", Size = "13m", Price=59, Category="Yacht" },
+                        new Boat { Capacity = 15, Engine = "4.3 Petrol", FuelConsumption = "15l per 100km", Size = "14m", Price=107, Category="Casual" },
+                        new Boat { Capacity = 16, Engine = "3.8 Petrol", FuelConsumption = "16l per 100km", Size = "17m", Price=66, Category="Yacht" },
+                        new Boat {Capacity = 18, Engine = "5.8 Disel", FuelConsumption = "14l 100km", Size = "26m", Price=98, Category="Casual"},
+                        new Boat {Capacity = 15, Engine = "5.4 Disel", FuelConsumption = "24l 100km", Size = "25m", Price=47, Category="Yacht"},
+                        new Boat {Capacity = 10, Engine = "5.7 Disel", FuelConsumption = "18l 100km", Size = "21m", Price=86, Category="Casual"}
+                };
+                boats.ForEach(boat => context.Boats.Add(boat));
+                context.SaveChanges();
+            }
             #endregion
 
             #region -----------ROLE--------------
@@ -79,10 +85,6 @@ namespace BoatsMontenegro.Migrations
                 context.SaveChanges();
             }
             #endregion 
-
-
-
         }
     }
 }
-

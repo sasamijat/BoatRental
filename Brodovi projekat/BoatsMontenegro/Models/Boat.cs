@@ -16,6 +16,8 @@ namespace BoatsMontenegro.Models
         public int Capacity { get; set; }
         public string Engine { get; set; }
         public string FuelConsumption { get; set; }
+        public double Price { get; set; }
+        public string Category { get; set; }
 
     }
 }

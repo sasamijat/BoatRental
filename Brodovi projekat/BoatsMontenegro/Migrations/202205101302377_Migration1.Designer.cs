@@ -7,13 +7,13 @@ namespace BoatsMontenegro.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Mgr2 : IMigrationMetadata
+    public sealed partial class Migration1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Mgr2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migration1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202204191121041_Mgr2"; }
+            get { return "202205101302377_Migration1"; }
         }
         
         string IMigrationMetadata.Source
