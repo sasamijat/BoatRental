@@ -15,43 +15,15 @@ namespace BoatsMontenegro.Controllers
         {
             objContext = new BaseContext();
         }
-        public ActionResult TopPonudaView(string search, string SortOrder, string SortBy)
-        {
-            var boats = objContext.Boats.ToList();
-
-            if (search != null)
-            {
-                boats = boats.Where(x => x.Size.Contains(search) || x.Category.Contains(search)).ToList();
-            }
-
-            ViewBag.sortorder = SortOrder;
-            switch (SortOrder)
-            {
-                case "Acs":
-                    {
-                        boats = boats.OrderBy(x => x.Price).ToList();
-                        break;
-                    }
-                case "Des":
-                    {
-                        boats = boats.OrderByDescending(x => x.Price).ToList();
-                        break;
-                    }
-                default:
-                    {
-                        boats = boats.OrderBy(x => x.Price).ToList();
-                        break;
-                    }
-            }
-            return View(boats.Take(6));
-        }
-
-        public ActionResult ShowOne(string id)
+        
+        public ActionResult ShowOne(string id)   /*string id*/
         {
             int BoatId = Int32.Parse(id);
+            
             var boats = objContext.Boats.Where(b=>b.BoatID== BoatId).ToList();
             return View(boats.Take(6));
         }
     }
 }
+
 

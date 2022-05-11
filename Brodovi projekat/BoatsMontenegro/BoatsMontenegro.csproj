@@ -235,6 +235,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImagesFolder\brodSlika.jpeg" />
     <Content Include="ImagesFolder\iconMenuImg.png" />
     <Content Include="ImagesFolder\MonteboatLogo.png" />
     <Content Include="ImagesFolder\userPicture.jpg" />
@@ -264,7 +265,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\HomeIndex.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Reservation\Create.cshtml" />
     <Content Include="Views\Reservation\Delete.cshtml" />
     <Content Include="Views\Reservation\Details.cshtml" />
@@ -285,9 +286,7 @@
     <Content Include="Views\Account\LoggedIn.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
-    <Content Include="Views\AboutUs\AboutUsMasterpage.cshtml" />
     <Content Include="Views\AboutUs\AboutUsPage.cshtml" />
-    <Content Include="Views\TopPonuda\TopPonudaView.cshtml" />
     <Content Include="Views\TopPonuda\ShowOne.cshtml" />
   </ItemGroup>
   <ItemGroup>

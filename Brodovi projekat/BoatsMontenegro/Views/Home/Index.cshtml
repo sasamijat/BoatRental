@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BoatsMontenegro.Models.Boat>
+@{
+    ViewBag.Title = "HomeIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <p id="naslovaboutus">"MONTEBOATS" Crna Gora</p> <br />
+        <p id="text1aboutus">
+            Ako ste obozalavac vodenih plovila,na pravom ste mjestu.Vec 12 godina pruzamo usluge u sektoru iznajmljivanja vodenih plovila.
+            Zakupite brod i krenite u plovidbu Jadranom.
+            U nasoj ponudi imate preko 500 brodova na preko 15 razlicitih destinacija.
+            Uvjerite se zasto smo najbolji!
+        </p> <br /> <br /> <br />
+
+
+        <div id="aboutusdiv">
+            <h4 id="naslov2aboutous">Iznajmi svoj brod ili zakazi iznajmljivaje</h4>
+        </div>
+
+        <div id="aboutusdiv">
+            <h4 id="naslov2aboutous">Sigurno i brzo placanje </h4> <br />
+        </div>
+
+        <div id="aboutusdiv">
+            <h4 id="naslov2aboutous">Sigurna usluga</h4> <br /> <br />
+            @*<p id="text2aboutus">Povracaj novca,osiguranje, putovanje u inostranstvo? Kod nas je sve dostupno!</p>*@
+        </div>
+    </div>
+    <button class="button-64" role="button"><span class="text">Nacini placanja</span></button>
+</div>
+
+<div class="container">
+    <center>
+        <h2 style="color: whitesmoke; height: 24px; text-shadow: 5px 5px 5px black;">Najbolja ponuda! Snizenja i popusti.</h2>
+    </center>
+
+    <center>
+        <form>
+            <input type="text" name="search" />
+            <button style="height: 20px; color: whitesmoke; height: 24px; text-shadow: 5px 5px 5px black; padding-bottom: 23px; " type="submit" name="type for search">Potrazi</button>
+        </form>
+    </center>
+    <br />
+
+    @foreach (var item in Model)
+    {
+        <div class="list-group" style="margin-left:25%; width:50%">
+
+            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item active" id="ShowOneTekst">
+                @Html.DisplayFor(modelItem => item.Name)
+            </a>
+
+            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                @Html.DisplayFor(modelItem => item.Category)
+            </a>
+
+            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                @Html.DisplayFor(modelItem => item.Capacity) OSOBA
+            </a>
+
+            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                @Html.DisplayFor(modelItem => item.Price)€ / 24h
+            </a>
+
+
+        </div>
+    }
+</div>

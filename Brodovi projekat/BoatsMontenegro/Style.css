@@ -226,9 +226,21 @@ button {
     width: 90%;
 }
 
-#topponuda1 {
+#ShowOneDiv1 {
+    border: thick ridge white;
+    width: 45%;
+}
+
+#ShowOneTekst {
+    color: white;
     font-family: "Brush Script MT", cursive;
     text-shadow: 5px 5px 5px black;
-    color: whitesmoke;
-    font-size: 180%;
+}
+
+#ShowOneDiv2{
+    margin-left: 15%;
+    margin-right: 20%;
+    padding-left: 20%;
+    padding-right: 20%;
+    width: 70%;
 }
