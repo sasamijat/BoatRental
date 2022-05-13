@@ -14,7 +14,7 @@
 
 
     <header>
-        <a href="~/Home/HomeIndex"><img id="logo" src="~/ImagesFolder/MonteboatLogo.png" alt="boatLogo" width="100" height="35"></a>
+        <a href="~/Home/Index"><img id="logo" src="~/ImagesFolder/MonteboatLogo.png" alt="boatLogo" width="100" height="35"></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="#">Ponuda</a></li>
@@ -45,12 +45,39 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)@RenderBody()
-    
+
+    <footer class="footerCss">
+        @*<p>&copy; @DateTime.Now.Year - "MONTEBOATS" Crna Gora</p>*@
+
+        
+
+            <div id="LittleDivsFooter1">
+                               
+                <p>
+                    RADNO VREME KORISNICKOG SERVISA: <br />
+                    Radnim danima: 08h - 22h <br />
+                    Subotom: 08h - 16h <br />
+                    Nedeljom: 10h - 14h
+                </p>
+            </div>
+            <div id="LittleDivsFooter2">
+                <a href="~/AboutUs/AboutUsPage">O nama</a> <br /> 
+                <a href="">Kontakt</a> <br />
+                <a href="">Najcesca pitanja</a>
+            </div>
+            <div id="LittleDivsFooter3">
+                Potrazite nas na drustvenim mrezama: <br />
+                <a href="https://sr-rs.facebook.com/">Facebook</a> <br /> 
+                <a href="https://www.instagram.com/">Instagram</a> <br /> 
+                <a href="https://www.linkedin.com/">LinkedIn</a> <br />                 
+            </div>
+
+        
+    </footer>
+
 </body>
 
-<footer class="footerCss">
-    <p>&copy; @DateTime.Now.Year - "MONTEBOATS" Crna Gora</p>
-</footer>
+
 
 </html>
 

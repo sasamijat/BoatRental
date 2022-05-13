@@ -17,6 +17,7 @@ namespace BoatsMontenegro.Models
 
         
         public virtual Boat Boat { get; set; }
+        
         public User ReservedBy { get; set; }
        
     }

@@ -20,8 +20,6 @@ namespace BoatsMontenegro.Controllers
             objContext = new BaseContext();
         }
 
-
-
         #region LIST and DETAILS Reservation
         public ActionResult Index()
         {
@@ -34,10 +32,7 @@ namespace BoatsMontenegro.Controllers
             return View(reservation);
         }
         #endregion
-
-
-
-        // CREATE Reservation
+      
         #region CREATE
         public ActionResult Create()
         {
@@ -52,10 +47,7 @@ namespace BoatsMontenegro.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
-
-
-        // EDIT Reservation
+       
         #region EDIT 
         public ActionResult Edit(int id)
         {
@@ -77,10 +69,7 @@ namespace BoatsMontenegro.Controllers
             return View(reservation);
         }
         #endregion
-
-
-
-        // DELETE Reservation
+       
         #region DELETE
         public ActionResult Delete(int id)
         {
@@ -102,8 +91,6 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -112,5 +99,10 @@ namespace BoatsMontenegro.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
+
+
+
 }

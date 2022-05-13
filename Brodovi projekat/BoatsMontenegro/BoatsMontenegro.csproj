@@ -288,6 +288,7 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\AboutUs\AboutUsPage.cshtml" />
     <Content Include="Views\TopPonuda\ShowOne.cshtml" />
+    <Content Include="Views\TopPonuda\TakeReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
