@@ -1,0 +1,29 @@
+﻿@model IEnumerable<BoatsMontenegro.Models.Boat>
+@{
+    ViewBag.Title = "WholeOffer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nasa ponuda:</h2>
+
+
+@foreach (var p in Model)
+{
+
+    <ul class="tilesWrap">
+        <li class="liWholeOffer">
+            <h2 class="h2WholeOffer">@p.BoatID</h2>
+            <h3 class="h3WholeOffer">@p.Name</h3>
+            <p class="pWholeOffer">
+                Kategorija: @p.Category <br />
+                Kapacitet: @p.Capacity <br />
+                Cijena: @p.Price <br />
+                Velicina: @p.Size <br />
+                Motor: @p.Engine <br />
+                Potrosnja goriva: @p.FuelConsumption
+            </p>
+            <button class="buttonWholeOffer">Rezervisi odmah</button>
+        </li>
+
+    </ul>
+}

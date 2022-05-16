@@ -1,9 +1,5 @@
-﻿body {
-    background-color: #012A3C;
-}
-
-/*#region NAVBAR--NAVBAR--NAVBAR--NAVBAR*/
-li, a, button {
+﻿/*#region NAVBAR--NAVBAR--NAVBAR--NAVBAR*/
+.LayoutLi, .dropdown-item, .NavbarButton {
     font-family: "Brush Script MT", cursive;
     text-transform: uppercase;
     font-size: 129%;
@@ -11,7 +7,7 @@ li, a, button {
     text-decoration: none;
 }
 
-header {
+.LayoutHeader {
     background: linear-gradient(#001219, #001e2a);
     display: flex;
     justify-content: space-between;
@@ -19,7 +15,7 @@ header {
     padding: 10px 8%;
 }
 
-#logo {
+#logoNavbar {
     width: 180px;
     height: 90px;
 }
@@ -28,20 +24,21 @@ header {
     transition: all 0.2s ease 0s;
 }
 
-    .nav-links li {
+    .nav-links, .LayoutLi {
         display: inline-block;
         padding: 0px 60px;
     }
 
-        .nav-links li a {
-            transition: all 0.2s ease 0s;
-        }
+.nav-links, .LayoutLi, .dropdown-item {
+    transition: all 0.2s ease 0s;
+}
 
-            .nav-links li a:hover {
-                color: #005f73;
-            }
+    .nav-links, .LayoutLi, dropdown-item:hover {
+        color: #005f73;
+    }
 
-button {
+
+.NavbarButton {
     padding: 9px 30px;
     background-color: #0a9396;
     border: none;
@@ -50,17 +47,17 @@ button {
     transition: all 0.2s ease 0s;
 }
 
-    button:hover {
-        background-color: #005f73;
-    }
+.NavbarButton:hover {
+    background-color: #005f73;
+}
 
 @media screen and (max-width: 1080px)
 {
-    button {
+    .NavbarButton {
         display: none;
     }
 
-    .nav-links li {
+    .nav-links, .LayoutLi {
         padding: 0px 10px;
     }
 }
@@ -71,7 +68,7 @@ button {
         display: none;
     }
 
-    header {
+    .LayoutHeader {
         display: block;
         text-align: right;
     }
@@ -79,62 +76,7 @@ button {
 
 /*#endregion */
 
-
-/*#region ABOUT US BUTTON--ABOUT US BUTTON*/
-
-.button-64 {
-    align-items: center;
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-size: 17px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
-    position: relative;
-    top: 60%;
-    right: 95%;
-    font-family: "Brush Script MT", cursive;
-}
-    .button-64:active,
-    .button-64:hover {
-        outline: 0;
-    }
-    .button-64 span {
-        background-image: linear-gradient(#001219, #001e2a);
-        padding: 16px 24px;
-        border-radius: 6px;
-        width: 100%;
-        height: 100%;
-        transition: 300ms;
-    }
-    .button-64:hover span {
-        background: none;
-    }
-@media (min-width: 768px) {
-    .button-64 {
-        font-size: 17px;
-        min-width: 196px;
-    }
-}
-
-
-/*#endregion */
-
 .jumbotron {
-    /*background-color: #0a9396;*/
     background-image: url(ImagesFolder/yachtBackground.jpg);
     background-repeat: no-repeat;
     background-size: 120% 100%;
@@ -143,7 +85,6 @@ button {
     height: 500px;
     position:static;
     left:1%;
-
 }
 
 #containerAboutus{
@@ -168,30 +109,12 @@ button {
     color: whitesmoke;
 }
 
-#aboutusdiv {
-    width: 30%;
-    height: 40%;
-    margin-bottom: 10px;
-    border: 0px solid white;
-    margin-left: 3%;
-    display: inline-flex;
-    text-align:center;
-}
-
 #text2aboutus {
     font-family: "Brush Script MT", cursive;
     text-shadow: 5px 5px 5px black;
     color: whitesmoke;
     font-size: 140%;
     
-}
-
-#naslov2aboutous {
-    font-family: "Brush Script MT", cursive;
-    text-shadow: 10px 10px 10px black;
-    color: whitesmoke;
-    font-size: 220%;
-    display: inline-block;
 }
 
 .aboutuspageDivs {
@@ -277,47 +200,147 @@ button {
     text-align: center;
 }
 
-.TextOnama1 {
-    color: white;
-    font-family: "Brush Script MT", cursive;
+/*#region WHOLE OFFER WHOLE OFFER*/
 
+.tilesWrap {
+    padding: 0;
+    margin: 50px auto;
+    list-style: none;
+    text-align: center;
+    justify-content: space-evenly;
+    display: flex;
 }
 
-
-
-
-
-
-
-
-/*[type="date"] {
-    background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
-}
-
-    [type="date"]::-webkit-inner-spin-button {
-        display: none;
+    .tilesWrap liWholeOffer {
+        display: inline-block;
+        width: 20%;
+        min-width: 200px;
+        max-width: 230px;
+        padding: 80px 20px 40px;
+        position: relative;
+        vertical-align: top;
+        margin: 10px;
+        font-family: 'helvetica', san-serif;
+        min-height: 25vh;
+        background: #262a2b;
+        border: 1px solid #252727;
+        text-align: left;
     }
 
-    [type="date"]::-webkit-calendar-picker-indicator {
-        opacity: 0;
-    }*/
+        .tilesWrap liWholeOffer h2WholeOffer {
+            font-size: 114px;
+            margin: 0;
+            position: absolute;
+            opacity: 0.2;
+            top: 50px;
+            right: 10px;
+            transition: all 0.3s ease-in-out;
+        }
 
-/* custom styles */
-/*body {
-    padding: 4em;
-    background: #e5e5e5;
-    font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-}
+        .tilesWrap liWholeOffer h3WholeOffer {
+            font-size: 20px;
+            color: #b7b7b7;
+            margin-bottom: 5px;
+        }
 
-label {
-    display: block;
-}
+        .tilesWrap liWholeOffer pWholeOffer {
+            font-size: 16px;
+            line-height: 18px;
+            color: #b7b7b7;
+            margin-top: 5px;
+        }
 
-input {
-    border: 1px solid #c4c4c4;
-    border-radius: 5px;
-    background-color: #fff;
-    padding: 3px 5px;
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-    width: 190px;
-}*/
+        .tilesWrap liWholeOffer buttonWholeOffer {
+            background: transparent;
+            border: 1px solid #b7b7b7;
+            padding: 10px 20px;
+            color: red;
+            border-radius: 3px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-40px);
+            opacity: 0;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .tilesWrap liWholeOffer buttonWholeOffer:before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 120%;
+            background: #b7b7b7;
+            top: 0;
+            opacity: 0;
+            left: -140px;
+            border-radius: 0 20px 20px 0;
+            z-index: -1;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .tilesWrap liWholeOffer:hover buttonWholeOffer {
+            transform: translateY(5px);
+            opacity: 1;
+        }
+
+        .tilesWrap liWholeOffer buttonWholeOffer:hover {
+            color: #262a2b;
+        }
+
+            .tilesWrap liWholeOffer buttonWholeOffer:hover:before {
+                left: 0;
+                opacity: 1;
+            }
+
+        .tilesWrap liWholeOffer:hover h2 {
+            top: 0px;
+            opacity: 0.6;
+        }
+
+        .tilesWrap liWholeOffer:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: #fff;
+            transform: skew(2deg, 2deg);
+        }
+
+        .tilesWrap liWholeOffer:after {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .tilesWrap liWholeOffer:nth-child(1):before {
+            background: #C9FFBF;
+            background: -webkit-linear-gradient(to right, #FFAFBD, #C9FFBF);
+            background: linear-gradient(to right, #FFAFBD, #C9FFBF);
+        }
+
+        .tilesWrap liWholeOffer:nth-child(2):before {
+            background: #f2709c;
+            background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
+            background: linear-gradient(to right, #ff9472, #f2709c);
+        }
+
+        .tilesWrap liWholeOffer:nth-child(3):before {
+            background: #c21500;
+            background: -webkit-linear-gradient(to right, #ffc500, #c21500);
+            background: linear-gradient(to right, #ffc500, #c21500);
+        }
+
+        .tilesWrap liWholeOffer:nth-child(4):before {
+            background: #FC354C;
+            background: -webkit-linear-gradient(to right, #0ABFBC, #FC354C);
+            background: linear-gradient(to right, #0ABFBC, #FC354C);
+        }
+/*#endregion */
+

@@ -205,7 +205,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OfferController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
-    <Compile Include="Controllers\TopPonudaController.cs" />
+    <Compile Include="Controllers\PonudaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="CustomAuthentication\CustomMembership.cs" />
@@ -288,8 +288,9 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\AboutUs\AboutUsPage.cshtml" />
-    <Content Include="Views\TopPonuda\ShowOne.cshtml" />
-    <Content Include="Views\TopPonuda\TakeReservation.cshtml" />
+    <Content Include="Views\Ponuda\ShowOne.cshtml" />
+    <Content Include="Views\Ponuda\TakeReservation.cshtml" />
+    <Content Include="Views\Ponuda\WholeOffer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

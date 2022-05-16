@@ -10,14 +10,11 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Style.css" />
 
-
-
-
-    <header>
-        <a href="~/Home/Index"><img id="logo" src="~/ImagesFolder/MonteboatLogo.png" alt="boatLogo" width="100" height="35"></a>
+    <header class="LayoutHeader">
+        <a href="~/Home/Index"><img id="logoNavbar" src="~/ImagesFolder/MonteboatLogo.png" alt="boatLogo" width="100" height="35"></a>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Ponuda</a></li>
+                <li class="LayoutLi"><a href="~/Ponuda/WholeOffer">Ponuda</a></li>
                 <li><a href="#">Oglasi svoj brod</a></li>
                 <li>
                     <div class="dropdown">
@@ -34,12 +31,12 @@
                 </li>
             </ul>
         </nav>
-        <a href="~/Account/Login"><button>Prijava</button></a>
+        <a href="~/Account/Login"><button class="NavbarButton">Prijava</button></a>
     </header>
 </head>
 
 
-<body>
+<body style="background-color: #012A3C;">
 
 
     @Scripts.Render("~/bundles/jquery")
@@ -47,10 +44,7 @@
     @RenderSection("scripts", required: false)@RenderBody()
 
     <footer class="footerCss">
-        @*<p>&copy; @DateTime.Now.Year - "MONTEBOATS" Crna Gora</p>*@
-
-        
-
+      
             <div id="LittleDivsFooter1">
                                
                 <p>

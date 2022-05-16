@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    @*<link rel="stylesheet" href="~/Style.css" />*@
 }
 
 <div class="nesto" id="containerAboutus">
@@ -14,36 +13,25 @@
             U nasoj ponudi imate preko 500 brodova na preko 15 razlicitih destinacija.
             Uvjerite se zasto smo najbolji!
         </p> <br /> <br /> <br />
-        @*<div id="aboutusdiv">
-                <h4 id="naslov2aboutous">Iznajmi svoj brod ili zakazi iznajmljivaje</h4>
-                <center> <button class="button-64" role="button"><span class="text">Nacini placanja</span></button> </center>
-            </div>
 
-            <div id="aboutusdiv">
-                <h4 id="naslov2aboutous">Sigurno i brzo placanje </h4> <br />
-                <center> <button class="button-64" role="button"><span class="text">Nacini placanja</span></button> </center>
-            </div>
+        <div style="justify-content:space-evenly; display:flex; position:relative; top: 20%;">
+            <span style="color:whitesmoke;font-family:Brush Script MT, cursive;text-shadow: 12px 12px 12px black;font-size: 200%;"><a href="#">Zakazi termin</a></span>
+            <span style="color:whitesmoke; font-family:Brush Script MT, cursive;text-shadow: 12px 12px 12px black;font-size: 200%;"><a href="#">Nacini placanja</a></span>
+            <span style="color: whitesmoke;font-family:Brush Script MT, cursive;text-shadow: 12px 12px 12px black;font-size: 200%;"><a href="#">Sigurna usluga</a></span>
+        </div>
 
-            <div id="aboutusdiv">
-                <h4 id="naslov2aboutous">Sigurna usluga</h4> <br /> <br />
-
-            </div>*@
     </div>
-
-    <p class="TextOnama1">Iznajmi svoj brod ili zakazi termin</p>
-    <p class="TextOnama">Nacini placanja</p>
-    <p class="TextOnama">Sigurna usluga(osiguranje)</p>
-
 </div>
+
 <div class="container">
     <center>
-        <h2 style="color: whitesmoke; height: 24px; text-shadow: 5px 5px 5px black;">Najbolja ponuda! Snizenja i popusti.</h2>
-    </center>
+        <h2 style="color: whitesmoke; height: 30px; text-shadow: 9px 9px 9px black; font-family: Brush Script MT, cursive;">Pogledajte najbolju ponudu koju nudimo!</h2>
+    </center> <br />
 
     <center>
         <form>
-            <input type="text" name="search" />
-            <button style="height: 20px; color: whitesmoke; height: 24px; text-shadow: 5px 5px 5px black; padding-bottom: 23px; " type="submit" name="type for search">Potrazi</button>
+            <input type="text" name="search" style="height:35px;"/>
+            <button style="height: 25px; color: whitesmoke;text-shadow: 5px 5px 5px black; padding-bottom: 35px; " type="submit" name="type for search">Potrazi</button>
         </form>
     </center>
     <br />
@@ -52,26 +40,26 @@
     {
         <div class="list-group" style="margin-left:25%; width:50%">
 
-            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item active" id="ShowOneTekst">
+            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item active" id="ShowOneTekst">
                 @Html.DisplayFor(modelItem => item.Name)
             </a>
 
-            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item">
+            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item">
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
                 @Html.DisplayFor(modelItem => item.Category)
             </a>
 
-            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item">
+            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item">
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
                 @Html.DisplayFor(modelItem => item.Capacity) OSOBA
             </a>
 
-            <a href="/TopPonuda/ShowOne/@item.BoatID" class="list-group-item">
+            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item">
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
                 @Html.DisplayFor(modelItem => item.Price)€ / 24h
             </a>
 
-
         </div>
+
     }
 </div>
