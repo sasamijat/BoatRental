@@ -1,5 +1,4 @@
-﻿
-body {
+﻿body {
     background-color: #012A3C;
 }
 
@@ -7,7 +6,7 @@ body {
 li, a, button {
     font-family: "Brush Script MT", cursive;
     text-transform: uppercase;
-    font-size: 1.1em;
+    font-size: 129%;
     color: #f8f8f7;
     text-decoration: none;
 }
@@ -104,11 +103,9 @@ button {
     touch-action: manipulation;
     white-space: nowrap;
     cursor: pointer;
-    position: absolute;
-    top: 523px;
-    bottom: 67px;
-    left: 643px;
-    right: 526px;
+    position: relative;
+    top: 60%;
+    right: 95%;
     font-family: "Brush Script MT", cursive;
 }
     .button-64:active,
@@ -152,6 +149,8 @@ button {
 #containerAboutus{
     position: static;
     left: 1%;
+    width:100%;
+    
 }
 
 #naslovaboutus {
@@ -171,11 +170,12 @@ button {
 
 #aboutusdiv {
     width: 30%;
-    height: 20%;
-    border: 2px solid black;
+    height: 40%;
     margin-bottom: 10px;
+    border: 0px solid white;
+    margin-left: 3%;
     display: inline-flex;
-    text-align: center;
+    text-align:center;
 }
 
 #text2aboutus {
@@ -188,15 +188,11 @@ button {
 
 #naslov2aboutous {
     font-family: "Brush Script MT", cursive;
-    text-shadow: 7px 7px 7px black;
+    text-shadow: 10px 10px 10px black;
     color: whitesmoke;
-    font-size: 180%;
+    font-size: 220%;
     display: inline-block;
 }
-
-/*.aboutuspageBody {
-    background-color: #012A3C;
-}*/
 
 .aboutuspageDivs {
     height: 60%;
@@ -281,6 +277,11 @@ button {
     text-align: center;
 }
 
+.TextOnama1 {
+    color: white;
+    font-family: "Brush Script MT", cursive;
+
+}
 
 
 
