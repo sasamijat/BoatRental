@@ -1,0 +1,66 @@
+﻿@model BigGame.Models.Reservation
+
+
+<h1>Rezervacija # @Model.ReservationID</h1>
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="upper p-4">
+                    <div class="d-flex justify-content-between">
+                        <div class="grid-2col">
+                            <small>Klijent:</small>
+                            <span class="text-primary font-weight-bold">@Model.User.FirstAndLastName()</span>
+                            <small>ID:</small><span class="text-primary font-weight-bold ">#@Model.User.UserID</span>
+                        </div>
+                        <div class="d-flex flex-row align-items-center" style="gap:25px;">
+                            <div class="add grid-2col">
+                                <small>Brod:</small><span class="font-weight-bold text-primary"> @Model.BoatAvailability.Boat.Name #@Model.BoatAvailability.Boat.BoatID</span>
+                                <small>Lokacija:</small>
+                                <span class="font-weight-bold d-block text-primary ">@Model.BoatAvailability.Location</span>
+                                <small class="colapse-col2">@Model.BoatAvailability.Boat.PassangerCapacity osoba, @Model.BoatAvailability.Boat.Length ft'</small>
+                                
+                            </div> <img src="~/slike/b1.jpg" width="100" class="rounded-circle">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="delivery">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-check-circle-o"></i> <span class="ml-2">Pocetak plovidbe: </span> </div> <span class="font-weight-bold">@Model.startDateTime.ToString("dd.MM.yyyy hh:mm")</span>
+                        </div>
+                    </div>
+                    <div class="transaction mt-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-check-circle-o"></i> <span class="ml-2">Kraj plovidbe: </span> </div> <span class="font-weight-bold">@Model.endDateTime.ToString("dd.MM.yyyy hh:mm")</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="transaction mt-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-check-circle-o"></i> <span class="ml-2">Cena po satu: </span> </div> <span class="font-weight-bold">@Model.BoatAvailability.Price $/h</span>
+                        </div>
+                    </div>
+                    <div class="transaction mt-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-check-circle-o"></i> <span class="ml-2">Ukupno sati: </span> </div> <span class="font-weight-bold">@Model.getTotalHours() h</span>
+                        </div>
+                    </div>
+                    <div class="transaction mt-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-check-circle-o"></i> <span class="ml-2">PDV:  </span> </div> <span class="font-weight-bold">0.8% - $15,00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower bg-primary p-4 py-5 text-white d-flex justify-content-between align-items-center">
+                    <div class="d-flex flex-column"> <span>Ukupna cena</span> <small>Cena moze da varira u zavisnosti od dogovora sa vlasnikom.</small> </div>
+                    <h2 id="totalPrice">$@Model.getTotalPrice()</h2>
+                </div>
+                <div class="lower bg-primary p-4 py-5 ">
+                    <a href="~/Reservation/Cancel/@Model.ReservationID">
+                        <button class="btn-success btn-reserve" style="background-color: #ed4343; border-color: #ed8c8c; ">Otkaži</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

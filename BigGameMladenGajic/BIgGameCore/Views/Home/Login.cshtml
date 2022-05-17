@@ -1,0 +1,30 @@
+﻿<link rel="stylesheet" href="~/css/login.css"/>
+<div class="container login">
+
+    <form action="~/Login/Index" method="post">
+        <i style="color:greenyellow">@ViewBag.SuccessRegistrationMessage</i>
+        <table>
+            <tr>
+                <td style="text-align: right;">
+                    ID:
+                </td>
+                <td>
+                    <input type="text" name="username" placeholder="ID / email" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    Lozinka:
+                </td>
+                <td>
+                    <input type="password" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <button type="submit" class="btn-dark" style="width:100%;">Log in</button></td>
+            </tr>
+        </table>
+        @ViewBag.LoginMessage
+    </form>
+</div>

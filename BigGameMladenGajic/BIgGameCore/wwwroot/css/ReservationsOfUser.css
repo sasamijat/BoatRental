@@ -1,0 +1,8 @@
+﻿.reservationsOfUser-gallery {
+    
+    display:grid;
+    grid-template-columns: 30% auto 30%;
+    gap:50px;
+    padding:10px;
+
+}
