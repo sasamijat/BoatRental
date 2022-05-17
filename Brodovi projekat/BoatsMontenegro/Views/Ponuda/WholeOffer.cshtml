@@ -4,12 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Nasa ponuda:</h2>
+<nav class="cls4">
+
+    <label for="touch"> <span class="cls5"> Odaberite kategoriju</span> </label>
+    <input type="checkbox" id="touch">
+
+    <ul class="slide">
+        <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Fishing" class="cls2">Fishing boats</a> </li>
+        <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Yacht" class="cls2"> Yacht boats</a> </li>
+        <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Casual" class="cls2">Casual boats</a> </li>        
+    </ul>
+
+</nav>
+
 
 
 @foreach (var p in Model)
 {
-
     <ul class="tilesWrap">
         <li class="liWholeOffer">
             <h2 class="h2WholeOffer">@p.BoatID</h2>
@@ -27,3 +38,12 @@
 
     </ul>
 }
+
+
+
+
+
+@*<a href="~/Ponuda/Kategorije?category=Fishing">Fishing boats</a>
+    <a href="~/Ponuda/Kategorije?category=Yacht">Yachts</a>
+    <a href="~/Ponuda/Kategorije?category=Casual">Casual boats</a>*@
+

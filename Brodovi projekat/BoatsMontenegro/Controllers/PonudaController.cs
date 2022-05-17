@@ -15,7 +15,6 @@ namespace BoatsMontenegro.Controllers
         {
             objContext = new BaseContext();
         }
-
         public ActionResult ShowOne(string id)   /*string id*/
         {
             int BoatId = Int32.Parse(id);
@@ -23,7 +22,6 @@ namespace BoatsMontenegro.Controllers
             var boats = objContext.Boats.Where(b => b.BoatID == BoatId).ToList();
             return View(boats.Take(6));
         }
-
         public ViewResult WholeOffer()   /*string id*/
         {
             //int BoatId = id;
@@ -36,8 +34,6 @@ namespace BoatsMontenegro.Controllers
             return View(objContext.Boats);
            
         }
-
-
         [HttpGet]
         public ActionResult TakeReservation()
         {
@@ -49,6 +45,13 @@ namespace BoatsMontenegro.Controllers
             //objContext.Reservations.Add(reservation);
             objContext.SaveChanges();
             return RedirectToAction("TakeReservation");
+        }
+        [HttpGet]
+        public ActionResult Kategorije(string category)
+        {
+            var boats = objContext.Boats.Where(x => x.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
+
+            return View(viewName: "WholeOffer", boats);
         }
     }
 }

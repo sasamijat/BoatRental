@@ -203,7 +203,7 @@
     <Compile Include="Controllers\BoatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OfferController.cs" />
+    <Compile Include="Controllers\OstaloController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\PonudaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -239,8 +239,15 @@
     <Content Include="ImagesFolder\brodSlika.jpeg" />
     <Content Include="ImagesFolder\iconMenuImg.png" />
     <Content Include="ImagesFolder\MonteboatLogo.png" />
+    <Content Include="ImagesFolder\NaciniPlacanjaSlika2.PNG" />
+    <Content Include="ImagesFolder\platnaKartica.jpg" />
     <Content Include="ImagesFolder\userPicture.jpg" />
     <Content Include="ImagesFolder\yachtBackground.jpg" />
+    <Content Include="ImagesIconsFolder\fbIcon.png" />
+    <Content Include="ImagesIconsFolder\instaICON.png" />
+    <Content Include="ImagesIconsFolder\linkedinICON.png" />
+    <Content Include="ImagesIconsFolder\twiterICON.png" />
+    <Content Include="ImagesIconsFolder\youtubeICON.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -291,10 +298,13 @@
     <Content Include="Views\Ponuda\ShowOne.cshtml" />
     <Content Include="Views\Ponuda\TakeReservation.cshtml" />
     <Content Include="Views\Ponuda\WholeOffer.cshtml" />
+    <Content Include="Views\Ostalo\NaciniPlacanja.cshtml" />
+    <Content Include="Views\Ostalo\Kontakt.cshtml" />
+    <Content Include="Views\Ostalo\NajcescaPitanja.cshtml" />
+    <Content Include="Views\Ostalo\RecenzijeIskustva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Offer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
