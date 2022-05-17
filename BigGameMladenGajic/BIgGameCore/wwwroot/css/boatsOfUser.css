@@ -1,0 +1,19 @@
+﻿.remove-icon {
+    position:absolute;
+    top:5px;
+    right:10px;
+    color:red;
+    cursor:pointer;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.list-group-item {
+    margin: 16px;
+    border-radius: 20px;
+}

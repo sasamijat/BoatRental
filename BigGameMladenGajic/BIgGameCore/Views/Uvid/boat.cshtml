@@ -1,0 +1,96 @@
+﻿
+@using BigGame.Models
+
+@model Boat
+<link rel="stylesheet" href="~/css/boat.css" />
+<script src="~/js/boatImage.js"></script>
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        @if (Model.BoatImages.Count > 0)
+                        {
+                        <div class="tab-pane active" id="dvPreview"><img src="~/images/boats/@Model.BoatImages[0].Image" /></div>
+                        }
+                    </div>
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        @foreach (BoatImage image in Model.BoatImages)
+                        {
+                        <li class="active"><a onclick="changeImageUvid('@image.Image')"><img src="~/images/boats/@image.Image" /></a></li>
+                        }
+                    </ul>
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title"><i class="text-muted">#@Model.BoatID </i> @Model.Name</h3>
+                    <p>Model:<span class="right-align-5vw"> @Model.Make - @Model.Model <i> @Model.Year</i></span></p>
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no">41 reviews</span>
+                    </div>
+                    <p class="vote"><strong>94%</strong> klijenata je uživalo na ovom brodu! <strong>(87 votes)</strong></p>
+
+                    <p>Broj osoba: <span class="right-align-5vw"> @Model.PassangerCapacity <i class="bi bi-person-fill"></i></span></p>
+                    <p>Dužina:<span class="right-align-5vw"> @Model.Length <b>ft</b></span></p>
+                    <p>Rezervoar:<span class="right-align-5vw"> @Model.FuelCapacity l <i class="bi bi-droplet-fill"></i></span></p>
+                    <p>Mesta za spavanje: <span class="right-align-5vw">@Model.SleepCapacity  <i class="bi  bi-moon"></i></span></p>
+
+                    <p>Opis:</p>
+                    <p class="product-description"> @Model.Desctription </p>
+
+                    <button class="add-to-cart btn btn-default" style="white-space:normal" onclick="showDatePickers()">Odaberite datume kada želite da plovite</button>
+                    <div class="datePickers" id="datePickers" style="display:none;">
+                        <form action="~/BoatAvailability/AvialabilityResultForBoat/@Model.BoatID" method="post">
+                            <div class="form-group" id="formSearch">
+                                <div class='input-group'>
+
+                                    Početak:
+                                    <input id="startDate" name="startDate" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")" step="" />
+
+                                </div>
+                                <div class='input-group '>
+
+                                    Kraj:
+                                    <input name="endDate" type="datetime-local" class="form-control" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm")" />
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button type="submit" class="btn-success btn-lg" style="position">Pretraži <i class="bi-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    @if (ViewBag.NotAvailableBoatAtTermins != null)
+                    {
+                        <div>
+                            <h2>Nažalost ovaj brod nije dostupan u terminu od @ViewBag.startDate.ToString("dd.MM.yyyy. HH:mm")   do @ViewBag.endDate.ToString("dd.MM.yyyy. HH:mm")</h2>
+                            <a href="~/BoatAvailability/AvialabilityResult">Prikazi rezultat za ove termine za druge brodove.</a>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showDatePickers() {
+        if (document.getElementById("datePickers").style.display == "none") {
+            document.getElementById("datePickers").style.display = "block";
+            return;
+        }
+        document.getElementById("datePickers").style.display = "none";
+    }
+</script>

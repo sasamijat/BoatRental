@@ -1,0 +1,125 @@
+﻿@using BigGame.Models
+@model User
+
+<link rel="stylesheet" href="~/css/boat.css" />
+<link rel="stylesheet" href="~/css/newBoat.css" />
+
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                @if (ViewBag.message != null)
+                {
+                    <h1>@ViewBag.message </h1>
+                }
+                @if (ViewBag.newAvailability != null)
+                {
+                    <h1>Uspesno dodata dostupnost @ViewBag.newAvailability.BoatID  @ViewBag.newAvailability.Location </h1>
+                }
+                <form action="~/BoatAvailability/AddNewBoatAvailability" method="post" style="width:100%" id="form1">
+                    <h3>Dostupni brodovi: </h3>
+                    <select id="boatSelect" name="boatID" onclick="changeBoat()">
+                        @foreach (Boat boat in Model.Boats)
+                        {
+                            <option value="@boat.BoatID">@boat.Name </option>
+                        }
+                    </select>
+
+
+                    <div class="list-group-item">
+                        <!-- Custom content-->
+                        @if (ViewBag.boat != null)
+                        {
+                        <div class="list-group-item">
+                            <!-- Custom content-->
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                @if (ViewBag.boat.BoatImages != null && ViewBag.boat.BoatImages.Count > 0)
+                                {
+                                    <img src="~/images/boats/@ViewBag.boat.BoatImages[0].Image" alt="Generic placeholder image" width="200" class="mr-lg-5 order-2 order-lg-2">
+                                }
+                                <div class="media-body order-1 order-lg-1">
+                                    <h3 class="mt-0 font-weight-bold mb-2"> @ViewBag.boat.Name</h3>
+                                    <h4> @ViewBag.boat.Make - @ViewBag.boat.Model</h4>
+                                    <h4><i class="bi bi-calendar-date"></i> @ViewBag.boat.Year</h4>
+                                    <p class="font-italic text-muted mb-0 small"><i class="bi bi-chat-left-text"></i> @ViewBag.boat.Desctription </p>
+                                    <h4><i class="bi bi-person"></i> @ViewBag.boat.PassangerCapacity</h4>
+                                    <h4><i class="bi bi-speedometer2"></i> 25 km/h</h4>
+                                    <h4><i class="bi bi-funnel"></i> @ViewBag.boat.FuelCapacity l</h4>
+                                </div>
+                            </div> <!-- End -->
+                        </div>
+                        }
+                        else
+                        {
+                            <div class="flex-column">
+                                <h2>Odaberite za koji brod zelite da unesete ponudu.</h2>
+                            </div> <!-- End -->
+
+                        }
+                    </div>
+                    <div class="form-group" >
+
+                        <div class='input-group '>
+
+                            Lokacija:
+                            <input id="location" name="location" type="text" class="form-control" value="" placeholder="*Budva*" />
+
+                        </div>
+                        <div id="formSearch">
+                            <div class='input-group'>
+
+                                Početak:
+                                <input id="startDate" name="startDate" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")" step="" />
+
+                            </div>
+                            <div class='input-group '>
+
+                                Kraj:
+                                <input id="endDate" name="endDate" type="datetime-local" class="form-control" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm")" />
+
+                            </div>
+                        </div>
+                        <div class='input-group '>
+
+                            Cena po satu:
+                            <input id="price" name="price" type="number" min="5"  class="form-control" value="10" /> $
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" onclick="btnOnClick()" class="btn-success btn-lg">Dodaj ponudu</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        $('#boatSelect').val('@ViewBag.boatID');
+
+
+        
+    }
+    function changeBoat() {
+        $('#boatSelect').change(function () {
+            boatID = $(this).val();
+            $('#boatID_txt').text(boatID);
+            location.href = "https://localhost:44319/BoatAvailability/AddNewBoatAvailability/" + boatID;
+
+        })
+    }
+    function btnOnClick() {
+        let poruka = "Da li ste sigurni da želite da dodate ponudu za vaš brod '" + $("#boatSelect option:selected").val() + "' \n";
+        poruka += "na lokaciji '" + $("#location").val() + "' \n";
+        poruka += "koja važi od '" + $("#startDate").val().replace("T", " ") + "' do '" + $("#endDate").val().replace("T", " ") + "' \n";
+        poruka += "po ceni od '" + $("#price").val() + "'$ po satu ?";
+        if (confirm(poruka) == true) {
+            $("#form1").submit();
+        } else {
+            return null;
+        }
+    }
+</script>

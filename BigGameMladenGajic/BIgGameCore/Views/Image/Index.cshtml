@@ -1,0 +1,78 @@
+﻿@model List<BIgGameCore.Models.ImageModel>
+
+
+
+@Model.Count
+
+@foreach (ImageModel image in Model)
+{
+
+    <img src="@("~/images/"+image.Attachment)" asp-append-version="true" width="250px" height="250px" />
+}
+
+<div id="dvPreview"></div>
+<i class="bi bi-plus" onclick="openFileDialog()"></i>
+
+<input type="file" id="slika" onchange="getBase64()" style="display:none"/>
+<button onclick="uploadImage()">Postavi</button>
+<a href="~/image">Refresh</a>
+<script>
+
+    var imageName;
+    var image64;
+
+    function openFileDialog() {
+        $('#slika').trigger('click'); return false;
+    }
+
+    function getBase64() {
+
+        $("#dvPreview").html("");
+        var file = document.getElementById('slika').files[0]
+        imageName = file.name
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            image64 = reader.result;
+
+            $("#dvPreview").show();
+            $("#dvPreview").append("<img />");
+            $("#dvPreview img").attr("src", reader.result);
+            $("#dvPreview img").attr("style", "height:200px;width: 200px");
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+
+        console.log(imageName);
+        console.log(image64);
+
+    }
+
+    function uploadImage() {
+
+        let image = {};
+
+        if (imageName != null && image64 != null) {
+
+            image.ImageName = imageName;
+            image.Attachment = image64;
+
+            console.log(image);
+
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "https://localhost:44319/image/addNew",
+                    data: image,
+                    success: function () {
+                        window.location.href = "/image"
+                    }
+                }
+            )
+        }
+        else {
+            alert("Odaberite sliku!")
+        }
+    }
+</script>

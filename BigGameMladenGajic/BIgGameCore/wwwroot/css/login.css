@@ -1,0 +1,23 @@
+﻿form {
+    padding: 7vw;
+    background: linear-gradient(60deg, #99798461 0%, #62a4e1 100%);
+    border-radius: 40px;
+    display: grid;
+    color: black;
+}
+td {
+    padding:10px
+}
+button {
+    background: linear-gradient(120deg, #997984 0%, #62a4e1 100%);
+    border-radius:10px;
+}
+input {
+    border-radius:10px;
+    padding:5px 10px;
+}
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
