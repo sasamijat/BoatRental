@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoatsMontenegro.BaseBase;
+using BoatsMontenegro.Contracts;
 using BoatsMontenegro.Models;
 
 namespace BoatsMontenegro.Controllers
@@ -37,16 +38,32 @@ namespace BoatsMontenegro.Controllers
         public ActionResult Create()
         {
            //Reservation reservation = objContext.Reservations.Where(r => r.ReservationID == id).SingleOrDefault();
-            return View(new Reservation());
+            return View("TakeReservation", new ReservationContract());
         }
         [HttpPost]
-        public ActionResult Create(Reservation reservation)
+        public ActionResult Create(ReservationContract newResevation)
         {
-            objContext.Reservations.Add(reservation);
-            objContext.SaveChanges();           
+
+            //objContext.Reservations.Add(reservation);
+            //objContext.SaveChanges();           
+
             return RedirectToAction("Index");
         }
         #endregion
+
+
+        //[HttpGet]
+        //public ActionResult TakeReservation()
+        //{
+        //    return View(new Reservation());
+        //}
+        //[HttpPost]
+        //public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
+        //{
+        //    //objContext.Reservations.Add(reservation);
+        //    objContext.SaveChanges();
+        //    return RedirectToAction("TakeReservation");
+        //}
        
         #region EDIT 
         public ActionResult Edit(int id)

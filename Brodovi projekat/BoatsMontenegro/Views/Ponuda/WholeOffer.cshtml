@@ -17,33 +17,42 @@
 
 </nav>
 
-
-
 @foreach (var p in Model)
 {
-    <ul class="tilesWrap">
-        <li class="liWholeOffer">
-            <h2 class="h2WholeOffer">@p.BoatID</h2>
-            <h3 class="h3WholeOffer">@p.Name</h3>
-            <p class="pWholeOffer">
-                Kategorija: @p.Category <br />
-                Kapacitet: @p.Capacity <br />
-                Cijena: @p.Price <br />
-                Velicina: @p.Size <br />
-                Motor: @p.Engine <br />
-                Potrosnja goriva: @p.FuelConsumption
-            </p>
-            <button class="buttonWholeOffer">Rezervisi odmah</button>
-        </li>
-
-    </ul>
+<ul id="tilesWrap">
+    <li id="liWholeOffer">
+        <span style="color: whitesmoke;font-family:Brush Script MT,cursive;text-shadow: 8px 8px 8px black;font-size: 200%; justify-content:space-around;display:flex;">@p.Name</span> <br />
+        <span style="color: whitesmoke; font-family: Brush Script MT,cursive; text-shadow: 8px 8px 8px black; font-size: 130%; justify-content: space-around; display: flex;">
+            Kategorija: @p.Category <br />
+            Kapacitet: @p.Capacity <br />
+            Cijena: @p.Price <br />
+            Velicina: @p.Size <br />
+            Motor: @p.Engine <br />
+            Potrosnja goriva: @p.FuelConsumption <br />
+            Id broda: @p.BoatID
+        </span> <br />
+        <a href="~/Ponuda/TakeReservation">    <button style="border-radius: 8px;
+                        border-width: 0;
+                        color: #333333;
+                        cursor: pointer;
+                        display: inline-block;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 20px;
+                        list-style: none;
+                        margin: 0;
+                        padding: 10px 12px;
+                        text-align: center;
+                        transition: all 200ms;
+                        vertical-align: baseline;
+                        white-space: nowrap;
+                        user-select: none;
+                        -webkit-user-select: none;
+                        touch-action: manipulation;
+                        margin-left:45%;">
+            Rezervisi odmah
+        </button></a> <br /><br /><br />
+    </li>  
+</ul>
 }
-
-
-
-
-
-@*<a href="~/Ponuda/Kategorije?category=Fishing">Fishing boats</a>
-    <a href="~/Ponuda/Kategorije?category=Yacht">Yachts</a>
-    <a href="~/Ponuda/Kategorije?category=Casual">Casual boats</a>*@
 

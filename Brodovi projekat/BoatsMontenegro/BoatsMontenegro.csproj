@@ -198,6 +198,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BaseBase\BaseContext.cs" />
+    <Compile Include="Contracts\ReservationContract.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BoatController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImagesFolder\background-g1e4812b4c_1280.jpg" />
     <Content Include="ImagesFolder\brodSlika.jpeg" />
     <Content Include="ImagesFolder\iconMenuImg.png" />
     <Content Include="ImagesFolder\MonteboatLogo.png" />
@@ -296,12 +298,13 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\AboutUs\AboutUsPage.cshtml" />
     <Content Include="Views\Ponuda\ShowOne.cshtml" />
-    <Content Include="Views\Ponuda\TakeReservation.cshtml" />
+    <Content Include="Views\Reservation\TakeReservation.cshtml" />
     <Content Include="Views\Ponuda\WholeOffer.cshtml" />
     <Content Include="Views\Ostalo\NaciniPlacanja.cshtml" />
     <Content Include="Views\Ostalo\Kontakt.cshtml" />
     <Content Include="Views\Ostalo\NajcescaPitanja.cshtml" />
     <Content Include="Views\Ostalo\RecenzijeIskustva.cshtml" />
+    <Content Include="Views\Ponuda\PublishYourBoat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
