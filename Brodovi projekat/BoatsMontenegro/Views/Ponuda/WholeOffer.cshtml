@@ -4,19 +4,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<nav class="cls4">
-
+@*<nav class="cls4">
     <label for="touch"> <span class="cls5"> Odaberite kategoriju</span> </label>
     <input type="checkbox" id="touch">
-
     <ul class="slide">
         <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Fishing" class="cls2">Fishing boats</a> </li>
         <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Yacht" class="cls2"> Yacht boats</a> </li>
         <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Casual" class="cls2">Casual boats</a> </li>        
     </ul>
-
-</nav>
-
+</nav>*@
+<div style="justify-content:space-evenly; display:flex" >    
+    <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:240%; height:50px">
+                Kategorije
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Casual">Casual</a> <br />
+                <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Fishing">Fishing</a> <br />
+                <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Yacht">Yacht</a>
+            </div>
+    </div>
+   
+    <div>
+        <form>
+            <input type="text" name="search" style="height:35px;" />
+            <button class="searchButton" type="submit" name="type for search">Potrazi</button>
+        </form>
+    </div>
+</div>
 @foreach (var p in Model)
 {
 <ul id="tilesWrap">
@@ -31,27 +46,14 @@
             Potrosnja goriva: @p.FuelConsumption <br />
             Id broda: @p.BoatID
         </span> <br />
-        <a href="~/Ponuda/TakeReservation">    <button style="border-radius: 8px;
-                        border-width: 0;
-                        color: #333333;
-                        cursor: pointer;
-                        display: inline-block;
-                        font-size: 14px;
-                        font-weight: 500;
-                        line-height: 20px;
-                        list-style: none;
-                        margin: 0;
-                        padding: 10px 12px;
-                        text-align: center;
-                        transition: all 200ms;
-                        vertical-align: baseline;
-                        white-space: nowrap;
-                        user-select: none;
-                        -webkit-user-select: none;
-                        touch-action: manipulation;
-                        margin-left:45%;">
+        <form action="~/Reservation/Create">    <button style="border-radius: 8px;
+                        border-width: 0;color: #333333;cursor: pointer;
+                        display: inline-block;font-size: 14px;font-weight: 500;
+                        line-height: 20px;list-style: none;margin: 0;padding: 10px 12px;
+                        text-align: center;transition: all 200ms;vertical-align: baseline;white-space: nowrap;user-select: none;
+                        -webkit-user-select: none;touch-action: manipulation;margin-left:45%;">
             Rezervisi odmah
-        </button></a> <br /><br /><br />
+        </button></form> <br /><br /><br />
     </li>  
 </ul>
 }

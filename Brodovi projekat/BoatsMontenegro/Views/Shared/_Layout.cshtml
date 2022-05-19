@@ -42,9 +42,11 @@
                 </li>
             </ul>
         </nav>
-        <a href="~/Account/Login">
-            <button class="NavbarButton">Prijava</button>
-        </a>
+
+        <form action="~/Account/Login">
+            <button class="NavbarButton">Prijava</button>      @*<a href="~/Account/Login"><button class="NavbarButton">Prijava</button></a>*@
+        </form>
+       
     </header>
 
     @RenderSection("scripts", required: false)

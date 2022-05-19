@@ -1,4 +1,5 @@
-﻿
+﻿@model BoatsMontenegro.Models.Boat
+
 @{
     ViewBag.Title = "PublishYourBoat";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,52 +7,53 @@
 
 <div class="container">
     <h2>Objavite svoj brod:<small>Forma:</small></h2> <br />
-    <form action="" method="post">
+
+    <form action="/Boat/PublishYourBoat" method="post">
 
         <div class="group">
-            <input type="text" id="ImeBroda" name="ImeBroda" required>
+            <input type="text" id="ImeBroda" name="name" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Ime broda</label>
         </div>
 
         <div class="group">
-            <input type="text" name="Kategorija" id="Kategorija" required>
+            <input type="text" name="Kategorija" id="category" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Kategorija</label>
         </div>
 
         <div class="group">
-            <input type="number" name="Kapacitet" id="Kapacitet" required>
+            <input type="number" name="Kapacitet" id="capacity" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Kapacitet</label>
         </div>
 
         <div class="group">
-            <input type="text" name="Cijena" id="Cijena" required>
+            <input type="text" name="Cijena" id="price" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Cijena</label>
         </div>
-        
+
         <div class="group">
-            <input type="text" name="Velicina" id="Velicina" required>
+            <input type="text" name="Velicina" id="size" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Velicina</label>
         </div>
 
         <div class="group">
-            <input type="text" name="Motor" id="Motor" required>
+            <input type="text" name="Motor" id="engine" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Motor</label>
         </div>
 
-         <div class="group">
-            <input type="text" name="Potrosnja goriva" id="Potrosnja goriva" required>
+        <div class="group">
+            <input type="text" name="PotrosnjaGoriva" id="fuelConsumption" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Potrosnja goriva</label>
@@ -62,12 +64,25 @@
         </div>
 
     </form>
+
+
     <br />
     <br />
     <p class="footer">
     <p style="margin-left:25%; color:black;">Hvala vam sto koristite nase usluge!</p>
     <a href="~/Home/Index" target="_blank" style="margin-left:25%; color:black;">Povratak na pocetnu stranicu</a>
-
-
 </div>
 
+
+@using (Html.BeginForm("PublishYourBoatSecond", "Form", FormMethod.Post))
+    {
+        @Html.TextBoxFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Size)
+        @Html.TextBoxFor(m => m.Capacity)
+        @Html.TextBoxFor(m => m.Engine)
+        @Html.TextBoxFor(m => m.FuelConsumption)
+        @Html.TextBoxFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Category)
+
+        <input type="submit" value="Submit strongly type synchronous form" />
+    }

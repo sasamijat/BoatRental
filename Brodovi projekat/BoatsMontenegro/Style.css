@@ -51,6 +51,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.2s ease 0s;
+    width: 99%;
 }
 
 .NavbarButton:hover {
@@ -370,8 +371,29 @@
     transition-duration: .15s;
     transition-property: all;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
+    width: 80%;
+    height: 50px;
 }
 
+.searchButton1 {
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #005f73;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    padding: 12px 20px;
+    text-align: center;
+    transition-duration: .15s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    width: 30%;
+    height: 50px;
+}
 .searchButton:hover {
         color: #005f73;
         background: rgb(255, 218, 87);
@@ -450,68 +472,7 @@
 
 /*#region ODABERI KATEGORIJU ODABERI KATEGORIJU*/
 
-.cls4 {
-    background-color: #ededed;
-    font-family: "Open Sans", sans-serif;
-}
 
-.cls3 {
-    padding: 40px;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.cls1, .cls2 {
-    text-decoration: none;
-    color: #2d2f31;
-}
-
-
-.cls4 {
-    width: 300px;
-    background: #d9d9d9;
-    margin: 40px auto;
-}
-
-.cls5 {
-    padding: 30px;
-    background: #2d2f31;
-    color: white;
-    font-size: 1.2em;
-    font-variant: small-caps;
-    cursor: pointer;
-    display: block;
-}
-
-    .cls5::after {
-        float: right;
-        right: 10%;
-        content: "+";
-    }
-
-.slide {
-    clear: both;
-    width: 100%;
-    height: 0px;
-    overflow: hidden;
-    text-align: center;
-    transition: height .4s ease;
-}
-
-    .slide, .cls1 {
-        padding: 30px;
-    }
-
-#touch {
-    position: absolute;
-    opacity: 0;
-    height: 0px;
-}
-
-    #touch:checked + .slide {
-        height: 300px;
-    } 
-        
 /*#endregion */
 
 

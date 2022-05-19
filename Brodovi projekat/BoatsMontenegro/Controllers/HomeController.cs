@@ -22,7 +22,8 @@ namespace BoatsMontenegro.Controllers
             if (search != null)
             {
                 //boats = boats.Where(x => x.Size.Contains(search) || x.Category.Contains(search)).ToList();
-                return View(objContext.Boats.Where(x => x.Category.Contains(search)).ToList());
+                return View(objContext.Boats.Where(x => x.Category.Contains(search) && x.Size.Contains(search)
+                && x.Capacity.ToString().Contains(search) && x.Price.ToString().Contains(search)).ToList());
             }
 
             ViewBag.sortorder = SortOrder;

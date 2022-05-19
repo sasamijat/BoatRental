@@ -85,7 +85,6 @@ namespace BoatsMontenegro.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -95,7 +94,17 @@ namespace BoatsMontenegro.Controllers
             base.Dispose(disposing);
         }
 
-        
+
+        [HttpPost]
+        public void PublishYourBoat(string name, string category, int capacity, string price, string size, string engine, string fuelConsumption)
+        {
+
+        }
+
+        public void PublishYourBoatSecond(Models.Boat boat)
+        {
+
+        }
     }
 }
 

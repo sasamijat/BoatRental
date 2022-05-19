@@ -43,7 +43,22 @@ namespace BoatsMontenegro.Controllers
         [HttpPost]
         public ActionResult Create(ReservationContract newResevation)
         {
+            ////Validiraj da li je korisnik ulogovan. Proveriti da userId i Username iz sesije nisu null/empty.////
+            ////Validiraj da li brod postoji////
+            ////Proveriti da li je dateFrom pre dateTo////
+            ////Proveriti da li je korisnik koji rezervise slobodan u terminu dateFrom - dateTo////
+            ////Proveriti da li je bro koji rezervise slobodan u terminu dateFrom - dateTo////
 
+            var reservation = new Reservation()
+            {
+                NeedCaptain = newResevation.NeedCaptain,
+                DateFrom = newResevation.DateFrom,
+                DateTo = newResevation.DateTo,
+                Boat = objContext.Boats.Find(newResevation.BoatID),
+                ReservedBy = objContext.Users.Find(int.Parse(Session["UserID"].ToString()))
+            };
+            objContext.Reservations.Add(reservation);
+            objContext.SaveChanges();
             //objContext.Reservations.Add(reservation);
             //objContext.SaveChanges();           
 
@@ -52,19 +67,9 @@ namespace BoatsMontenegro.Controllers
         #endregion
 
 
-        //[HttpGet]
-        //public ActionResult TakeReservation()
-        //{
-        //    return View(new Reservation());
-        //}
-        //[HttpPost]
-        //public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
-        //{
-        //    //objContext.Reservations.Add(reservation);
-        //    objContext.SaveChanges();
-        //    return RedirectToAction("TakeReservation");
-        //}
-       
+        
+      
+
         #region EDIT 
         public ActionResult Edit(int id)
         {
@@ -85,8 +90,8 @@ namespace BoatsMontenegro.Controllers
             }           
             return View(reservation);
         }
-        #endregion
-       
+        #endregion      
+
         #region DELETE
         public ActionResult Delete(int id)
         {
@@ -107,7 +112,6 @@ namespace BoatsMontenegro.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -115,11 +119,25 @@ namespace BoatsMontenegro.Controllers
                 objContext.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        
+        }     
     }
-
-
-
 }
+
+
+
+
+
+
+
+//[HttpGet]
+//public ActionResult TakeReservation()
+//{
+//    return View(new Reservation());
+//}
+//[HttpPost]
+//public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
+//{
+//    //objContext.Reservations.Add(reservation);
+//    objContext.SaveChanges();
+//    return RedirectToAction("TakeReservation");
+//}

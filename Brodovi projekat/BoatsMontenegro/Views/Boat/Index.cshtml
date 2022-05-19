@@ -10,49 +10,68 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" style="color:white">
     <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Capacity
+        </th>
+        <th>
+            Price
+        </th>
         <th>
             Size
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Capacity)
+            Engine
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Engine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FuelConsumption)
+            Fuel consumption
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @item.Size
-            </td>
-            <td>
-                @item.Capacity
-            </td>
-            <td>
-                @item.Engine
-            </td>
-            <td>
-                @item.FuelConsumption
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BoatID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BoatID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BoatID })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @item.Name
+    </td>
+    <td>
+        @item.Category
+    </td>
+    <td>
+        @item.Capacity
+    </td>
+    <td>
+        @item.Price
+    </td>
+    <td>
+        @item.Size
+    </td>
+    <td>
+        @item.Engine
+    </td>
+    <td>
+        @item.FuelConsumption
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BoatID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BoatID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BoatID })
+    </td>
+</tr>
     }
 
 </table>
 
-<div>
+
+@*<div>
     @foreach (var item in Model)
     {
         <div style="border:1px solid black; float: left;">
@@ -71,4 +90,4 @@
         
     </div>
     }
-</div>
+</div>*@

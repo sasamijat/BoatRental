@@ -22,8 +22,16 @@ namespace BoatsMontenegro.Controllers
             var boats = objContext.Boats.Where(b => b.BoatID == BoatId).ToList();
             return View(boats.Take(6));
         }
-        public ViewResult WholeOffer()   /*string id*/
+        public ViewResult WholeOffer(string search)   /*string id*/
         {
+            var boats123 = objContext.Boats.ToList();
+
+            if (search != null)
+            {
+                //boats = boats.Where(x => x.Size.Contains(search) || x.Category.Contains(search)).ToList();
+                return View(objContext.Boats.Where(x => x.Category.Contains(search) && x.Size.Contains(search) 
+                && x.Capacity.ToString().Contains(search) && x.Price.ToString().Contains(search)).ToList());
+            }
             //int BoatId = id;
             //if(id != null && id > 0)
             //{
@@ -31,8 +39,7 @@ namespace BoatsMontenegro.Controllers
             //}
             ////var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
             //return View(boats);
-            return View(objContext.Boats);
-           
+            return View(objContext.Boats);          
         }
 
         [HttpGet]
