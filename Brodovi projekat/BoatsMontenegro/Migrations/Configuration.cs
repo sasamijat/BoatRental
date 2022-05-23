@@ -23,11 +23,11 @@ namespace BoatsMontenegro.Migrations
             {
                 var reservations = new List<Reservation>
                     {
-                        new Reservation { DateFrom = new DateTime(2022, 08, 18), DateTo = new DateTime(2022, 09, 23), NeedCaptain = true },
-                        new Reservation { DateFrom = new DateTime(2022, 04, 28), DateTo = new DateTime(2022, 07, 12), NeedCaptain = true },
-                        new Reservation { DateFrom = new DateTime(2022, 03, 14), DateTo = new DateTime(2022, 08, 08), NeedCaptain = false },
-                        new Reservation { DateFrom = new DateTime(2022, 02, 10), DateTo = new DateTime(2022, 06, 17), NeedCaptain = true },
-                        new Reservation { DateFrom = new DateTime(2022, 05, 21), DateTo = new DateTime(2022, 04, 06), NeedCaptain = false }
+                        new Reservation { DateFrom = new DateTime(2022, 08, 18), DateTo = new DateTime(2022, 09, 23)},
+                        new Reservation { DateFrom = new DateTime(2022, 04, 28), DateTo = new DateTime(2022, 07, 12)},
+                        new Reservation { DateFrom = new DateTime(2022, 03, 14), DateTo = new DateTime(2022, 08, 08)},
+                        new Reservation { DateFrom = new DateTime(2022, 02, 10), DateTo = new DateTime(2022, 06, 17)},
+                        new Reservation { DateFrom = new DateTime(2022, 05, 21), DateTo = new DateTime(2022, 04, 06),}
                     };
                 reservations.ForEach(reservation => context.Reservations.Add(reservation));
                 context.SaveChanges();
@@ -39,11 +39,11 @@ namespace BoatsMontenegro.Migrations
             {
                 var users = new List<User>
                 {
-                    new User {UserID=1, FirstName = "Blagoje", LastName = "Jovovic", Email = "2metkazapavelica@gmail.com", Password = "1953", PersonalIdNumber = "655223984", PhoneNumber = "+38160787686767", Username="blagojej" },
-                    new User {UserID=2,  FirstName = "Kristina", LastName = "Mirkovic", Email = "kristinakris@yahoo.com", Password = "4745", PersonalIdNumber = "412887564", PhoneNumber = "+3816079879+",Username="kristinam" },
-                    new User {UserID=3,  FirstName = "Dijana", LastName = "Lazic", Email = "dijanalazicdiks@gmail.com", Password = "8896", PersonalIdNumber = "963365477", PhoneNumber = "+38160645646",Username="dijanal" },
-                    new User {UserID=4,  FirstName = "Gavrilo", LastName = "Principovic", Email = "mladabosna@outlook.com", Password = "1914", PersonalIdNumber = "852336889", PhoneNumber = "+38160796456",Username="gavrilop" },
-                    new User {UserID=5,  FirstName = "Ratko", LastName = "Mladicevic", Email = "koridor92@gmail.com", Password = "1992", PersonalIdNumber = "2144533564", PhoneNumber = "+38160789789",Username="ratkom" }
+                    new User {FirstName = "Blagoje", LastName = "Jovovic", Email = "2metkazapavelica@gmail.com", Password = "1953", PersonalIdNumber = "655223984", PhoneNumber = "+38160787686767", Username="blagojej" },
+                    new User {FirstName = "Kristina", LastName = "Mirkovic", Email = "kristinakris@yahoo.com", Password = "4745", PersonalIdNumber = "412887564", PhoneNumber = "+3816079879+",Username="kristinam" },
+                    new User {FirstName = "Dijana", LastName = "Lazic", Email = "dijanalazicdiks@gmail.com", Password = "8896", PersonalIdNumber = "963365477", PhoneNumber = "+38160645646",Username="dijanal" },
+                    new User {FirstName = "Gavrilo", LastName = "Principovic", Email = "mladabosna@outlook.com", Password = "1914", PersonalIdNumber = "852336889", PhoneNumber = "+38160796456",Username="gavrilop" },
+                    new User {FirstName = "Ratko", LastName = "Mladicevic", Email = "koridor92@gmail.com", Password = "1992", PersonalIdNumber = "2144533564", PhoneNumber = "+38160789789",Username="ratkom" }
                 };
                 users.ForEach(user => context.Users.Add(user));
                 context.SaveChanges();
@@ -51,8 +51,8 @@ namespace BoatsMontenegro.Migrations
             #endregion
                         
 
-#region -------------------BOAT------------------- 
-if (!context.Boats.Any())
+            #region -------------------BOAT------------------- 
+            if (!context.Boats.Any())
             {
                 var boats = new List<Boat>
                     {

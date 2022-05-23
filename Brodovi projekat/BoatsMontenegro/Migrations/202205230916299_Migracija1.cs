@@ -3,7 +3,7 @@ namespace BoatsMontenegro.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MigrationNum1 : DbMigration
+    public partial class Migracija1 : DbMigration
     {
         public override void Up()
         {
@@ -30,9 +30,9 @@ namespace BoatsMontenegro.Migrations
                 c => new
                     {
                         ReservationID = c.Int(nullable: false, identity: true),
-                        DateFrom = c.DateTime(nullable: false),
-                        DateTo = c.DateTime(nullable: false),
-                        NeedCaptain = c.Boolean(nullable: false),
+                        DateFrom = c.DateTime(),
+                        DateTo = c.DateTime(),
+                        NeedCaptain = c.String(),
                         Boat_BoatID = c.Int(),
                         ReservedBy_UserID = c.Int(),
                     })

@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-body">
                     @foreach (var item in Model)
-                     {
+                    {
                         <div class="row" style="margin-right:28%">
                             <div class="col">
                                 <center>
@@ -75,10 +75,16 @@
                                 </center>
                             </div>
                         </div>
-                     }
-
+                    }
+                    <br /> <br />
                 </div>
             </div>
         </div>
+        <form action="~/Reservation/Create">
+            <button class="NavbarButton" style="background-color:black; color:white; width:35%; margin-left:35%">Rezervisi</button>
+        </form>
     </div>
 </div>
+
+
+@*<a href="~/Account/Login"><button class="NavbarButton">Prijava</button></a>*@

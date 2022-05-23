@@ -94,7 +94,7 @@ namespace BoatsMontenegro.Controllers
             base.Dispose(disposing);
         }
 
-
+        /*
         [HttpPost]
         public void PublishYourBoat(string name, string category, int capacity, string price, string size, string engine, string fuelConsumption)
         {
@@ -105,6 +105,7 @@ namespace BoatsMontenegro.Controllers
         {
 
         }
+        */
     }
 }
 

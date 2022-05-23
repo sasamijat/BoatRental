@@ -42,18 +42,18 @@ namespace BoatsMontenegro.Controllers
             return View(objContext.Boats);          
         }
 
-        [HttpGet]
-        public ActionResult TakeReservation()
-        {
-            return View(new Reservation());
-        }
-        [HttpPost]
-       public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
-        {
-            //objContext.Reservations.Add(reservation);
-           objContext.SaveChanges();
-            return RedirectToAction("TakeReservation");
-        }
+       // [HttpGet]
+       // public ActionResult TakeReservation()
+       // {
+       //     return View(new Reservation());
+       // }
+       // [HttpPost]
+       //public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
+       // {
+       //     //objContext.Reservations.Add(reservation);
+       //    objContext.SaveChanges();
+       //     return RedirectToAction("TakeReservation");
+       // }
 
         [HttpGet]
         public ActionResult Kategorije(string category)

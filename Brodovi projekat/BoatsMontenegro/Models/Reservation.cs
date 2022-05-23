@@ -11,9 +11,9 @@ namespace BoatsMontenegro.Models
     {
         [Key]
         public int ReservationID { get; set; }  //Primary key
-        public DateTime DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
-        public bool NeedCaptain { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
+        public string NeedCaptain { get; set; }
 
         
         public virtual Boat Boat { get; set; }

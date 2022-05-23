@@ -470,12 +470,6 @@
     justify-content:center;
 }
 
-/*#region ODABERI KATEGORIJU ODABERI KATEGORIJU*/
-
-
-/*#endregion */
-
-
 /*#region TAKE RESERVATION FORM*/
 * {
     box-sizing: border-box;
@@ -640,4 +634,6 @@ input:focus ~ .highlight {
 }
 
 /*#endregion */
+
+
 

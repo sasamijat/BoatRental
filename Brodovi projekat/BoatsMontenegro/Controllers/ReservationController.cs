@@ -33,13 +33,31 @@ namespace BoatsMontenegro.Controllers
             return View(reservation);
         }
         #endregion
-      
+
         #region CREATE
+        public ActionResult Create()
+        {
+            return View(new Reservation());
+        }
+
+        [HttpPost]
+        public ActionResult Create(Reservation reservation)
+        {
+            objContext.Reservations.Add(reservation);
+            objContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        #endregion
+        /*
         public ActionResult Create()
         {
            //Reservation reservation = objContext.Reservations.Where(r => r.ReservationID == id).SingleOrDefault();
             return View("TakeReservation", new ReservationContract());
         }
+        */
+
+        /*
         [HttpPost]
         public ActionResult Create(ReservationContract newResevation)
         {
@@ -47,7 +65,7 @@ namespace BoatsMontenegro.Controllers
             ////Validiraj da li brod postoji////
             ////Proveriti da li je dateFrom pre dateTo////
             ////Proveriti da li je korisnik koji rezervise slobodan u terminu dateFrom - dateTo////
-            ////Proveriti da li je bro koji rezervise slobodan u terminu dateFrom - dateTo////
+            ////Proveriti da li je brod koji rezervise slobodan u terminu dateFrom - dateTo////
 
             var reservation = new Reservation()
             {
@@ -64,11 +82,12 @@ namespace BoatsMontenegro.Controllers
 
             return RedirectToAction("Index");
         }
-        #endregion
+        */
 
 
-        
-      
+
+
+
 
         #region EDIT 
         public ActionResult Edit(int id)
@@ -77,7 +96,7 @@ namespace BoatsMontenegro.Controllers
             return View(reservation);
         }      
         [HttpPost]
-        public ActionResult Edit(int ReservationID, string tripstart, string tripend, bool NeedCaptain)
+        public ActionResult Edit(int ReservationID, string tripstart, string tripend, string NeedCaptain)
         {           
             Reservation reservation = objContext.Reservations.Where(r => r.ReservationID == ReservationID).SingleOrDefault();
                 if(reservation != null)

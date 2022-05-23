@@ -59,22 +59,37 @@
             <label>Potrosnja goriva</label>
         </div>
 
-        <div style="margin-left:20%">
-            <input type="submit" value="Objavi" />
+        <div class="group">
+            <input type="datetime" name="DateFrom" id="DateFrom" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Date from</label>
         </div>
+
+        <div class="group">
+        <input type="date" name="DateTo" id="DateTo" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Date to</label>
+        </div>
+
+
+<div style="margin-left:20%">
+    <input type="submit" value="Objavi" />
+</div>
 
     </form>
 
 
-    <br />
-    <br />
-    <p class="footer">
-    <p style="margin-left:25%; color:black;">Hvala vam sto koristite nase usluge!</p>
-    <a href="~/Home/Index" target="_blank" style="margin-left:25%; color:black;">Povratak na pocetnu stranicu</a>
+<br />
+<br />
+<p class="footer">
+<p style="margin-left:25%; color:black;">Hvala vam sto koristite nase usluge!</p>
+<a href="~/Home/Index" target="_blank" style="margin-left:25%; color:black;">Povratak na pocetnu stranicu</a>
 </div>
 
 
-@using (Html.BeginForm("PublishYourBoatSecond", "Form", FormMethod.Post))
+@*@using (Html.BeginForm("PublishYourBoatSecond", "Form", FormMethod.Post))
     {
         @Html.TextBoxFor(m => m.Name)
         @Html.TextBoxFor(m => m.Size)
@@ -85,4 +100,4 @@
         @Html.TextBoxFor(m => m.Category)
 
         <input type="submit" value="Submit strongly type synchronous form" />
-    }
+    }*@
