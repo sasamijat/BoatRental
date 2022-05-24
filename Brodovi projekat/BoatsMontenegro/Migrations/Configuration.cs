@@ -27,7 +27,9 @@ namespace BoatsMontenegro.Migrations
                         new Reservation { DateFrom = new DateTime(2022, 04, 28), DateTo = new DateTime(2022, 07, 12)},
                         new Reservation { DateFrom = new DateTime(2022, 03, 14), DateTo = new DateTime(2022, 08, 08)},
                         new Reservation { DateFrom = new DateTime(2022, 02, 10), DateTo = new DateTime(2022, 06, 17)},
-                        new Reservation { DateFrom = new DateTime(2022, 05, 21), DateTo = new DateTime(2022, 04, 06),}
+                        new Reservation { DateFrom = new DateTime(2022, 05, 21), DateTo = new DateTime(2022, 04, 06),},
+                        new Reservation {DateFrom = new DateTime(2022, 07,28, 21,0,0), DateTo=new DateTime(2022,07,29, 21,0,0), NeedCaptain="Yes"},
+                        new Reservation {DateFrom = new DateTime(2022, 06,22, 10,0,0), DateTo=new DateTime(2022,06,23, 10,0,0), NeedCaptain="Yes"},
                     };
                 reservations.ForEach(reservation => context.Reservations.Add(reservation));
                 context.SaveChanges();

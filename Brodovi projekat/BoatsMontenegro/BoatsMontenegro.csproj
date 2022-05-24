@@ -220,6 +220,10 @@
     <Compile Include="Migrations\202205230916299_Migracija1.Designer.cs">
       <DependentUpon>202205230916299_Migracija1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205241053438_Migracija2.cs" />
+    <Compile Include="Migrations\202205241053438_Migracija2.Designer.cs">
+      <DependentUpon>202205241053438_Migracija2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Boat.cs" />
     <Compile Include="Models\Reservation.cs" />
@@ -325,6 +329,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202205230916299_Migracija1.resx">
       <DependentUpon>202205230916299_Migracija1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205241053438_Migracija2.resx">
+      <DependentUpon>202205241053438_Migracija2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
