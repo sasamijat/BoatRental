@@ -37,18 +37,51 @@ namespace BoatsMontenegro.Controllers
         #region CREATE
         public ActionResult Create()
         {
-            return View(new Reservation());
+            var existingBoats = objContext.Boats;
+            ViewData["boats"] = existingBoats;
+            return View(new ReservationContract());
         }
 
         [HttpPost]
-        public ActionResult Create(Reservation reservation)
+        public ActionResult Create(DateTime dateFrom, DateTime dateTo, string needCaptain, int id)
         {
-            objContext.Reservations.Add(reservation);
-            objContext.SaveChanges();
-            return RedirectToAction("Index");
+            
+            if (ModelState.IsValid) 
+            {
+                Reservation reservation = new Reservation()
+                {
+                    Boat = objContext.Boats.First(x => x.BoatID == id)
+                };
+                reservation.DateFrom = dateFrom;
+                reservation.DateTo = dateTo;
+                reservation.NeedCaptain = needCaptain;
+                reservation.Boat.BoatID = id;
+                objContext.Reservations.Add(reservation);
+                objContext.SaveChanges();
+                
+            }
+            return RedirectToAction("Index", "Reservation");
+                     
+            //return View("Index");
+            
         }
-
         #endregion
+
+        /*
+        try { 
+            ViewData["DateFrom"] = dateFrom;
+            ViewData["DateTo"] = dateTo;
+            ViewData["NeedCaptain"] = needCaptain;
+            ViewData["BoatID"] = id;
+            return View("Index");
+            }
+            catch { return View(); }
+        */
+
+        //objContext.Reservations.Add(reservation);
+        //int boatid = Request["BoatID"];
+        //objContext.SaveChanges();
+        //return RedirectToAction("Index");
         /*
         public ActionResult Create()
         {

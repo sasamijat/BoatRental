@@ -1,8 +1,11 @@
-﻿@model BoatsMontenegro.Models.Reservation
-
+﻿@model BoatsMontenegro.Contracts.ReservationContract
+@using BoatsMontenegro.Models
+@*@using System.Linq*@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var boats = (IEnumerable<Boat>) ViewData["boats"];
+    var ids = boats.Select(x => x.BoatID).ToList();
 }
 
 <h2 style="font-family:'Brush Script MT',cursive;text-shadow: 8px 8px 8px black;color: white;">Objavi svoj brod</h2>
@@ -15,29 +18,37 @@
 
         <div class="group">
             <span style="color:black; font-family:'Brush Script MT',cursive; font-size:180%">Jedinstveni broj broda</span>
-            @*@Html.EditorFor(model => model.Boat.BoatID)*@
-            <input type="number" name="Boat.BoatID" id="" />
-            @Html.ValidationMessageFor(model => model.Boat.BoatID, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.id, new SelectList(ids), "Select boat")
+            @*<input type="number" name="BoatID" id="BoatID" />*@
+            @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
         </div>
+
+        @*<input type="number" name="Boat.BoatID" id="" />*@
+        @*@Html.DropDownList("BoatID", new List<SelectListItem>() {
+                new SelectListItem { Text="1",Value="1"},
+                new SelectListItem { Text="2", Value="2"}
+            }, new { @class = "form-control" })*@
+        @*, new { @class = Model.Boat}*@
+        @*<input type="number" name="BoatID" id="" />*@
+        @*@Html.DropDownListFor(model =>model.Boat.BoatID)*@ @*new SelectList(Enum.GetValues(typeof(BoatsMontenegro.Models.Boat))), "Odaberi Id")*@
+
 
         <div class="group">
             <span style="color:black; font-family:'Brush Script MT',cursive; font-size:180%">Od kada</span>
-            <input type="date" name="DateFrom" id="">
+            <input type="date" name="DateFrom" id="DateFrom">
             @Html.ValidationMessageFor(model => model.DateFrom, "", new { @class = "text-danger" })
         </div>
 
         <div class="group">
             <span style="color:black; font-family:'Brush Script MT',cursive; font-size:180%">Do kada</span>
-            <input type="date" name="DateTo" id="">
+            <input type="date" name="DateTo" id="DateTo">
             @Html.ValidationMessageFor(model => model.DateTo, "", new { @class = "text-danger" })
         </div>
-        
+
         <div class="group">
             <span style="color:black; font-family:'Brush Script MT',cursive; font-size:180%">Treba li vam kapetan?</span>
-            <div class="checkbox">
-                @Html.EditorFor(model => model.NeedCaptain)
-                @Html.ValidationMessageFor(model => model.NeedCaptain, "", new { @class = "text-danger" })
-            </div>
+            <input type="text" name="NeedCaptain" id="NeedCaptain" />
+            @Html.ValidationMessageFor(model => model.NeedCaptain, "", new { @class = "text-danger" })
         </div>
 
         <div style="margin-left:20%; color:black">
@@ -45,6 +56,15 @@
         </div>
     }
 </div>
+
+@*@Html.EditorFor(model => model.NeedCaptain)*@
+
+
+
+
+
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

@@ -7,6 +7,7 @@ using BoatsMontenegro.Models;
 using System.ComponentModel.DataAnnotations;
 using BoatsMontenegro.BaseBase;
 using System.Web.Security;
+using BoatsMontenegro.AuthenticationAndAuthorization;
 
 namespace BoatsMontenegro.Controllers
 {
@@ -21,6 +22,7 @@ namespace BoatsMontenegro.Controllers
         }
 
         #region -----------------LOGIN--------------------
+        /*
         public ActionResult Login()
         {
             return View();
@@ -56,9 +58,9 @@ namespace BoatsMontenegro.Controllers
                 return RedirectToAction("Login");
             }
         }
+        */
         #endregion
         
-
         #region ---------------REGISTER------------------
         public ActionResult Register()
         {
@@ -81,6 +83,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
+        /* LOGOUT LOGOUT LOgOUT
         public ActionResult LogOut()
         {
             //FormsAuthentication.SignOut();
@@ -88,6 +91,41 @@ namespace BoatsMontenegro.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
+        */
+        public AccountController() { }
+
+        IAuthProvider authProvider;
+        public AccountController(IAuthProvider auth)
+        {
+            authProvider = auth;
+        }
+
+        public ViewResult LoginMethod()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoginMethod(User userModel, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                if(authProvider.Authenticate(userModel.Username, userModel.Password))
+                {
+                    return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Pogresno korisnicko ime ili lozika");
+                }
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+        }
+
     }
 }
 

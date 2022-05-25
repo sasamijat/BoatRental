@@ -197,6 +197,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuthenticationAndAuthorization\FormsAuthProvider.cs" />
+    <Compile Include="AuthenticationAndAuthorization\IAuthProvider.cs" />
     <Compile Include="BaseBase\BaseContext.cs" />
     <Compile Include="Contracts\ReservationContract.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
@@ -204,6 +206,7 @@
     <Compile Include="Controllers\BoatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OstaloController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\PonudaController.cs" />
@@ -223,6 +226,14 @@
     <Compile Include="Migrations\202205241053438_Migracija2.cs" />
     <Compile Include="Migrations\202205241053438_Migracija2.Designer.cs">
       <DependentUpon>202205241053438_Migracija2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205241138332_Migracija3.cs" />
+    <Compile Include="Migrations\202205241138332_Migracija3.Designer.cs">
+      <DependentUpon>202205241138332_Migracija3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205241139057_Migracija4.cs" />
+    <Compile Include="Migrations\202205241139057_Migracija4.Designer.cs">
+      <DependentUpon>202205241139057_Migracija4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Boat.cs" />
@@ -309,9 +320,11 @@
     <Content Include="Views\Ostalo\NajcescaPitanja.cshtml" />
     <Content Include="Views\Ostalo\RecenzijeIskustva.cshtml" />
     <Content Include="Views\Ponuda\PublishYourBoat.cshtml" />
+    <Content Include="Views\Account\LoginMethod.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -332,6 +345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205241053438_Migracija2.resx">
       <DependentUpon>202205241053438_Migracija2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205241138332_Migracija3.resx">
+      <DependentUpon>202205241138332_Migracija3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205241139057_Migracija4.resx">
+      <DependentUpon>202205241139057_Migracija4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

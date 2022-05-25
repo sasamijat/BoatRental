@@ -32,6 +32,7 @@ namespace BoatsMontenegro.Controllers
                 return View(objContext.Boats.Where(x => x.Category.Contains(search) && x.Size.Contains(search) 
                 && x.Capacity.ToString().Contains(search) && x.Price.ToString().Contains(search)).ToList());
             }
+            return View(objContext.Boats);
             //int BoatId = id;
             //if(id != null && id > 0)
             //{
@@ -39,7 +40,7 @@ namespace BoatsMontenegro.Controllers
             //}
             ////var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
             //return View(boats);
-            return View(objContext.Boats);          
+
         }
 
        // [HttpGet]

@@ -40,20 +40,14 @@ namespace BoatsMontenegro.Models
 
 
 
-        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
         public string Username { get; set; }
 
 
 
-        //[Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
-        //[DataType(DataType.Password)]
+        [Required(ErrorMessage = "Ovo polje mora biti popunjeno.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-
-        //[DataType(DataType.Password)]
-        //[Compare("Password",ErrorMessage = "Ovo polje mora biti popunjeno.")]
-        public string ConfirmPassword { get; set; }
-    
 
        
         public Role Role { get; set; }

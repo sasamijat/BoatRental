@@ -7,9 +7,9 @@ namespace BoatsMontenegro.Contracts
 {
     public class ReservationContract
     {
-        public int BoatID { get; set; }
+        public int id { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-        public bool NeedCaptain { get; set; }
+        public string NeedCaptain { get; set; }
     }
 }
