@@ -67,61 +67,6 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-        /*
-        try { 
-            ViewData["DateFrom"] = dateFrom;
-            ViewData["DateTo"] = dateTo;
-            ViewData["NeedCaptain"] = needCaptain;
-            ViewData["BoatID"] = id;
-            return View("Index");
-            }
-            catch { return View(); }
-        */
-
-        //objContext.Reservations.Add(reservation);
-        //int boatid = Request["BoatID"];
-        //objContext.SaveChanges();
-        //return RedirectToAction("Index");
-        /*
-        public ActionResult Create()
-        {
-           //Reservation reservation = objContext.Reservations.Where(r => r.ReservationID == id).SingleOrDefault();
-            return View("TakeReservation", new ReservationContract());
-        }
-        */
-
-        /*
-        [HttpPost]
-        public ActionResult Create(ReservationContract newResevation)
-        {
-            ////Validiraj da li je korisnik ulogovan. Proveriti da userId i Username iz sesije nisu null/empty.////
-            ////Validiraj da li brod postoji////
-            ////Proveriti da li je dateFrom pre dateTo////
-            ////Proveriti da li je korisnik koji rezervise slobodan u terminu dateFrom - dateTo////
-            ////Proveriti da li je brod koji rezervise slobodan u terminu dateFrom - dateTo////
-
-            var reservation = new Reservation()
-            {
-                NeedCaptain = newResevation.NeedCaptain,
-                DateFrom = newResevation.DateFrom,
-                DateTo = newResevation.DateTo,
-                Boat = objContext.Boats.Find(newResevation.BoatID),
-                ReservedBy = objContext.Users.Find(int.Parse(Session["UserID"].ToString()))
-            };
-            objContext.Reservations.Add(reservation);
-            objContext.SaveChanges();
-            //objContext.Reservations.Add(reservation);
-            //objContext.SaveChanges();           
-
-            return RedirectToAction("Index");
-        }
-        */
-
-
-
-
-
-
         #region EDIT 
         public ActionResult Edit(int id)
         {
@@ -164,6 +109,29 @@ namespace BoatsMontenegro.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        public ActionResult ScheduledAppointments(int? idboat)
+        {
+            //var reservations1 = new Reservation();
+            //var reservations1 = new List<Reservation>();
+            //var Boatid1 = idboat;
+            if (idboat != null)
+            {
+                var reservations1 = objContext.Reservations.Where(r => r.Boat.BoatID == idboat).ToList();
+                return View(viewName: "ScheduledAppointments");               
+            }
+            else
+            {
+                return View("Index");
+                //return View("WholeOffer");
+            }
+        }
+
+        //public ActionResult ReservedAppointments()
+        //{
+
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -193,3 +161,48 @@ namespace BoatsMontenegro.Controllers
 //    objContext.SaveChanges();
 //    return RedirectToAction("TakeReservation");
 //}
+
+
+/*
+       try { 
+           ViewData["DateFrom"] = dateFrom;
+           ViewData["DateTo"] = dateTo;
+           ViewData["NeedCaptain"] = needCaptain;
+           ViewData["BoatID"] = id;
+           return View("Index");
+           }
+           catch { return View(); }
+       */
+
+//objContext.Reservations.Add(reservation);
+//int boatid = Request["BoatID"];
+//objContext.SaveChanges();
+//return RedirectToAction("Index");
+/*
+
+/*
+[HttpPost]
+public ActionResult Create(ReservationContract newResevation)
+{
+    ////Validiraj da li je korisnik ulogovan. Proveriti da userId i Username iz sesije nisu null/empty.////
+    ////Validiraj da li brod postoji////
+    ////Proveriti da li je dateFrom pre dateTo////
+    ////Proveriti da li je korisnik koji rezervise slobodan u terminu dateFrom - dateTo////
+    ////Proveriti da li je brod koji rezervise slobodan u terminu dateFrom - dateTo////
+
+    var reservation = new Reservation()
+    {
+        NeedCaptain = newResevation.NeedCaptain,
+        DateFrom = newResevation.DateFrom,
+        DateTo = newResevation.DateTo,
+        Boat = objContext.Boats.Find(newResevation.BoatID),
+        ReservedBy = objContext.Users.Find(int.Parse(Session["UserID"].ToString()))
+    };
+    objContext.Reservations.Add(reservation);
+    objContext.SaveChanges();
+    //objContext.Reservations.Add(reservation);
+    //objContext.SaveChanges();           
+
+    return RedirectToAction("Index");
+}
+*/

@@ -22,7 +22,7 @@ namespace BoatsMontenegro.Controllers
             var boats = objContext.Boats.Where(b => b.BoatID == BoatId).ToList();
             return View(boats.Take(6));
         }
-        public ViewResult WholeOffer(string search)   /*string id*/
+        public ViewResult WholeOffer(string search)   /*string*/
         {
             var boats123 = objContext.Boats.ToList();
 
@@ -32,29 +32,8 @@ namespace BoatsMontenegro.Controllers
                 return View(objContext.Boats.Where(x => x.Category.Contains(search) && x.Size.Contains(search) 
                 && x.Capacity.ToString().Contains(search) && x.Price.ToString().Contains(search)).ToList());
             }
-            return View(objContext.Boats);
-            //int BoatId = id;
-            //if(id != null && id > 0)
-            //{
-            //    var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
-            //}
-            ////var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
-            //return View(boats);
-
+            return View(objContext.Boats);        
         }
-
-       // [HttpGet]
-       // public ActionResult TakeReservation()
-       // {
-       //     return View(new Reservation());
-       // }
-       // [HttpPost]
-       //public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
-       // {
-       //     //objContext.Reservations.Add(reservation);
-       //    objContext.SaveChanges();
-       //     return RedirectToAction("TakeReservation");
-       // }
 
         [HttpGet]
         public ActionResult Kategorije(string category)
@@ -76,3 +55,26 @@ namespace BoatsMontenegro.Controllers
 //, bool NeedCaptain
 
 //int BoatID, DateTime DateFrom, DateTime DateTo
+
+
+// [HttpGet]
+// public ActionResult TakeReservation()
+// {
+//     return View(new Reservation());
+// }
+// [HttpPost]
+//public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
+// {
+//     //objContext.Reservations.Add(reservation);
+//    objContext.SaveChanges();
+//     return RedirectToAction("TakeReservation");
+// }
+
+
+//int BoatId = id;
+//if(id != null && id > 0)
+//{
+//    var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
+//}
+////var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
+//return View(boats);

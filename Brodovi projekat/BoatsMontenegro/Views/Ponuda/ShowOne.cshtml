@@ -11,11 +11,19 @@
             <div class="card">
                 <div class="card-body">
                     @foreach (var item in Model)
-                    {
+                     {
                         <div class="row" style="margin-right:28%">
                             <div class="col">
                                 <center>
                                     <img style="width:145%;" src="~/ImagesFolder/brodSlika.jpeg" />
+                                </center>
+                            </div>
+                        </div>
+
+                        <div class="row" id="ShowOneTekst">
+                            <div class="col">
+                                <center>
+                                    <h3>Broj broda:  @Html.DisplayFor(modelItem => item.BoatID)</h3>
                                 </center>
                             </div>
                         </div>
@@ -75,24 +83,20 @@
                                 </center>
                             </div>
                         </div>
+                     }
 
-                        @*<div class="row" id="ShowOneTekst">
-                            <div class="col">
-                                <center>
-                                    <h3>Zauzeti termini: @Html.DisplayFor(modelItem => item.)</h3>
-                                </center>
-                            </div>
-                        </div>*@
-                    }
                     <br /> <br />
                 </div>
             </div>
         </div>
+        <form action="~/Reservation/ScheduledAppointments">
+            <button class="NavbarButton" style="background-image: linear-gradient( 135deg, #FFD26F 10%, #3677FF 100%); color: black; width: 35%; margin-left: 35%; font-weight:bold ">Pogledajte termine</button>
+        </form> <br />
         <form action="~/Reservation/Create">
             <button class="NavbarButton" style="background-color:black; color:white; width:35%; margin-left:35%">Rezervisi</button>
         </form>
     </div>
-</div>
+</div>2
 
 
 @*<a href="~/Account/Login"><button class="NavbarButton">Prijava</button></a>*@
