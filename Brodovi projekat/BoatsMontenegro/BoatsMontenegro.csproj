@@ -203,6 +203,7 @@
     <Compile Include="Contracts\ReservationContract.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthAuthController.cs" />
     <Compile Include="Controllers\BoatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -308,12 +309,11 @@
     <Content Include="Views\Ostalo\NajcescaPitanja.cshtml" />
     <Content Include="Views\Ostalo\RecenzijeIskustva.cshtml" />
     <Content Include="Views\Ponuda\PublishYourBoat.cshtml" />
-    <Content Include="Views\Account\LoginMethod.cshtml" />
-    <Content Include="Views\Reservation\ScheduledAppointments.cshtml" />
+    <Content Include="Views\Reservation\ScheduledAppointment.cshtml" />
+    <Content Include="Views\AuthAuth\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -22,7 +22,7 @@ namespace BoatsMontenegro.Controllers
         }
 
         #region -----------------LOGIN--------------------
-        /*
+        
         public ActionResult Login()
         {
             return View();
@@ -58,7 +58,7 @@ namespace BoatsMontenegro.Controllers
                 return RedirectToAction("Login");
             }
         }
-        */
+        
         #endregion
         
         #region ---------------REGISTER------------------
@@ -83,7 +83,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-        /* LOGOUT LOGOUT LOgOUT
+        
         public ActionResult LogOut()
         {
             //FormsAuthentication.SignOut();
@@ -91,7 +91,7 @@ namespace BoatsMontenegro.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
-        */
+        
         public AccountController() { }
 
         IAuthProvider authProvider;
@@ -100,6 +100,7 @@ namespace BoatsMontenegro.Controllers
             authProvider = auth;
         }
 
+        /*
         public ViewResult LoginMethod()
         {
             return View();
@@ -110,7 +111,7 @@ namespace BoatsMontenegro.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(authProvider.Authenticate(userModel.Username, userModel.Password))
+                if (authProvider.Authenticate(userModel.Username, userModel.Password))
                 {
                     return Redirect(returnUrl ?? Url.Action("Index", "Home"));
                 }
@@ -125,7 +126,7 @@ namespace BoatsMontenegro.Controllers
                 return View();
             }
         }
-
+        */
     }
 }
 

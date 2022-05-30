@@ -1,14 +1,11 @@
 ﻿@using BoatsMontenegro.Models
-@model User
+@model BoatsMontenegro.Models.User
 
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <div class="container">
     <div class="row">
@@ -59,9 +56,10 @@
                                         </div>
 
                                     </div>
+                                    <button type="submit" value="Login" class="btn btn-info btn-md ">Prijava</button>
                                 }
                                 <br />
-                                <button type="submit" value="Login" class="btn btn-info btn-md ">Prijava</button>
+
                                 <br />
                                 <br />
                                 <br />

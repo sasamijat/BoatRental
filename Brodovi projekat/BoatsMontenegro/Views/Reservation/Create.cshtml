@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var boats = (IEnumerable<Boat>) ViewData["boats"];
+    var boats = (IEnumerable<Boat>)ViewData["boats"];
     var ids = boats.Select(x => x.BoatID).ToList();
 }
 
@@ -22,16 +22,6 @@
             @*<input type="number" name="BoatID" id="BoatID" />*@
             @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
         </div>
-
-        @*<input type="number" name="Boat.BoatID" id="" />*@
-        @*@Html.DropDownList("BoatID", new List<SelectListItem>() {
-                new SelectListItem { Text="1",Value="1"},
-                new SelectListItem { Text="2", Value="2"}
-            }, new { @class = "form-control" })*@
-        @*, new { @class = Model.Boat}*@
-        @*<input type="number" name="BoatID" id="" />*@
-        @*@Html.DropDownListFor(model =>model.Boat.BoatID)*@ @*new SelectList(Enum.GetValues(typeof(BoatsMontenegro.Models.Boat))), "Odaberi Id")*@
-
 
         <div class="group">
             <span style="color:black; font-family:'Brush Script MT',cursive; font-size:180%">Od kada</span>
@@ -57,10 +47,6 @@
     }
 </div>
 
-@*@Html.EditorFor(model => model.NeedCaptain)*@
-
-
-
 
 
 
@@ -70,9 +56,17 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
 
 
-@*value="@Model.DateFrom"*@ 
+@*value="@Model.DateFrom"*@
+
+@*@Html.EditorFor(model => model.NeedCaptain)*@
+
+@*<input type="number" name="Boat.BoatID" id="" />*@
+@*@Html.DropDownList("BoatID", new List<SelectListItem>() {
+        new SelectListItem { Text="1",Value="1"},
+        new SelectListItem { Text="2", Value="2"}
+    }, new { @class = "form-control" })*@
+@*, new { @class = Model.Boat}*@
+@*<input type="number" name="BoatID" id="" />*@
+@*@Html.DropDownListFor(model =>model.Boat.BoatID)*@ @*new SelectList(Enum.GetValues(typeof(BoatsMontenegro.Models.Boat))), "Odaberi Id")*@

@@ -110,21 +110,31 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-        public ActionResult ScheduledAppointments(int? idboat)
+        public ActionResult ScheduledAppointment(int? idboat)
         {
             //var reservations1 = new Reservation();
             //var reservations1 = new List<Reservation>();
-            //var Boatid1 = idboat;
-            if (idboat != null)
-            {
-                var reservations1 = objContext.Reservations.Where(r => r.Boat.BoatID == idboat).ToList();
-                return View(viewName: "ScheduledAppointments");               
-            }
-            else
-            {
-                return View("Index");
-                //return View("WholeOffer");
-            }
+            var Boatid1 = idboat;
+            //int boatid1 = Int32.Parse(idboat);
+            var reservations1 = objContext.Reservations.Where(r => r.Boat.BoatID == Boatid1).ToList();
+
+            //var reservations1 = objContext.Reservations.Where(r => r.Boat.BoatID == idboat).ToList();
+        
+            return View(reservations1);
+
+
+            //if (idboat != null)
+            //{
+            //    var reservations1 = objContext.Reservations.Where(r => r.Boat.BoatID == idboat).ToList();
+            //    //return View(viewName: "ScheduledAppointments");
+            //    return RedirectToAction("ScheduledAppointments", "Reservation");
+            //}
+            //else
+            //{
+            //    //return View("Index");
+            //    //return View("WholeOffer");
+            //    return RedirectToAction("Create","Reservation");
+            //}
         }
 
         //public ActionResult ReservedAppointments()

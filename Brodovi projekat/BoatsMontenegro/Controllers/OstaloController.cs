@@ -8,32 +8,35 @@ namespace BoatsMontenegro.Controllers
 {
     public class OstaloController : Controller
     {
-        // GET: Ostalo
+        
         [Authorize]
         public ActionResult Kategorije()
         {
             return View();
         }
+
         [Authorize]
         public ActionResult IznajmiSvojBrod()
         {
             return View();
         }
-        //[Authorize]
+        
         public ActionResult NaciniPlacanja()
         {
             return View();
         }
-        //[Authorize]
+        
         public ActionResult Kontakt()
         {
             return View();
         }
+
         [Authorize]
         public ActionResult NajcescaPitanja()
         {
             return View();
         }
+
         [Authorize]
         public ActionResult RecenzijeIskustva()
         {

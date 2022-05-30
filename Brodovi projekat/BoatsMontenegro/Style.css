@@ -171,12 +171,6 @@
     width: 70%;
 }
 
-.footerCss {
-    background: linear-gradient(#001219, #001e2a);
-    height: 125px;
-    color:whitesmoke;
-}
-
 #LittleDivsFooter1 {
     height: 16%;
     width: 20%;
@@ -635,5 +629,12 @@ input:focus ~ .highlight {
 
 /*#endregion */
 
-
-
+#divFooter123 {
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    background: linear-gradient(#001219, #001e2a);
+    height: 125px;
+    color: whitesmoke;
+    text-shadow: 8px 8px 8px black;
+}
