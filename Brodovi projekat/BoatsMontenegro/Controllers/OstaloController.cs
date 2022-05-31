@@ -20,7 +20,7 @@ namespace BoatsMontenegro.Controllers
             return View();
         }
 
-        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        
         public ActionResult NaciniPlacanja()
         {
             return View();

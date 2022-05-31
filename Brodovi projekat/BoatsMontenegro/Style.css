@@ -638,3 +638,11 @@ input:focus ~ .highlight {
     color: whitesmoke;
     text-shadow: 8px 8px 8px black;
 }
+
+#loginNavbar123{
+    color: whitesmoke;
+}
+
+#nekaoznaka{
+    color: white;
+}

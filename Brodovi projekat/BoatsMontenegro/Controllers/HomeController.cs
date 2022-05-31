@@ -18,7 +18,7 @@ namespace BoatsMontenegro.Controllers
             objContext = new BaseContext();
         }
         
-        [CustomAuthorize("Admin","Buyer","Seller")]
+        
         public ActionResult Index(string search, string SortOrder, string SortBy)
         {
             var boats = objContext.Boats.ToList();
@@ -52,7 +52,7 @@ namespace BoatsMontenegro.Controllers
             return View(boats.Take(6));
         }
 
-        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        
         public ActionResult UnAuthorized()
         {
             ViewBag.Message = "Pristup odbijen!";

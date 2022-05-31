@@ -3,15 +3,41 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Welcome : @Session["Username"]</a></li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        </ul>
+
+
+    <a href="#">@Session["FirstName"] @Session["LastName"]</a>
+    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+
     }
 }
+
+
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+<span style="color:white; font-size:160%; font-family:'Brush Script MT',cursive; top:46%; position:absolute;">
+    @Html.ActionLink("Prijava", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+</span>
+
 }
+
+
+
+
+
+@*@if (!string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">@Session["FirstName"] @Session["LastName"]</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        }
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }*@

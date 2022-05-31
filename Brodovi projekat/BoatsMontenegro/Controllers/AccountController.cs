@@ -81,6 +81,8 @@ namespace BoatsMontenegro.Controllers
                 {
                     Session["Username"] = user.Username;
                     Session["UserIdentifier"] = user.UserIdentifier;
+                    Session["LastName"] = user.LastName;
+                    Session["FirstName"] = user.FirstName;
                     return RedirectToAction("Index", "Home");
                 }
                 else
