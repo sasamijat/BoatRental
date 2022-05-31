@@ -5,16 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using BoatsMontenegro.BaseBase;
 using BoatsMontenegro.Models;
+using BoatsMontenegro.AutorizationAuthentication;
 
 namespace BoatsMontenegro.Controllers
 {  
     public class HomeController : Controller
     {
+        
         BaseContext objContext;
         public HomeController()
         {
             objContext = new BaseContext();
         }
+        
+        [CustomAuthorize("Admin","Buyer","Seller")]
         public ActionResult Index(string search, string SortOrder, string SortBy)
         {
             var boats = objContext.Boats.ToList();
@@ -46,12 +50,13 @@ namespace BoatsMontenegro.Controllers
                     }
             }
             return View(boats.Take(6));
-        } 
-        
-        //public ActionResult AboutUsMasterpage()
-        //{
-        //    return PartialView();
-        //}
+        }
 
+        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        public ActionResult UnAuthorized()
+        {
+            ViewBag.Message = "Pristup odbijen!";
+            return View();
+        }
     }
 }

@@ -197,32 +197,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="AuthenticationAndAuthorization\FormsAuthProvider.cs" />
-    <Compile Include="AuthenticationAndAuthorization\IAuthProvider.cs" />
+    <Compile Include="AutorizationAuthentication\CustomAuthenticationFilter.cs" />
+    <Compile Include="AutorizationAuthentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="BaseBase\BaseContext.cs" />
     <Compile Include="Contracts\ReservationContract.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AuthAuthController.cs" />
     <Compile Include="Controllers\BoatController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OstaloController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\PonudaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
-    <Compile Include="CustomAuthentication\CustomMembership.cs" />
-    <Compile Include="CustomAuthentication\CustomMembershipUser.cs" />
-    <Compile Include="CustomAuthentication\CustomPrincipal.cs" />
-    <Compile Include="CustomAuthentication\CustomRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205261120302_Migracija1.cs" />
-    <Compile Include="Migrations\202205261120302_Migracija1.Designer.cs">
-      <DependentUpon>202205261120302_Migracija1.cs</DependentUpon>
+    <Compile Include="Migrations\202205311235378_Migracija1.cs" />
+    <Compile Include="Migrations\202205311235378_Migracija1.Designer.cs">
+      <DependentUpon>202205311235378_Migracija1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Boat.cs" />
@@ -296,8 +288,6 @@
     <Content Include="Views\Boat\Edit.cshtml" />
     <Content Include="Views\Boat\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\LoggedIn.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\AboutUs\AboutUsPage.cshtml" />
@@ -310,7 +300,9 @@
     <Content Include="Views\Ostalo\RecenzijeIskustva.cshtml" />
     <Content Include="Views\Ponuda\PublishYourBoat.cshtml" />
     <Content Include="Views\Reservation\ScheduledAppointment.cshtml" />
-    <Content Include="Views\AuthAuth\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\UnAuthorized.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,8 +321,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205261120302_Migracija1.resx">
-      <DependentUpon>202205261120302_Migracija1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205311235378_Migracija1.resx">
+      <DependentUpon>202205311235378_Migracija1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

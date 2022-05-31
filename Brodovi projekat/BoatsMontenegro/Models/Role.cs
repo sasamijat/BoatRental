@@ -8,9 +8,8 @@ namespace BoatsMontenegro.Models
 {
     public class Role
     {
-        [Key]
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-        public ICollection<User> Users { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        
     }
 }

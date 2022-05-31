@@ -7,12 +7,13 @@ using BoatsMontenegro.Models;
 using System.ComponentModel.DataAnnotations;
 using BoatsMontenegro.BaseBase;
 using System.Web.Security;
-using BoatsMontenegro.AuthenticationAndAuthorization;
+using BoatsMontenegro.AutorizationAuthentication;
 
 namespace BoatsMontenegro.Controllers
 {
     public class AccountController : Controller
     {
+        [CustomAuthorize("Admin")]
         public ActionResult Index()
         {
             using(BaseContext db = new BaseContext())
@@ -21,46 +22,6 @@ namespace BoatsMontenegro.Controllers
             }
         }
 
-        #region -----------------LOGIN--------------------
-        
-        public ActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Login(User userLogin)
-        {
-
-            using(BaseContext dbCon = new BaseContext())
-            {
-                var usr = dbCon.Users.Single(u => u.Username == userLogin.Username && u.Password == userLogin.Password);
-                if(usr != null)
-                {
-                    Session["UserID"] = usr.UserID.ToString();
-                    Session["Username"] = usr.Username.ToString();
-                    return RedirectToAction("LoggedIn");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Korisnicko ime ili lozinka nisu tacni.");
-                }
-            }
-            return View();
-        }
-        public ActionResult LoggedIn()
-        {
-            if(Session["UserID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
-        
-        #endregion
-        
         #region ---------------REGISTER------------------
         public ActionResult Register()
         {
@@ -83,54 +44,109 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-        
-        public ActionResult LogOut()
-        {
-            //FormsAuthentication.SignOut();
-            int UserID = (int)Session["UserID"];
-            Session.Abandon();
-            return RedirectToAction("Index", "Home");
-        }
-        
-        public AccountController() { }
+        //public AccountController() 
+        //{ 
+        //}
 
-        IAuthProvider authProvider;
-        public AccountController(IAuthProvider auth)
-        {
-            authProvider = auth;
-        }
 
-        /*
-        public ViewResult LoginMethod()
+        [HttpGet]
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LoginMethod(User userModel, string returnUrl)
+        public ActionResult Login(User model)
         {
-            if (ModelState.IsValid)
+           
+            //if (ModelState.IsValid)
+            //{
+            //    var errors = ModelState
+            //    .Where(x => x.Value.Errors.Count > 0)
+            //    .Select(x => new { x.Key, x.Value.Errors })
+            //    .ToArray();                
+            //}
+            //else
+            //{
+            //    return View(model);
+            //}
+
+            using (var context = new BaseContext())
             {
-                if (authProvider.Authenticate(userModel.Username, userModel.Password))
+                User user = context.Users
+                                   .Where(u => u.UserIdentifier == model.UserIdentifier && u.Password == model.Password)
+                                   .FirstOrDefault();
+
+                if (user != null)
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+                    Session["Username"] = user.Username;
+                    Session["UserIdentifier"] = user.UserIdentifier;
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Pogresno korisnicko ime ili lozika");
+                    ModelState.AddModelError("", "Pogresno ime ili lozinka");
+                    return View(model);
                 }
-                return View();
             }
-            else
-            {
-                return View();
-            }
+
         }
-        */
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            Session["Username"] = string.Empty;
+            Session["UserIdentifier"] = string.Empty;
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
     }
 }
 
 
+#region -----------------LOGIN--------------------
+/*
+public ActionResult Login()
+{
+    return View();
+}
+[HttpPost]
+public ActionResult Login(User userLogin)
+{
+
+    using(BaseContext dbCon = new BaseContext())
+    {
+        var usr = dbCon.Users.Single(u => u.Username == userLogin.Username && u.Password == userLogin.Password);
+        if(usr != null)
+        {
+            Session["UserID"] = usr.UserID.ToString();
+            Session["Username"] = usr.Username.ToString();
+            return RedirectToAction("LoggedIn");
+        }
+        else
+        {
+            ModelState.AddModelError("", "Korisnicko ime ili lozinka nisu tacni.");
+        }
+    }
+    return View();
+}
+public ActionResult LoggedIn()
+{
+    if(Session["UserID"] != null)
+    {
+        return View();
+    }
+    else
+    {
+        return RedirectToAction("Login");
+    }
+}
+*/
+#endregion
 
 #region ACTIVATION ACCOUNT
 /*
@@ -416,3 +432,31 @@ public ActionResult Login(User userObj, string ReturnUrl = "")
 }
 */
 #endregion
+
+/*
+       public ViewResult LoginMethod()
+       {
+           return View();
+       }
+
+       [HttpPost]
+       public ActionResult LoginMethod(User userModel, string returnUrl)
+       {
+           if (ModelState.IsValid)
+           {
+               if (authProvider.Authenticate(userModel.Username, userModel.Password))
+               {
+                   return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+               }
+               else
+               {
+                   ModelState.AddModelError("", "Pogresno korisnicko ime ili lozika");
+               }
+               return View();
+           }
+           else
+           {
+               return View();
+           }
+       }
+       */

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BoatsMontenegro.Models;
 using BoatsMontenegro.BaseBase;
+using BoatsMontenegro.AutorizationAuthentication;
 
 namespace BoatsMontenegro.Controllers 
 {
@@ -15,6 +16,8 @@ namespace BoatsMontenegro.Controllers
         {
             objContext = new BaseContext();
         }
+
+        [CustomAuthorize("Admin", "Buyer", "Seller")]
         public ActionResult ShowOne(string id)   /*string id*/
         {
             int BoatId = Int32.Parse(id);
@@ -22,6 +25,8 @@ namespace BoatsMontenegro.Controllers
             var boats = objContext.Boats.Where(b => b.BoatID == BoatId).ToList();
             return View(boats.Take(6));
         }
+
+        [CustomAuthorize("Admin", "Buyer", "Seller")]
         public ViewResult WholeOffer(string search)   /*string*/
         {
             var boats123 = objContext.Boats.ToList();
@@ -43,6 +48,7 @@ namespace BoatsMontenegro.Controllers
             return View(viewName: "WholeOffer", boats);
         }
 
+        [CustomAuthorize("Admin","Seller")]
         public ActionResult PublishYourBoat()
         {
             return View();
@@ -50,31 +56,3 @@ namespace BoatsMontenegro.Controllers
 
     }
 }
-
-
-//, bool NeedCaptain
-
-//int BoatID, DateTime DateFrom, DateTime DateTo
-
-
-// [HttpGet]
-// public ActionResult TakeReservation()
-// {
-//     return View(new Reservation());
-// }
-// [HttpPost]
-//public ActionResult TakeReservation(int BoatID, DateTime DateFrom, DateTime DateTo, string NeedCaptain)
-// {
-//     //objContext.Reservations.Add(reservation);
-//    objContext.SaveChanges();
-//     return RedirectToAction("TakeReservation");
-// }
-
-
-//int BoatId = id;
-//if(id != null && id > 0)
-//{
-//    var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
-//}
-////var boats = objContext.Boats.Where(s => s.BoatID.Equals(id)).ToList();
-//return View(boats);

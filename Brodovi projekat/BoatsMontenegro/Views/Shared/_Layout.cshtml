@@ -37,17 +37,19 @@
                             <a class="dropdown-item" href="~/Ostalo/Kontakt">Kontakt</a>
                             <a class="dropdown-item" href="~/Ostalo/RecenzijeIskustva">Recenzije i iskustva</a> <br />
                             <a class="dropdown-item" href="~/Ostalo/NajcescaPitanja">Najcesca pitanja</a> <br />
-                            <a class="dropdown-item" href="~/Reservation/ScheduledAppointment">Zauzeti termini</a> 
+                            <a class="dropdown-item" href="~/Reservation/ScheduledAppointment">Zauzeti termini</a>
 
                         </div>
                     </div>
                 </li>
+                <li class="nav-item"> @Html.Partial("_LoginPartial")</li>
             </ul>
         </nav>
 
-        <form action="~/Account/Login">
-            <button class="NavbarButton">Prijava</button>      @*<a href="~/Account/Login"><button class="NavbarButton">Prijava</button></a>*@
-        </form>
+       
+        <!--<form action="~/Account/Login">
+            <button class="NavbarButton">Prijava</button>-->      @*<a href="~/Account/Login"><button class="NavbarButton">Prijava</button></a>*@
+        <!--</form>-->
        
     </header>
 

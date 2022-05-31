@@ -14,7 +14,7 @@ namespace BoatsMontenegro.BaseBase
 {
     public class BaseContext : DbContext
     {
-        public BaseContext() : base("BaseContext")
+        public BaseContext() : base("name=BaseContext")
         {
            
         }

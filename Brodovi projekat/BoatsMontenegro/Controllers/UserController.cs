@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoatsMontenegro.AutorizationAuthentication;
 using BoatsMontenegro.BaseBase;
 using BoatsMontenegro.Models;
 
@@ -78,6 +79,7 @@ namespace BoatsMontenegro.Controllers
 
         // DELETE
         #region DELETE
+        [CustomAuthorize("Admin", "Buyer", "Seller")]
         public ActionResult Delete(int id)
         {
             User user = objContext.Users.Find(id);

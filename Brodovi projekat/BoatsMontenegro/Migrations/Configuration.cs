@@ -18,7 +18,7 @@ namespace BoatsMontenegro.Migrations
 
         protected override void Seed(BoatsMontenegro.BaseBase.BaseContext context)
         {
-            #region -------------------USER-------------------
+            #region -------------------RESERVATION-------------------
             if (!context.Reservations.Any())
             {
                 var reservations = new List<Reservation>
@@ -37,11 +37,12 @@ namespace BoatsMontenegro.Migrations
             {
                 var users = new List<User>
                 {
-                    new User {FirstName = "Blagoje", LastName = "Jovovic", Email = "2metkazapavelica@gmail.com", Password = "1953", PersonalIdNumber = "655223984", PhoneNumber = "+38160787686767", Username="blagojej" },
-                    new User {FirstName = "Kristina", LastName = "Mirkovic", Email = "kristinakris@yahoo.com", Password = "4745", PersonalIdNumber = "412887564", PhoneNumber = "+3816079879+",Username="kristinam" },
-                    new User {FirstName = "Dijana", LastName = "Lazic", Email = "dijanalazicdiks@gmail.com", Password = "8896", PersonalIdNumber = "963365477", PhoneNumber = "+38160645646",Username="dijanal" },
-                    new User {FirstName = "Gavrilo", LastName = "Principovic", Email = "mladabosna@outlook.com", Password = "1914", PersonalIdNumber = "852336889", PhoneNumber = "+38160796456",Username="gavrilop" },
-                    new User {FirstName = "Ratko", LastName = "Mladicevic", Email = "koridor92@gmail.com", Password = "1992", PersonalIdNumber = "2144533564", PhoneNumber = "+38160789789",Username="ratkom" }
+                    new User {FirstName="Administrator", LastName="Adminirovic" , Email="adminirovic@gmail.com", Password="adminadmin", PersonalIdNumber="56474646", PhoneNumber="5456464", Username="adminadminirovic", UserIdentifier="adminoznaka", RoleId=1 },
+                    new User {FirstName = "Blagoje", LastName = "Jovovic", Email = "2metkazapavelica@gmail.com", Password = "1953", PersonalIdNumber = "655223984", PhoneNumber = "+38160787686767", Username="blagojejovovic",UserIdentifier="blagojej", RoleId=2 },
+                    new User {FirstName = "Kristina", LastName = "Mirkovic", Email = "kristinakris@yahoo.com", Password = "4745", PersonalIdNumber = "412887564", PhoneNumber = "+3816079879+",Username="kristinamilic",UserIdentifier="", RoleId=3 },
+                    new User {FirstName = "Dijana", LastName = "Lazic", Email = "dijanalazicdiks@gmail.com", Password = "8896", PersonalIdNumber = "963365477", PhoneNumber = "+38160645646",Username="dijanalazic",UserIdentifier="dijanal", RoleId=2 },
+                    new User {FirstName = "Gavrilo", LastName = "Principovic", Email = "mladabosna@outlook.com", Password = "1914", PersonalIdNumber = "852336889", PhoneNumber = "+38160796456",Username="gavriloprincip",UserIdentifier="gavrilop", RoleId=3 },
+                    new User {FirstName = "Ratko", LastName = "Mladicevic", Email = "koridor92@gmail.com", Password = "1992", PersonalIdNumber = "2144533564", PhoneNumber = "+38160789789",Username="ratkomladic",UserIdentifier="ratkom", RoleId=3 }
                 };
                 users.ForEach(user => context.Users.Add(user));
                 context.SaveChanges();
@@ -75,9 +76,9 @@ namespace BoatsMontenegro.Migrations
             {
                 var roles = new List<Role>
                 {
-                    new Role{RoleName="Admin"},
-                    new Role{RoleName="Buyer"},
-                    new Role{RoleName="Seller"}
+                    new Role{Name="Admin"},
+                    new Role{Name="Buyer"},
+                    new Role{Name="Seller"}
                 };
                 roles.ForEach(role => context.Roles.Add(role));
                 context.SaveChanges();

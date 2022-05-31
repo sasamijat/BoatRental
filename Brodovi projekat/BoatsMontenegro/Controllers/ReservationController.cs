@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoatsMontenegro.AutorizationAuthentication;
 using BoatsMontenegro.BaseBase;
 using BoatsMontenegro.Contracts;
 using BoatsMontenegro.Models;
@@ -110,6 +111,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
+        [CustomAuthorize("Admin", "Buyer", "Seller")]
         public ActionResult ScheduledAppointment(int? idboat)
         {
             //var reservations1 = new Reservation();

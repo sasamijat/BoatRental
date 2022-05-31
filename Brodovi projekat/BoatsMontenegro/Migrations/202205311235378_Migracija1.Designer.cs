@@ -13,7 +13,7 @@ namespace BoatsMontenegro.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202205261120302_Migracija1"; }
+            get { return "202205311235378_Migracija1"; }
         }
         
         string IMigrationMetadata.Source

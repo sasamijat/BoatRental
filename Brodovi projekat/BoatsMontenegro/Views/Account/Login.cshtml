@@ -1,171 +1,46 @@
-﻿@using BoatsMontenegro.Models
-@model BoatsMontenegro.Models.User
-
+﻿@model BoatsMontenegro.Models.User
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
 
+<h2>Login</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="card">
-                <div class="card-body">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-                    <div class="row">
-                        <div class="col">
-                            <center>
-                                <img width="190" src="~/ImagesFolder/userPicture.jpg" />
-                            </center>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <center>
-                                <h3>Prijava sa koriscnickim imenom i sifrom</h3>
-                            </center>
-                        </div>
-                    </div>
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-                    <div class="row">
-                        <div class="col">
-                            <center>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserIdentifier, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.UserIdentifier, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserIdentifier, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                                        <hr />
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <button type="submit" value="Login" class="btn btn-info btn-md ">Prijava</button>
-                                }
-                                <br />
-
-                                <br />
-                                <br />
-                                <br />
-                                <center><h>Nemate nalog? Napravite ovde</h></center>
-                                <br />
-                                <a href="~/Account/Register" class="btn btn-info btn-md" role="button">Napravi nalog</a>
-                            </center>
-                        </div>
-                    </div>
-
-                </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Prijava" class="btn btn-default" />
             </div>
         </div>
     </div>
-</div>
+}
 
-
-<!--#region FORMA REZERVA  -->
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <h4>User</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-        </div>
-    }*@
-
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <div class="row">
-                                <div class="col">
-                                    <center>
-                                        <img width="160px" src="~/ImagesFolder/userPicture.jpg" />
-                                    </center>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <center>
-                                        <h3>Here You can login</h3>
-                                    </center>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <center>
-                                        <hr>
-                                    </center>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <center>
-
-                                        <form action="~/Account/Login" method="post">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input name="Username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@yahoo.com">
-                                                <small id="emailHelp" class="form-text text-muted"></small>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                <input name="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                            </div>
-
-                                            <button type="submit" value="Login" class="btn btn-info btn-md ">Submit</button>
-                                            <br />
-                                            <br />
-                                            <center><h>You dont have account? Create one</h></center>
-                                            <br />
-                                            <a href="~/Account/Register" class="btn btn-info btn-md" role="button">Sign in</a>
-                                        </form>
-                                    </center>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    }*@
-<!--#endregion --> 
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@   
