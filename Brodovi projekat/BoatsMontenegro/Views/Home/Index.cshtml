@@ -3,31 +3,18 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="nesto" id="containerAboutus">
-    <div class="jumbotron" style="width:100%">
-        <p id="naslovaboutus">"MONTEBOATS" Crna Gora</p> <br />
-        <p id="text1aboutus">
-            Ako ste obozalavac vodenih plovila,na pravom ste mjestu.Vec 12 godina pruzamo usluge u sektoru iznajmljivanja vodenih plovila.
-            Zakupite brod i krenite u plovidbu Jadranom.
-            U nasoj ponudi imate preko 500 brodova na preko 15 razlicitih destinacija.
-            Uvjerite se zasto smo najbolji!
-        </p> <br /> <br /> <br />
-
-        <div style="justify-content:space-evenly; display:flex; position:relative; top: 20%;">
-            <span style="color:whitesmoke;font-family:Brush Script MT, cursive;text-shadow: 16px 16px 16px black;font-size: 250%;"><a href="#" style="color:white">Zakazi termin</a></span>
-            <span style="color:whitesmoke; font-family:Brush Script MT, cursive;text-shadow: 16px 16px 16px black;font-size: 250%;"><a href="~/Ostalo/NaciniPlacanja" style="color:white">Nacini placanja</a></span>
-            <span style="color: whitesmoke;font-family:Brush Script MT, cursive;text-shadow: 16px 16px 16px black;font-size: 250%;">Sigurna usluga</span>
-        </div>
-
-    </div>
-</div>
+   
+<div class="divPocetna">
+      <p class="tekstPocetna">
+          Ako ste obozalavac vodenih plovila,na pravom ste mjestu! <br /> <br />Vec 12 godina pruzamo usluge u sektoru iznajmljivanja vodenih plovila,
+          u nasoj ponudi imate preko 500 brodova na preko 15 razlicitih destinacija.<br /> <br /><br />Zakupite brod i krenite u plovidbu Jadranom.           
+      </p> 
+</div> <br /> <br /> <br />
 
 <div class="container">
     <center>
         <h2 style="color: whitesmoke; height: 30px; text-shadow: 14px 14px 14px black; font-family: Brush Script MT, cursive;">Pogledajte najbolju ponudu koju nudimo!</h2>
     </center> <br />
-
     <center>
         <form>
             <input type="text" name="search" style="height:35px;" />
@@ -38,27 +25,65 @@
 
     @foreach (var item in Model)
     {
-        <div class="list-group" style="margin-left:25%; width:50%">
-            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item active" id="ShowOneTekst">
-                @Html.DisplayFor(modelItem => item.Name)
-            </a>
+<div class="container-fluid d-flex justify-content-sm-center">
+    <div class="row mt-5">
+        <div class="col-sm-11">
+            <div class="card">
+                <img src="https://static-s.aa-cdn.net/img/ios/1349495816/26ec3b631f7d13ca183aa420ae8495f7?v=1" class="card-img-top" width="100%">
+                <div class="card-body pt-0 px-0">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <small class="text-muted mt-1">Cijena</small>
+                        <h6>@Html.DisplayFor(modelItem => item.Price)€ / 24h</h6>
+                    </div>
+                    <hr class="mt-2 mx-3">
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Kategorija</span></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">@Html.DisplayFor(modelItem => item.Category)</h5></div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Kapacitet</span></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">@Html.DisplayFor(modelItem => item.Capacity) osoba</h5></div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between p-3 mid">
+                        <div class="d-flex flex-column"><small class="text-muted mb-1">Motor</small><div class="d-flex flex-row"><img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1"><small class="ghj">@Html.DisplayFor(modelItem => item.Engine)€ / 24h</small></div></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Potrosnja goriva</small><div class="d-flex flex-row"><img src="~/ImagesFolder/gas-pump.png"><h6 class="ml-1">@Html.DisplayFor(modelItem => item.FuelConsumption)€ / 24h</h6></div></div>
+                    </div>
 
-            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                @Html.DisplayFor(modelItem => item.Category)
-            </a>
-
-            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                @Html.DisplayFor(modelItem => item.Capacity) OSOBA
-            </a>
-
-            <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                @Html.DisplayFor(modelItem => item.Price)€ / 24h
-            </a>
+                    <a href="/Ponuda/ShowOne/@item.BoatID">
+                        <iput type="button" class="btn btn-danger btn-block">Rezervisi</iput>
+                    </a>
+                  
+                </div>
+            </div>
         </div>
+    </div>
+</div>
     }
+
+
 </div>
 
 
+
+
+
+@*<div class="list-group" style="margin-left:25%; width:50%; font-weight:600">
+    <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item active" id="ShowOneTekst">
+        @Html.DisplayFor(modelItem => item.Name)
+    </a>
+
+    <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item" style="color:black; font-weight:600">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        @Html.DisplayFor(modelItem => item.Category)
+    </a>
+
+    <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item" style="color:black; font-weight:600">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        @Html.DisplayFor(modelItem => item.Capacity) OSOBA
+    </a>
+
+    <a href="/Ponuda/ShowOne/@item.BoatID" class="list-group-item" style="color:black; font-weight:600">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        @Html.DisplayFor(modelItem => item.Price)€ / 24h
+    </a>
+</div>*@

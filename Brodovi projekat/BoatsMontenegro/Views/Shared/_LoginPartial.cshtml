@@ -5,8 +5,8 @@
         @Html.AntiForgeryToken()
 
 
-    <a href="#">@Session["FirstName"] @Session["LastName"]</a>
-    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    <a href="#" style="position: absolute; top: 100%; right:10%; font-family: 'Open Sans', sans-serif; font-size: 140%; color:white">@Session["FirstName"] @Session["LastName"]</a> <br /> <br />
+    <a href="javascript:document.getElementById('logoutForm').submit()" style="position: absolute; top: 10%; right: 15%; font-family:'Libre Baskerville', serif;color:white; font-size: 140%">Odjava</a>
 
     }
 }
@@ -14,7 +14,7 @@
 
 else
 {
-<span style="color:white; font-size:160%; font-family:'Brush Script MT',cursive; top:46%; position:absolute;">
+<span style="position: absolute; top: 10%; right: 10%; font-family: 'Open Sans', sans-serif; font-size: 140%">
     @Html.ActionLink("Prijava", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
 </span>
 

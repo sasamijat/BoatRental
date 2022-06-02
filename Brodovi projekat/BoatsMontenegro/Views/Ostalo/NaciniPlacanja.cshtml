@@ -4,61 +4,150 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 style="text-align:center; font-size:480%; color:whitesmoke; font-family:Brush Script MT,cursive; text-shadow: 8px 8px 8px black;">Nacini placanja</h1>
+@*<h1 style="text-align:center; font-size:480%; color:whitesmoke; font-family:Brush Script MT,cursive; text-shadow: 8px 8px 8px black;">Nacini placanja</h1>
 
-<span id="NaciniPlacanjaSpan">
-    <span id="naciniPlacanjaNaslovi">Uplatnica </span><br /> <br />
-    Plaćanje uplatnicom podrazumeva da svoju narudžbinu možete platiti direktnom uplatom u bilo kojoj pošti ili banci.
-    Detaljne podatke koje je potrebno navesti na uplatnici dobijate putem e-maila neposredno nakon potvrde narudžbine od strane naših komercijalista.
-    Po evidentiranju Vaše uplate, roba se šalje na izabranu adresu isporuke.<br />
+    <span id="NaciniPlacanjaSpan">
+        <span id="naciniPlacanjaNaslovi">Uplatnica </span><br /> <br />
+        Plaćanje uplatnicom podrazumeva da svoju narudžbinu možete platiti direktnom uplatom u bilo kojoj pošti ili banci.
+        Detaljne podatke koje je potrebno navesti na uplatnici dobijate putem e-maila neposredno nakon potvrde narudžbine od strane naših komercijalista.
+        Po evidentiranju Vaše uplate, roba se šalje na izabranu adresu isporuke.<br />
 
-    <span id="naciniPlacanjaNaslovi"> Nalog za prenos (Virmansko plaćanje)</span><br />
-    Ukoliko ste pravno lice ili korisnik elektronskog bankarstva (e-banking-a), uplatu možete izvršiti prenosom sredstava sa Vašeg računa.
-    Detaljne podatke koje je potrebno navesti na nalogu za prenos dobijate putem e-maila od strane naših komercijalista neposredno nakon potvrde narudžbine.
-    Po evidentiranju Vaše uplate, roba se šalje na izabranu adresu isporuke.
-</span>
-<br />
-
-<span id="NaciniPlacanjaSpan">
+        <span id="naciniPlacanjaNaslovi"> Nalog za prenos (Virmansko plaćanje)</span><br />
+        Ukoliko ste pravno lice ili korisnik elektronskog bankarstva (e-banking-a), uplatu možete izvršiti prenosom sredstava sa Vašeg računa.
+        Detaljne podatke koje je potrebno navesti na nalogu za prenos dobijate putem e-maila od strane naših komercijalista neposredno nakon potvrde narudžbine.
+        Po evidentiranju Vaše uplate, roba se šalje na izabranu adresu isporuke.
+    </span>
     <br />
-    <span id="naciniPlacanjaNaslovi">Gotovinski (POUZEĆEM)</span> <br /> <br />
-    Nudimo Vam i opciju plaćanja pouzećem (gotovinsko plaćanje kuriru na adresi isporuke).
-    U ovom slučaju nakon potvrde narudžbine roba će Vam biti poslata kurirskom službom, a Vi ćete je platiti kuriru pri preuzimanju.
-</span>
-<br />
 
-<span id="NaciniPlacanjaSpan">
+    <span id="NaciniPlacanjaSpan">
+        <br />
+        <span id="naciniPlacanjaNaslovi">Gotovinski (POUZEĆEM)</span> <br /> <br />
+        Nudimo Vam i opciju plaćanja pouzećem (gotovinsko plaćanje kuriru na adresi isporuke).
+        U ovom slučaju nakon potvrde narudžbine roba će Vam biti poslata kurirskom službom, a Vi ćete je platiti kuriru pri preuzimanju.
+    </span>
     <br />
-    <span id="naciniPlacanjaNaslovi"> Platna kartica</span><br /> <br />
-    Svoju narudžbinu možete platiti koristeći AMEX, Maestro, MasterCard, VISA, DINA karticu. Kartica mora biti odobrena od strane banke izdavaoca za online (Internet) plaćanje.
-    Prilikom online naručivanja, odabirom odgovarajućeg načina plaćanja bićete preusmereni na stranicu WSPay koja je zaštićena i sigurna za ovakav način plaćanja.
-    Niti jednog trenutka podaci o Vašoj platnoj kartici nisu dostupni našem sistemu.
-    Na stranici je potrebno da unesete sledeće podatke: Broj kartice, Datum isteka i  CVC2/CVV2 kod, koje možete pročitati sa Vaše kartice.
-    <br /> <br />
-</span>
 
-<img src="~/ImagesFolder/platnaKartica.jpg" id="nacinPlacanjaSlika" />
-<br />
-<br />
+    <span id="NaciniPlacanjaSpan">
+        <br />
+        <span id="naciniPlacanjaNaslovi"> Platna kartica</span><br /> <br />
+        Svoju narudžbinu možete platiti koristeći AMEX, Maestro, MasterCard, VISA, DINA karticu. Kartica mora biti odobrena od strane banke izdavaoca za online (Internet) plaćanje.
+        Prilikom online naručivanja, odabirom odgovarajućeg načina plaćanja bićete preusmereni na stranicu WSPay koja je zaštićena i sigurna za ovakav način plaćanja.
+        Niti jednog trenutka podaci o Vašoj platnoj kartici nisu dostupni našem sistemu.
+        Na stranici je potrebno da unesete sledeće podatke: Broj kartice, Datum isteka i  CVC2/CVV2 kod, koje možete pročitati sa Vaše kartice.
+        <br /> <br />
+    </span>
 
-<span id="NaciniPlacanjaSpan">
+    <img src="~/ImagesFolder/platnaKartica.jpg" id="nacinPlacanjaSlika" />
     <br />
-    <span id="naciniPlacanjaNaslovi">Instant plaćanje IPS skeniraj</span><br /> <br />
-    Svoju online porudžbinu možete platiti instant plaćanjem, metodom IPS skeniraj.
-    Kada izaberete IPS skeniraj bićete preusmereni na stranicu na kojoj će Vam biti prikazan jednokratan IPS QR kod koji je obezbedio WSPay.
-    Aplikacijom mobilnog bankarstva koju imate instaliranu na svom mobilnom uređaju skeniraćete/preuzećete podatke iz generisanog IPS QR koda i plaćanje obavljati
-    jednostavno, u sigurnom okruženju Vaše banke.
-</span>
-
-<span id="NaciniPlacanjaSpan">
     <br />
-    <span id="naciniPlacanjaNaslovi">Kreditne kartice</span> <br /> <br />
-    Mogućnost plaćanja kreditnim karticama NLB Komercijalne banke i Banca Intesa do 12 rata bez kamate!
-    Ukoliko posedujete kreditnu karticu NLB Komercijalne banke ili Banca Intesa, nakon unosa broja kartice, prikazaće se padajući meni sa izborom broja rata.
-    U slučaju da vaša kartica ne podržava odloženo plaćanje, padajući meni se neće prikazati.
-</span>
-<br />
-<br />
 
-<img src="~/ImagesFolder/NaciniPlacanjaSlika2.PNG" id="nacinPlacanjaSlika" />
-<br /> 
+    <span id="NaciniPlacanjaSpan">
+        <br />
+        <span id="naciniPlacanjaNaslovi">Instant plaćanje IPS skeniraj</span><br /> <br />
+        Svoju online porudžbinu možete platiti instant plaćanjem, metodom IPS skeniraj.
+        Kada izaberete IPS skeniraj bićete preusmereni na stranicu na kojoj će Vam biti prikazan jednokratan IPS QR kod koji je obezbedio WSPay.
+        Aplikacijom mobilnog bankarstva koju imate instaliranu na svom mobilnom uređaju skeniraćete/preuzećete podatke iz generisanog IPS QR koda i plaćanje obavljati
+        jednostavno, u sigurnom okruženju Vaše banke.
+    </span>
+
+    <span id="NaciniPlacanjaSpan">
+        <br />
+        <span id="naciniPlacanjaNaslovi">Kreditne kartice</span> <br /> <br />
+        Mogućnost plaćanja kreditnim karticama NLB Komercijalne banke i Banca Intesa do 12 rata bez kamate!
+        Ukoliko posedujete kreditnu karticu NLB Komercijalne banke ili Banca Intesa, nakon unosa broja kartice, prikazaće se padajući meni sa izborom broja rata.
+        U slučaju da vaša kartica ne podržava odloženo plaćanje, padajući meni se neće prikazati.
+    </span>
+    <br />
+    <br />
+
+    <img src="~/ImagesFolder/NaciniPlacanjaSlika2.PNG" id="nacinPlacanjaSlika" />
+    <br />*@
+
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row mt-5">
+
+
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://imgur.com/edOjtEC.png" class="card-img-top" width="100%">
+                <div class="card-body pt-0 px-0">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <small class="text-muted mt-1">CIJENA</small>
+                        <h6>&dollar;22,495&ast;</h6>
+                    </div>
+                    <hr class="mt-2 mx-3">
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Ime</span></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">Atlantik</h5></div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Kategorija</span></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">Yacht</h5></div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Kapacitet</span></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">9 osoba</h5></div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between p-3 mid">
+                        <div class="d-flex flex-column"><small class="text-muted mb-1">Motor</small><div class="d-flex flex-row"><img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1"><small class="ghj">1.4L MultiAir</small></div></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Potrosnja goriva</small><div class="d-flex flex-row"><img src="~/ImagesFolder/gas-pump.png"><h6 class="ml-1">14l </h6></div></div>
+                    </div>
+                    <div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"><small>Rezervisi</small></button></div>
+                    <small class="d-flex justify-content-center text-muted">*Legal Disclaimer</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="col-sm-4">
+        <div class="card">
+            <img src="https://imgur.com/SKZolYE.png" class="card-img-top" width="100%">
+            <div class="card-body pt-0 px-0">
+                <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                    <small class="text-muted mt-1">STARTING AT</small>
+                    <h6>&dollar;22,495&ast;</h6>
+                </div>
+                <hr class="mt-2 mx-3">
+                <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                    <div class="d-flex flex-column"><span class="text-muted">Fuel Efficiency</span><small class="text-muted">L/100KM&ast;</small></div>
+                    <div class="d-flex flex-column"><h5 class="mb-0">8.5/7.1</h5><small class="text-muted text-right">(city/Hwy)</small></div>
+                </div>
+                <div class="d-flex flex-row justify-content-between p-3 mid">
+                    <div class="d-flex flex-column"><small class="text-muted mb-1">ENGINE</small><div class="d-flex flex-row"><img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1"><small class="ghj">1.4L MultiAir</small><small class="ghj">16V I-4 Turbo</small></div></div></div>
+                    <div class="d-flex flex-column"><small class="text-muted mb-2">HORSEPOWER</small><div class="d-flex flex-row"><img src="https://imgur.com/J11mEBq.png"><h6 class="ml-1">135 hp&ast;</h6></div></div>
+                </div>
+                <small class="text-muted key pl-3">Standard key Features</small>
+                <div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"><small>BUILD & PRICE</small></button></div>
+                <small class="d-flex justify-content-center text-muted">*Legal Disclaimer</small>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-4">
+        <div class="card">
+            <img src="https://imgur.com/gUQNKPd.png" class="card-img-top" width="100%">
+            <div class="card-body pt-0 px-0">
+                <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                    <small class="text-muted mt-1">STARTING AT</small>
+                    <h6>&dollar;22,495&ast;</h6>
+                </div>
+                <hr class="mt-2 mx-3">
+                <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                    <div class="d-flex flex-column"><span class="text-muted">Fuel Efficiency</span><small class="text-muted">L/100KM&ast;</small></div>
+                    <div class="d-flex flex-column"><h5 class="mb-0">8.5/7.1</h5><small class="text-muted text-right">(city/Hwy)</small></div>
+                </div>
+                <div class="d-flex flex-row justify-content-between p-3 mid">
+                    <div class="d-flex flex-column"><small class="text-muted mb-1">ENGINE</small><div class="d-flex flex-row"><img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1"><small class="ghj">1.4L MultiAir</small><small class="ghj">16V I-4 Turbo</small></div></div></div>
+                    <div class="d-flex flex-column"><small class="text-muted mb-2">HORSEPOWER</small><div class="d-flex flex-row"><img src="https://imgur.com/J11mEBq.png"><h6 class="ml-1">135 hp&ast;</h6></div></div>
+                </div>
+                <small class="text-muted key pl-3">Standard key Features</small>
+                <div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"><small>BUILD & PRICE</small></button></div>
+                <small class="d-flex justify-content-center text-muted">*Legal Disclaimer</small>
+            </div>
+        </div>
+    </div>*@
+
+
+

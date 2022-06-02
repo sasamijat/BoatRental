@@ -17,7 +17,7 @@ namespace BoatsMontenegro.Controllers
             objContext = new BaseContext();
         }
 
-        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        //[CustomAuthorize("Admin", "Buyer", "Seller")]
         public ActionResult ShowOne(string id)   /*string id*/
         {
             int BoatId = Int32.Parse(id);
@@ -26,7 +26,7 @@ namespace BoatsMontenegro.Controllers
             return View(boats.Take(6));
         }
 
-        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        //[CustomAuthorize("Admin", "Buyer", "Seller")]
         public ViewResult WholeOffer(string search)   /*string*/
         {
             var boats123 = objContext.Boats.ToList();
