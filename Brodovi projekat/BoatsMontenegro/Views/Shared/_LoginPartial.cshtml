@@ -5,18 +5,21 @@
         @Html.AntiForgeryToken()
 
 
-    <a href="#" style="position: absolute; top: 100%; right:10%; font-family: 'Open Sans', sans-serif; font-size: 140%; color:white">@Session["FirstName"] @Session["LastName"]</a> <br /> <br />
-    <a href="javascript:document.getElementById('logoutForm').submit()" style="position: absolute; top: 10%; right: 15%; font-family:'Libre Baskerville', serif;color:white; font-size: 140%">Odjava</a>
-
+        <a href="#" style="position: absolute; top: 100%; right:10%; font-family: 'Open Sans', sans-serif; font-size: 140%; color:white">@Session["FirstName"] @Session["LastName"]</a>
+        <br />
+        <br /> <br />
+        <a href="javascript:document.getElementById('logoutForm').submit()" style="position: absolute; top: 10%; right: 15%; font-family:'Libre Baskerville', serif;color:white; font-size: 140%">
+            <button type="button" class="button-1">Logout</button>
+        </a>
     }
 }
 
 
 else
 {
-<span style="position: absolute; top: 10%; right: 10%; font-family: 'Open Sans', sans-serif; font-size: 140%">
-    @Html.ActionLink("Prijava", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-</span>
+    <span style="position: absolute; top: 10%; right: 10%; font-family: 'Open Sans', sans-serif; font-size: 140%">
+        <button type="button" class="button-1">@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
+    </span>
 
 }
 
