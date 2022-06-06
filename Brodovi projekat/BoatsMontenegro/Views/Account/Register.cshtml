@@ -5,23 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
 
-
-@using (Html.BeginForm()) 
+<!--
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @if (ViewBag.Message != null)
-             {
-               <div class="form-group">
-                   <div class="col-md-10">@ViewBag.Message</div>                  
-               </div>
-             }
+        {
+            <div class="form-group">
+                <div class="col-md-10">@ViewBag.Message</div>
+            </div>
+        }
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -79,25 +78,71 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+    -->
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div style="position:absolute; left:50%; top:180%;">
+    <div class="login-box">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2>Unesite svoje podatke</h2>
+            <form>
+                <div class="user-box">
+                    <input type="text" name="FirstName" required="">
+                    <label>Ime</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="LastName" required="">
+                    <label>Prezime</label>
+                </div>
+                <div class="user-box">
+                    <input type="email" name="Email" required="">
+                    <label>Email</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="PhoneNumber" required="">
+                    <label>Broj telefona</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="PersonalIdNumber" required="">
+                    <label>Broj licne karte</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="PersonalIdNumber" required="">
+                    <label>Broj licne karte</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="Username" required="">
+                    <label>Koriscnicko ime</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="UserIdentifier" required="">
+                    <label>Login korisnicko ime</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" name="Password" required="">
+                    <label>Lozinka</label>
+                </div>
+                <a onclick="this.closest('form').submit();return false;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Kreiraj nalog
+                    @*<input type="submit" value="Prijava" class="btn btn-default" />*@
+                </a>
+            </form>
+            <br />
+            
+        }
+    </div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

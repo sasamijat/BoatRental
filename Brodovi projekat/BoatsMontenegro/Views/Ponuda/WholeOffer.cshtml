@@ -4,57 +4,101 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<nav class="cls4">
-        <label for="touch"> <span class="cls5"> Odaberite kategoriju</span> </label>
-        <input type="checkbox" id="touch">
-        <ul class="slide">
-            <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Fishing" class="cls2">Fishing boats</a> </li>
-            <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Yacht" class="cls2"> Yacht boats</a> </li>
-            <li class="cls1"> <a href="~/Ponuda/Kategorije?category=Casual" class="cls2">Casual boats</a> </li>
-        </ul>
-    </nav>*@
-<div style="justify-content:space-evenly; display:flex">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:240%; height:50px">
-            Kategorije
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Casual">Casual</a> <br />
-            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Fishing">Fishing</a> <br />
-            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Yacht">Yacht</a>
-        </div>
-    </div>
-
+<br />
+@*<div>
     <div>
-        <form>
+        <form style="position:absolute; left:44%;">
             <input type="text" name="search" style="height:35px;" />
             <button class="searchButton" type="submit" name="type for search">Potrazi</button>
         </form>
     </div>
-</div> <br /> <br />
+    <br /><br /><br />
+</div>*@
+
+
+<div class="input-group mb-3" style="position:absolute; left:40%;">
+    <div class="input-group-prepend" style="">       
+        <button class="input-group-text" type="submit" name="search" style="background-color: #ad0e1f; color: white; height: 150%; ">PRETRAGA</button>    
+    </div>
+
+    <div style="">
+        <input type="text" class="form-control" name="search" placeholder="cijena-kapacitet" style="background-color: #ad0e1f; color: white; height:150%;">
+    </div>
+
+</div> <br /> <br /> <br /> <br />
+
+
+
+<div style="display: inline-flex; border: none; border-radius: 2px; overflow: hidden; position: absolute; left: 28%">
+    <a href="~/Ponuda/Kategorije?category=Casual">
+        <input value="Casual" type="button" style="padding: 10px 90px; outline: none;
+            border: none; cursor: pointer; border-right:2px solid black; color: white; background-color: #ad0e1f; font-size:140%" />
+    </a>
+    <a href="~/Ponuda/Kategorije?category=Fishing">
+        <input value="Fishing" type="button" style="padding: 10px 90px; outline: none;
+            border: none; cursor: pointer; border-right:2px solid black; color: white; background-color: #ad0e1f;font-size:140% " />
+    </a>
+    <a href="~/Ponuda/Kategorije?category=Yacht">
+        <input value="Yacht" type="button" style="padding: 10px 90px; outline: none;
+            border: none; cursor: pointer; border-right:2px solid black; color: white; background-color: #ad0e1f; font-size:140%" />
+    </a>
+</div>
+<br />
+<br />
+
 
 @foreach (var p in Model)
 {
-    <ul id="tilesWrap">
-        <li id="liWholeOffer">
-            <span style="color: whitesmoke;font-family:Brush Script MT,cursive;text-shadow: 8px 8px 8px black;font-size: 200%; justify-content:space-around;display:flex;">@p.Name</span> <br />
-            <span style="color: whitesmoke; font-family: Brush Script MT,cursive; text-shadow: 8px 8px 8px black; font-size: 130%; justify-content: space-around; display: flex;">
-                Id broda: @p.BoatID <br />
-                Kategorija: @p.Category <br />
-                Kapacitet: @p.Capacity <br />
-                Cijena: @p.Price <br />
-                Velicina: @p.Size <br />
-                @*Motor: @p.Engine <br />
-                    Potrosnja goriva: @p.FuelConsumption <br />*@
-                @*Id broda: @p.BoatID*@
-            </span> <br />           
-        </li>
-    </ul>
-    <form action="~/Ponuda/ShowOne/@p.BoatID">
-        <button id="PregledajRezervisi" style="margin-left: 46%; width: 10%; color: black; background: linear-gradient(#dd3e54,#6be585 ); height:40px; font-weight:bold">
-            Pregledaj i rezervisi
-        </button>
-    </form> <br /> <br /> <br />
+    <div class="container-fluid d-flex justify-content-center" style="width:25%; float:left; margin:60px">
+        <div class="row mt-5">
+            <div class="col-sm-11">
+                <div class="card">
+                    <img src="https://static-s.aa-cdn.net/img/ios/1349495816/26ec3b631f7d13ca183aa420ae8495f7?v=1" class="card-img-top" width="100%">
+                    <div class="card-body pt-0 px-0">
+                        <br />
+                        <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                            <span class="text-muted">Ime</span>
+                            <h6>@Html.DisplayFor(modelItem => p.Name)</h6>
+                        </div>
+                        <hr class="mt-2 mx-3">
+                        <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                            <div class="d-flex flex-column"><span class="text-muted">Cijena</span></div>
+                            <div class="d-flex flex-column"><h5 class="mb-0">@Html.DisplayFor(modelItem => p.Price)</h5></div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                            <div class="d-flex flex-column"><span class="text-muted">Kategorija</span></div>
+                            <div class="d-flex flex-column"><h5 class="mb-0">@Html.DisplayFor(modelItem => p.Category)</h5></div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                            <div class="d-flex flex-column"><span class="text-muted">Kapacitet</span></div>
+                            <div class="d-flex flex-column"><h5 class="mb-0">@Html.DisplayFor(modelItem => p.Capacity) osoba</h5></div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between p-3 mid">
+                            <div class="d-flex flex-column">
+                                <small class="text-muted mb-1">Motor</small>
+                                <div class="d-flex flex-row">
+                                    <img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1">
+                                        <small class="ghj">@Html.DisplayFor(modelItem => p.Engine)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted mb-2">Potrosnja goriva</small>
+                                <div class="d-flex flex-row">
+                                    <img src="~/ImagesFolder/gas-pump.png"><h6 class="ml-1">@Html.DisplayFor(modelItem => p.FuelConsumption)</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/Ponuda/ShowOne/@p.BoatID">
+                            <iput type="button" class="btn btn-danger btn-block">Pregledaj i rezervisi</iput>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 
@@ -66,3 +110,30 @@
     line-height: 20px;list-style: none;margin: 0;padding: 10px 12px;
     text-align: center;transition: all 200ms;vertical-align: baseline;white-space: nowrap;user-select: none;
     -webkit-user-select: none;touch-action: manipulation;margin-left:45%;"*@
+
+<!--<ul id="tilesWrap">
+    <li id="liWholeOffer">
+        <span style="color: whitesmoke;font-family:Brush Script MT,cursive;text-shadow: 8px 8px 8px black;font-size: 200%; justify-content:space-around;display:flex;">p.Name</span> <br />
+        <span style="color: whitesmoke; font-family: Brush Script MT,cursive; text-shadow: 8px 8px 8px black; font-size: 130%; justify-content: space-around; display: flex;">
+            Id broda: p.BoatID <br />
+            Kategorija: p.Category <br />
+            Kapacitet: p.Capacity <br />
+            Cijena: p.Price <br />
+            Velicina: p.Size <br />-->
+@*Motor: @p.Engine <br />
+    Potrosnja goriva: @p.FuelConsumption <br />*@
+@*Id broda: @p.BoatID*@
+<!--</span> <br />
+    </li>
+</ul>-->
+@*style="justify-content:space-evenly; display:flex"*@
+@*<div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:240%; height:50px">
+            Kategorije
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Casual">Casual</a> <br />
+            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Fishing">Fishing</a> <br />
+            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Yacht">Yacht</a>
+        </div>
+    </div>*@

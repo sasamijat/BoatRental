@@ -7,15 +7,13 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
 
-<h2>Login</h2>
-
 <div class="formeProba">
     <div class="login-box">
         @using (Html.BeginForm("Login", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <h2>Login</h2>
+            <h2>Prijava</h2>
             <form>
                 <div class="user-box">
                     <input type="text" name="UserIdentifier" required="">                    
@@ -34,9 +32,11 @@
                     @*<input type="submit" value="Prijava" class="btn btn-default" />*@
                 </a>
             </form>
+            <br />
+            <a href="~/Account/Register">Nemas nalog? Registruj se</a>
         }
     </div>
-</div>
+</div> 
 
     @*@using (Html.BeginForm())
     {
@@ -69,13 +69,3 @@
             </div>
         </div>
     }*@
-
-
-
-
-
-
-
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@

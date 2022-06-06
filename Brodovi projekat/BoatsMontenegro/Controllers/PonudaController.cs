@@ -34,11 +34,27 @@ namespace BoatsMontenegro.Controllers
             if (search != null)
             {
                 //boats = boats.Where(x => x.Size.Contains(search) || x.Category.Contains(search)).ToList();
-                return View(objContext.Boats.Where(x => x.Category.Contains(search) && x.Size.Contains(search) 
+                return View(objContext.Boats.Where(x => x.Size.Contains(search) 
                 && x.Capacity.ToString().Contains(search) && x.Price.ToString().Contains(search)).ToList());
             }
             return View(objContext.Boats);        
         }
+
+        public ActionResult SearchFunc(string search)
+        {
+            return View(objContext.Boats.Where(x => x.Name.Contains(search)).ToList());
+        }
+        //public ViewResult SearchOffer(string searchString)
+        //{
+        //    var boatsOff = from s in objContext.Boats select s;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        boatsOff = boatsOff.Where(s => s.Capacity.ToString().Contains(searchString) || s.Size.Contains(searchString));
+        //    }
+        //    return View(boatsOff.ToList());
+        //}
+
 
         [HttpGet]
         public ActionResult Kategorije(string category)
