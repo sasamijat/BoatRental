@@ -5,30 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <h1>Zauzeti termini</h1>
-    <br /> <br />
+<h1 style="font-family: Arial, Helvetica, sans-serif; color:white; position:absolute; left:42%; top:105%;">Zauzeti termini:</h1>
+<br />
+<br />
+<br />
+<br />
 
-    <table class="table" style="color:whitesmoke">
+<div style="position: absolute; top: 125%; left: 50%; transform: translate(-50%, -50%); font-family: Arial, Helvetica, sans-serif;color:white;">
+    <table style="border:1px solid;">
         <thead>
-            <tr>               
-                <th scope="col">Od kada:</th>
-                <th scope="col">Do kada:</th>
+            <tr>
+                <th>Od kada:</th>
+                <th>Do kada:</th>
             </tr>
         </thead>
-
         @foreach (var r in Model)
         {
             <tbody>
-                <tr>                
+                <tr>
                     <td>@Html.DisplayFor(model => r.DateFrom)</td>
                     <td>@Html.DisplayFor(model => r.DateTo)</td>
-                    <td></td>
                 </tr>
-
             </tbody>
         }
-    </table>
-
-
-
-
+        </table>
+</div>

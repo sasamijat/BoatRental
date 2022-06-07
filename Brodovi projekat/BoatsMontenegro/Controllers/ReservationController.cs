@@ -111,7 +111,7 @@ namespace BoatsMontenegro.Controllers
         }
         #endregion
 
-        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        //[CustomAuthorize("Admin", "Buyer", "Seller")]
         public ActionResult ScheduledAppointment(int? idboat)
         {
             //var reservations1 = new Reservation();

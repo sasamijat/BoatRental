@@ -79,7 +79,7 @@ namespace BoatsMontenegro.Controllers
 
         // DELETE
         #region DELETE
-        [CustomAuthorize("Admin", "Buyer", "Seller")]
+        //[CustomAuthorize("Admin", "Buyer", "Seller")]
         public ActionResult Delete(int id)
         {
             User user = objContext.Users.Find(id);

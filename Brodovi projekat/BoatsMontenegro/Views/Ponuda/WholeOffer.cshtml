@@ -3,20 +3,8 @@
     ViewBag.Title = "WholeOffer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <br />
-@*<div>
-    <div>
-        <form style="position:absolute; left:44%;">
-            <input type="text" name="search" style="height:35px;" />
-            <button class="searchButton" type="submit" name="type for search">Potrazi</button>
-        </form>
-    </div>
-    <br /><br /><br />
-</div>*@
-
-
-<div class="input-group mb-3" style="position:absolute; left:40%;">
+<div class="input-group mb-3" style="position: absolute; left: 40%; font-family: Arial, Helvetica, sans-serif;">
     <div class="input-group-prepend" style="">       
         <button class="input-group-text" type="submit" name="search" style="background-color: #ad0e1f; color: white; height: 150%; ">PRETRAGA</button>    
     </div>
@@ -27,9 +15,7 @@
 
 </div> <br /> <br /> <br /> <br />
 
-
-
-<div style="display: inline-flex; border: none; border-radius: 2px; overflow: hidden; position: absolute; left: 28%">
+<div style="display: inline-flex; border: none; border-radius: 2px; overflow: hidden; position: absolute; left: 28%; font-family: Arial, Helvetica, sans-serif;">
     <a href="~/Ponuda/Kategorije?category=Casual">
         <input value="Casual" type="button" style="padding: 10px 90px; outline: none;
             border: none; cursor: pointer; border-right:2px solid black; color: white; background-color: #ad0e1f; font-size:140%" />
@@ -46,10 +32,9 @@
 <br />
 <br />
 
-
 @foreach (var p in Model)
 {
-    <div class="container-fluid d-flex justify-content-center" style="width:25%; float:left; margin:60px">
+    <div class="container-fluid d-flex justify-content-center" style="width: 25%; float: left; margin: 60px; font-family: Arial, Helvetica, sans-serif;">
         <div class="row mt-5">
             <div class="col-sm-11">
                 <div class="card">
@@ -102,38 +87,3 @@
 }
 
 
-
-
-@*style="border-radius: 8px;
-    border-width: 0;color: #333333;cursor: pointer;
-    display: inline-block;font-size: 14px;font-weight: 500;
-    line-height: 20px;list-style: none;margin: 0;padding: 10px 12px;
-    text-align: center;transition: all 200ms;vertical-align: baseline;white-space: nowrap;user-select: none;
-    -webkit-user-select: none;touch-action: manipulation;margin-left:45%;"*@
-
-<!--<ul id="tilesWrap">
-    <li id="liWholeOffer">
-        <span style="color: whitesmoke;font-family:Brush Script MT,cursive;text-shadow: 8px 8px 8px black;font-size: 200%; justify-content:space-around;display:flex;">p.Name</span> <br />
-        <span style="color: whitesmoke; font-family: Brush Script MT,cursive; text-shadow: 8px 8px 8px black; font-size: 130%; justify-content: space-around; display: flex;">
-            Id broda: p.BoatID <br />
-            Kategorija: p.Category <br />
-            Kapacitet: p.Capacity <br />
-            Cijena: p.Price <br />
-            Velicina: p.Size <br />-->
-@*Motor: @p.Engine <br />
-    Potrosnja goriva: @p.FuelConsumption <br />*@
-@*Id broda: @p.BoatID*@
-<!--</span> <br />
-    </li>
-</ul>-->
-@*style="justify-content:space-evenly; display:flex"*@
-@*<div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:240%; height:50px">
-            Kategorije
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Casual">Casual</a> <br />
-            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Fishing">Fishing</a> <br />
-            <a class="dropdown-item" href="~/Ponuda/Kategorije?category=Yacht">Yacht</a>
-        </div>
-    </div>*@

@@ -81,7 +81,7 @@ namespace BoatsMontenegro.Controllers
         
         public ActionResult UnAuthorized()
         {
-            ViewBag.Message = "Pristup odbijen!";
+            //ViewBag.Message = "Pristup odbijen!";
             return View();
         }
     }
