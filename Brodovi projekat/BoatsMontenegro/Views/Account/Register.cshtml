@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="position:absolute; left:50%; top:180%;" class="registerForm">
+<div style="position:absolute; left:50%; top:180%;" class="registerForm" id="registerScroll">
     <div class="login-box">
         @using (Html.BeginForm("Register", "Account", FormMethod.Post))
         {
@@ -59,9 +59,13 @@
                 </a>
             </form>
             <br />
-            
+
         }
     </div>
 </div>
 
-
+<script type="text/javascript">
+    jQuery("html").animate({
+        scrollTop: jQuery("#registerScroll").offset().top - 100
+    });
+</script>

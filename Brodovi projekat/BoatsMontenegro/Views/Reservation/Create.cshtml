@@ -9,7 +9,7 @@
 }
 
 
-<div style="position: absolute; top: 145%; left: 50%; font-family: Arial, Helvetica, sans-serif;" class="nekaklasa1">
+<div style="position: absolute; top: 145%; left: 50%; font-family: Arial, Helvetica, sans-serif;" class="nekaklasa1" id="createReservationScroll">
     <div class="login-box">
         @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
         {
@@ -18,7 +18,7 @@
             <h2>Zakazite brod</h2>
             <form>
                 <div class="user-box">
-                    <label>Broj broda</label> <br /> 
+                    <label>Broj broda</label> <br />
                     @Html.DropDownListFor(model => model.id, new SelectList(ids), "Izaberi brod")
                 </div> <br />
                 <div class="user-box">
@@ -45,6 +45,15 @@
         }
     </div>
 </div>
+
+<script type="text/javascript">
+    jQuery("html").animate({
+        scrollTop: jQuery("#createReservationScroll").offset().top - 100
+    });
+</script>
+
+
+
 
 
 

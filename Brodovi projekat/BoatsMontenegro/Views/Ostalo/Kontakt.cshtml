@@ -23,5 +23,20 @@
         <a href="www.youtube.com"><img src="~/ImagesIconsFolder/youtubeICON.png" id="slikaDrustveneMreze" /> </a> <br />
     </span>
 
+@*<script>
+    window.addEventListener('scroll', () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = window.scrollY;
 
+        console.log(scrollable);
+    });
+</script>*@
+<!--Kada refreshujemo stranicu (reload) da nam scroll position ostane na onoj poziciji gdje je bio pre reload-->
 
+<script type="text/javascript">
+    jQuery("html").animate({
+        scrollTop: jQuery("#naslovKontakt").offset().top - 100
+    });
+</script>
+<!--Kada reload/refresh stranicu da nas baci na odredjeni dio (za sad radi)
+    Moguce je da radi samo za div(moze i za h1,h2 proveriti ostalo), vezuje se za id -->

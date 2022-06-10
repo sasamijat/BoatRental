@@ -1102,27 +1102,28 @@ td {
     .tekstPocetna{
         height:50%;
         width:80%;  
-        position:absolute;
-        top:225%;
+        position:relative;
+        top:7%;
+        /*margin-top:250% !important;*/
         font-size:140%;
         left:5%;
     }
 
     .card{
         position:relative;
-        left:50%;
+        left:45%;
         height:100%;
         width:140%;
     }
 
     .input-group-text{
         position:relative;
-        right:90%;
+        right:110%;
     }
 
     .form-control{
         position:relative;
-        right:43%;
+        right:55%;
     }
 
     .kateg{
