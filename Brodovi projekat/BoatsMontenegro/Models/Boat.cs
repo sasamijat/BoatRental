@@ -20,5 +20,10 @@ namespace BoatsMontenegro.Models
         public double Price { get; set; }
         public string Category { get; set; }
 
+
+        //za slike iz MVC5 skripte
+        //public byte[] ImageData { get; set; }
+        //public string ImageMimeType { get; set; }
     }
 }
+
